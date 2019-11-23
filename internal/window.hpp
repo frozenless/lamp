@@ -14,7 +14,8 @@ namespace lamp
 		bool create(const std::string_view& title, int width, int height) noexcept;
 		bool closing() const noexcept;
 
-		static void pull_events() noexcept;
+		static bool init() noexcept;
+		static void update() noexcept;
 		static void finish() noexcept;
 
 		void swap() const noexcept;

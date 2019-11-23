@@ -26,7 +26,7 @@ namespace lamp
 		glfwSwapBuffers(ptr);
 	}
 
-	void Window::pull_events() noexcept
+	void Window::update() noexcept
 	{
 		glfwPollEvents();
 	}
@@ -34,5 +34,10 @@ namespace lamp
 	void Window::finish() noexcept
 	{
 		glfwTerminate();
+	}
+
+	bool Window::init() noexcept
+	{
+		return glfwInit() == GLFW_TRUE;
 	}
 }
