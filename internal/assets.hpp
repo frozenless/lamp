@@ -4,5 +4,6 @@
 
 namespace lamp
 {
-	shaderPtr create_shader(unsigned int type, const std::string_view& path);
+	shaderPtr  create_shader(u32 type, const std::string_view& path);
+	programPtr create_program(const shaderPtr& vertex, const shaderPtr& fragment);
 }

@@ -1,3 +1,5 @@
+option(GLM_TEST_ENABLE OFF)
+
 option(GLFW_BUILD_EXAMPLES OFF)
 option(GLFW_BUILD_TESTS OFF)
 option(GLFW_BUILD_DOCS OFF)
@@ -10,3 +12,4 @@ set(GLAD_PROFILE "core")
 
 add_subdirectory(glfw)
 add_subdirectory(glad)
+add_subdirectory(glm)

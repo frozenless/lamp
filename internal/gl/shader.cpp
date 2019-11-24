@@ -8,4 +8,9 @@ namespace lamp::gl
 	{
 		glCompileShader(id);
 	}
+
+	void Shader::release() const noexcept
+	{
+		glDeleteShader(id);
+	}
 }

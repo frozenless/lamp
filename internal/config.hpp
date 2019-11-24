@@ -1,5 +1,6 @@
 #pragma once
 
+#include "util.hpp"
 #include <string_view>
 
 namespace lamp::versions
@@ -8,7 +9,7 @@ namespace lamp::versions
 
 	namespace gl
 	{
-		constexpr unsigned int major = 4;
-		constexpr unsigned int minor = 3;
+		constexpr u32 major = 4;
+		constexpr u32 minor = 3;
 	}
 }
