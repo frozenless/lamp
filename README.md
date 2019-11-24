@@ -1,6 +1,6 @@
 # Lamp
 
-Simple game engine for simple games.
+Game engine for simple games.
 
 ## Games
 
