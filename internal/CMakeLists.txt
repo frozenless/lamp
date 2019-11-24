@@ -12,6 +12,8 @@ target_sources(${PROJECT_NAME}
             gl/shader.cpp
             gl/program.cpp
             gl/attribute.cpp
+            camera.cpp
+            engine.cpp
             importer.cpp
             window.cpp
             common.cpp
