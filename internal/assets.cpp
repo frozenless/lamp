@@ -9,7 +9,7 @@
 
 namespace lamp
 {
-	shaderPtr create_shader(const u32 type, const std::string_view& path)
+	shaderPtr create_shader(const std::string_view& path, const u32 type)
 	{
 		auto shader = std::make_shared<gl::Shader>();
 

@@ -7,9 +7,18 @@ option(GLFW_INSTALL OFF)
 
 option(GLAD_NO_LOADER ON)
 
+option(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF)
+option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+option(ASSIMP_BUILD_SAMPLES OFF)
+option(ASSIMP_BUILD_TESTS OFF)
+
 set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
 set(GLAD_PROFILE "core")
+
+set(ASSIMP_BUILD_OBJ_IMPORTER ON)
+set(ASSIMP_NO_EXPORT ON)
 
 add_subdirectory(glfw)
 add_subdirectory(glad)
 add_subdirectory(glm)
+add_subdirectory(assimp)
