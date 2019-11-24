@@ -1,7 +1,7 @@
 #pragma once
 
-#include "common.hpp"
 #include "gl/attribute.hpp"
+#include "common.hpp"
 
 #include <vector>
 

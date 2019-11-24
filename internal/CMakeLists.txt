@@ -13,4 +13,5 @@ target_sources(${PROJECT_NAME}
             gl/attribute.cpp
             window.cpp
             common.cpp
-            assets.cpp)
+            assets.cpp
+            model.cpp)

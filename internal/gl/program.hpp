@@ -16,6 +16,6 @@ namespace lamp::gl
 		static void uniform(int location, const m4& mat);
 		static void uniform(int location, const v3& vec);
 
-		unsigned int id;
+		u32 id;
 	};
 }
