@@ -9,9 +9,9 @@ namespace lamp
 	{
 	}
 
-	bool Window::create(const std::string_view &title, int width, int height) noexcept
+	bool Window::create(const std::string_view &title, const iv2& size) noexcept
 	{
-		ptr = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
+		ptr = glfwCreateWindow(size.x, size.y, title.data(), nullptr, nullptr);
 
 		return ptr != nullptr;
 	}
