@@ -5,6 +5,8 @@
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 
+#include <glad/glad.h>
+
 namespace lamp
 {
 	meshPtr import_mesh(const std::string_view& path, u32 flag)
