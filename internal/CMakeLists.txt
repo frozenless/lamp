@@ -7,4 +7,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 target_link_libraries(${PROJECT_NAME}   PUBLIC glfw glad)
 
 target_sources(${PROJECT_NAME}
-    PRIVATE window.cpp)
+    PRIVATE gl/shader.cpp
+            window.cpp
+            common.cpp
+            assets.cpp)
