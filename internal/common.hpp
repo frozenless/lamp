@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gl/mesh.hpp"
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
 
@@ -8,7 +9,8 @@
 
 namespace lamp
 {
-	using shaderPtr  = std::shared_ptr<gl::Shader>;
+	using meshPtr   = std::shared_ptr<gl::Mesh>;
+	using shaderPtr = std::shared_ptr<gl::Shader>;
 	using programPtr = std::shared_ptr<gl::Program>;
 
 	std::string read_file(const std::string_view& path);

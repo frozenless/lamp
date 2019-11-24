@@ -1,9 +1,9 @@
 #include "assets.hpp"
+#include "assets.inl"
 #include "config.hpp"
 
-#include <glad/glad.h>
-
 #include <iostream>
+#include <numeric>
 #include <vector>
 #include <array>
 
@@ -13,10 +13,7 @@ namespace lamp
 	{
 		auto shader = std::make_shared<gl::Shader>();
 
-		const std::string& file = read_file(path);
-		const std::string_view& source = file;
-
-		std::array<const char*, 2> sources = { versions::glsl.data(), source.data() };
+		std::array<const char*, 2> sources = { versions::glsl.data(), read_file(path).c_str() };
 
 		shader->id = glCreateShader(type);
 
@@ -76,5 +73,32 @@ namespace lamp
 		fragment->release();
 
 		return program;
+	}
+
+
+	meshPtr create_mesh(const std::vector<f32> &vertices, const std::vector<u32> &indices, const std::vector<gl::Attribute>& attributes, const u32 primitive, const u32 usage)
+	{
+		auto mesh = std::make_shared<gl::Mesh>();
+
+		glGenVertexArrays(1, &mesh->id);
+
+		mesh->bind();
+		mesh->vbo = create_buffer(GL_ARRAY_BUFFER, vertices, usage);
+		mesh->ibo = create_buffer(GL_ELEMENT_ARRAY_BUFFER, indices, usage);
+
+		const int vertex_size = std::accumulate(attributes.begin(), attributes.end(), 0, [](const int count, const gl::Attribute& attribute) {
+			return count + attribute.count * sizeof(f32);
+		});
+
+		for (const gl::Attribute& attribute : attributes)
+		{
+			glVertexAttribPointer(attribute.index, attribute.count, GL_FLOAT, GL_FALSE, vertex_size, reinterpret_cast<void*>(attribute.offset));
+			attribute.enable();
+		}
+
+		mesh->primitive = primitive;
+		mesh->count     = indices.size();
+
+		return mesh;
 	}
 }
