@@ -6,4 +6,3 @@ add_subdirectory(config)
 
 add_subdirectory(external)
 add_subdirectory(internal)
-add_subdirectory(examples)
