@@ -4,8 +4,7 @@ namespace lamp::gl
 {
 	struct Attribute
 	{
-		Attribute(int index, int count, int offset);
-
+		void update(int vertex_size) const noexcept;
 		void enable() const noexcept;
 
 		int index;

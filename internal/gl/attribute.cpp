@@ -4,11 +4,9 @@
 
 namespace lamp::gl
 {
-	Attribute::Attribute(int index, int count, int offset)
-		: index(index)
-		, count(count)
-		, offset(offset)
+	void Attribute::update(const int vertex_size) const noexcept
 	{
+		glVertexAttribPointer(index, count, GL_FLOAT, GL_FALSE, vertex_size, reinterpret_cast<void*>(offset));
 	}
 
 	void Attribute::enable() const noexcept

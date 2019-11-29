@@ -1,11 +1,13 @@
 #include "assets.hpp"
 #include "assets.inl"
 #include "config.hpp"
+#include "layout.hpp"
 
 #include <iostream>
-#include <numeric>
 #include <vector>
 #include <array>
+
+#include <stb_image.h>
 
 namespace lamp
 {
@@ -85,13 +87,11 @@ namespace lamp
 		mesh->vbo = create_buffer(GL_ARRAY_BUFFER, vertices, usage);
 		mesh->ibo = create_buffer(GL_ELEMENT_ARRAY_BUFFER, indices, usage);
 
-		const int vertex_size = std::accumulate(attributes.begin(), attributes.end(), 0, [](const int count, const gl::Attribute& attribute) {
-			return count + attribute.count * sizeof(f32);
-		});
+		const int vertex_size = Layout::calculate_vertex_size(attributes);
 
 		for (const gl::Attribute& attribute : attributes)
 		{
-			glVertexAttribPointer(attribute.index, attribute.count, GL_FLOAT, GL_FALSE, vertex_size, reinterpret_cast<void*>(attribute.offset));
+			attribute.update(vertex_size);
 			attribute.enable();
 		}
 
@@ -99,5 +99,39 @@ namespace lamp
 		mesh->count     = indices.size();
 
 		return mesh;
+	}
+
+	texturePtr create_texture(const std::string_view &path, const bool mipmap)
+	{
+		int channels;
+		int width, height;
+		int format = GL_RGB;
+
+		stbi_set_flip_vertically_on_load(true);
+
+		unsigned char* data = stbi_load(path.data(), &width, &height, &channels, 0);
+		assert(data);
+
+		if (channels == 4) {
+			format = GL_RGBA;
+		}
+
+		auto texture = std::make_shared<gl::Texture>();
+
+		glGenTextures(1, &texture->id);
+		texture->bind();
+
+		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+
+		if (mipmap) {
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		stbi_image_free(data);
+
+		return texture;
 	}
 }

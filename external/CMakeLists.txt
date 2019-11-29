@@ -18,7 +18,7 @@ set(GLAD_PROFILE "core")
 set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_NO_EXPORT ON)
 
+add_subdirectory(assimp)
 add_subdirectory(glfw)
 add_subdirectory(glad)
 add_subdirectory(glm)
-add_subdirectory(assimp)
