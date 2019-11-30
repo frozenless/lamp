@@ -12,7 +12,7 @@ namespace lamp
 	public:
 		Window() noexcept;
 
-		bool create(const std::string_view& title, const iv2& size) noexcept;
+		bool create(const std::string_view& title, const iv2& size, u32 samples = 0) noexcept;
 		bool closing() const noexcept;
 
 		static bool init() noexcept;

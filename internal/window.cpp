@@ -10,8 +10,12 @@ namespace lamp
 	{
 	}
 
-	bool Window::create(const std::string_view &title, const iv2& size) noexcept
+	bool Window::create(const std::string_view &title, const iv2& size, const u32 samples) noexcept
 	{
+		if (samples > 0) {
+			glfwWindowHint(GLFW_SAMPLES, samples);
+		}
+
 		ptr = glfwCreateWindow(size.x, size.y, title.data(), nullptr, nullptr);
 
 		return ptr != nullptr;
