@@ -20,19 +20,25 @@ namespace lamp
 		std::vector<u32> indices;
 
 		std::vector<gl::Attribute> attributes;
-		attributes.push_back({ 0, 3, 0 });
+
+		if (ai_mesh->HasPositions()) {
+			attributes.emplace_back(0, 3, 0);
+		}
 
 		if (ai_mesh->HasNormals()) {
-			attributes.push_back({1, 3, 3 * sizeof(f32)});
+			attributes.emplace_back(1, 3, 3 * sizeof(f32));
 		}
 
 		for (u32 i = 0; i < ai_mesh->mNumVertices; i++)
 		{
-			const aiVector3D& position = ai_mesh->mVertices[i];
+			if (ai_mesh->HasPositions())
+			{
+				const aiVector3D &position = ai_mesh->mVertices[i];
 
-			vertices.emplace_back(position.x);
-			vertices.emplace_back(position.y);
-			vertices.emplace_back(position.z);
+				vertices.emplace_back(position.x);
+				vertices.emplace_back(position.y);
+				vertices.emplace_back(position.z);
+			}
 
 			if (ai_mesh->HasNormals())
 			{

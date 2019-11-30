@@ -10,10 +10,9 @@ namespace lamp
 
 		void update();
 
-		m4 world;
-
 		meshPtr mesh;
 
+		m4 world;
 		v3 position;
 		v3 color;
 
