@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "config.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -38,6 +39,16 @@ namespace lamp
 
 	bool Window::init() noexcept
 	{
-		return glfwInit() == GLFW_TRUE;
+		const bool result = glfwInit() == GLFW_TRUE;
+
+		if (result)
+		{
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versions::gl::major);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versions::gl::minor);
+
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		}
+
+		return result;
 	}
 }
