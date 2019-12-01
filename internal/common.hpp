@@ -17,4 +17,6 @@ namespace lamp
 	using texturePtr = std::shared_ptr<gl::Texture>;
 
 	std::string read_file(const std::string_view& path);
+
+	void  seed_random() noexcept;
 }

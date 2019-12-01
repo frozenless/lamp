@@ -1,11 +1,10 @@
 #pragma once
 
 #include "util.hpp"
-#include <string_view>
 
 namespace lamp::versions
 {
-	constexpr std::string_view glsl = "#version 430 core\n";
+	constexpr const char* glsl = "#version 430 core\n";
 
 	namespace gl
 	{

@@ -20,4 +20,9 @@ namespace lamp
 
 		return std::string();
 	}
+
+	void seed_random() noexcept
+	{
+		srand(static_cast<u32>(time(nullptr)));
+	}
 }
