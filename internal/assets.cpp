@@ -15,7 +15,7 @@ namespace lamp
 	{
 		auto shader = std::make_shared<gl::Shader>();
 
-		std::array<const char*, 2> sources = { versions::glsl.data(), read_file(path).c_str() };
+		std::array<const char*, 2> sources = { versions::glsl, read_file(path).c_str() };
 
 		shader->id = glCreateShader(type);
 
