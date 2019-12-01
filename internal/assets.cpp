@@ -77,7 +77,7 @@ namespace lamp
 		return program;
 	}
 
-	meshPtr create_mesh(const std::vector<f32> &vertices, const std::vector<u32> &indices, const std::vector<gl::Attribute>& attributes, const u32 primitive, const u32 usage)
+	meshPtr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, const u32 primitive, const u32 usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
 

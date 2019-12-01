@@ -7,9 +7,14 @@
 
 namespace lamp
 {
-	shaderPtr  create_shader(const std::string_view& path, u32 type);
-	programPtr create_program(const shaderPtr& vertex, const shaderPtr& fragment);
-	texturePtr create_texture(const std::string_view& path, bool mipmap);
+	using vertices = std::vector<f32>;
+	using indices  = std::vector<u32>;
 
-	meshPtr create_mesh(const std::vector<f32> &vertices, const std::vector<u32> &indices, const std::vector<gl::Attribute>& attributes, u32 primitive, u32 usage);
+	using attributes = std::vector<gl::Attribute>;
+
+	shaderPtr  create_shader(const std::string_view& path, u32 type);
+	texturePtr create_texture(const std::string_view& path, bool mipmap);
+	programPtr create_program(const shaderPtr& vertex, const shaderPtr& fragment);
+
+	meshPtr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, u32 primitive, u32 usage);
 }

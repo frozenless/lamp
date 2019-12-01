@@ -16,10 +16,10 @@ namespace lamp
 		const aiScene* ai_scene = importer.ReadFile(path.data(), aiProcess_Triangulate | flag);
 		const aiMesh*  ai_mesh  = ai_scene->mMeshes[0];
 
-		std::vector<f32> vertices;
-		std::vector<u32> indices;
+		vertices vertices;
+		indices indices;
 
-		std::vector<gl::Attribute> attributes;
+		attributes attributes;
 
 		if (ai_mesh->HasPositions()) {
 			attributes.emplace_back(0, 3, 0);

@@ -1,10 +1,9 @@
-#include "gl/attribute.hpp"
-#include <vector>
+#include "assets.hpp"
 
 namespace lamp
 {
 	struct Layout
 	{
-		static int calculate_vertex_size(const std::vector<gl::Attribute>& attributes);
+		static int calculate_vertex_size(const attributes & attributes);
 	};
 }
