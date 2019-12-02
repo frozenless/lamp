@@ -1,0 +1,37 @@
+option(GLM_TEST_ENABLE OFF)
+
+option(BUILD_EXTRAS OFF)
+option(BUILD_CPU_DEMOS OFF)
+option(BUILD_UNIT_TESTS OFF)
+option(BUILD_BULLET2_DEMOS OFF)
+option(BUILD_OPENGL3_DEMOS OFF)
+option(USE_GRAPHICAL_BENCHMARK OFF)
+option(INSTALL_LIBS OFF)
+
+option(GLFW_BUILD_EXAMPLES OFF)
+option(GLFW_BUILD_TESTS OFF)
+option(GLFW_BUILD_DOCS OFF)
+option(GLFW_INSTALL OFF)
+
+option(GLAD_NO_LOADER ON)
+
+option(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF)
+option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+option(ASSIMP_BUILD_SAMPLES OFF)
+option(ASSIMP_BUILD_TESTS OFF)
+
+if (MSVC)
+    set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
+endif()
+
+set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
+set(GLAD_PROFILE "core")
+
+set(ASSIMP_BUILD_OBJ_IMPORTER ON)
+set(ASSIMP_NO_EXPORT ON)
+
+add_subdirectory(bullet3)
+add_subdirectory(assimp)
+add_subdirectory(glfw)
+add_subdirectory(glad)
+add_subdirectory(glm)
