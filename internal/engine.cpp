@@ -19,10 +19,10 @@ namespace lamp
 		const f32 a = (mouse.x / size.x - 0.5f) * 2.0f;
 		const f32 b = (mouse.y / size.y - 0.5f) * 2.0f;
 
-		v4 ray_start = inv * v4(a, b, -1.0f, 1.0f); ray_start /= ray_start.w;
-		v4 ray_end   = inv * v4(a, b,  0.0f, 1.0f); ray_end   /= ray_end.w;
+		v4 start = inv * v4(a, b,-1.0f, 1.0f); start /= start.w;
+		v4 end   = inv * v4(a, b, 0.0f, 1.0f);   end /= end.w;
 
-		direction = glm::normalize(ray_end - ray_start);
-		origin    = ray_start;
+		direction = glm::normalize(end - start);
+		origin    = start;
 	}
 }
