@@ -4,7 +4,7 @@
 
 namespace lamp::versions
 {
-	constexpr const char glsl[20] = "@GLSL_VERSION@\n";
+	constexpr const char glsl[19] = "@GLSL_VERSION@\n";
 
 	namespace gl
 	{

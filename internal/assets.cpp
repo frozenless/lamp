@@ -11,11 +11,14 @@
 
 namespace lamp
 {
+	using Sources = std::array<const char*, 2>;
+
 	shaderPtr create_shader(const std::string_view& path, const u32 type)
 	{
 		auto shader = std::make_shared<gl::Shader>();
 
-		std::array<const char*, 2> sources = { versions::glsl, read_file(path).c_str() };
+		const std::string& source = read_file(path);
+		Sources sources = { versions::glsl, source.c_str() };
 
 		shader->id = glCreateShader(type);
 
@@ -101,7 +104,7 @@ namespace lamp
 		return mesh;
 	}
 
-	texturePtr create_texture(const std::string_view &path, const bool mipmap)
+	texturePtr create_texture(const std::string_view& path, const bool mipmap)
 	{
 		int channels;
 		int width, height;
@@ -110,7 +113,7 @@ namespace lamp
 		stbi_set_flip_vertically_on_load(true);
 
 		unsigned char* data = stbi_load(path.data(), &width, &height, &channels, 0);
-		assert(data);
+		assert(data != nullptr);
 
 		if (channels == 4) {
 			format = GL_RGBA;
