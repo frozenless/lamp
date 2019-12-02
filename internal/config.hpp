@@ -4,7 +4,7 @@
 
 namespace lamp::versions
 {
-	constexpr const char* glsl = "#version 430 core\n";
+	constexpr const char glsl[20] = "#version 430 core\n";
 
 	namespace gl
 	{
