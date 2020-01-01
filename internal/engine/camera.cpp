@@ -4,6 +4,11 @@
 
 namespace lamp
 {
+	Camera::Camera()
+		: fov(60.0f)
+	{
+	}
+
 	void Camera::update_view()
 	{
 		view = glm::translate(m4(1.0f), v3(0.0f, 0.0f, -3.5f));
@@ -11,6 +16,6 @@ namespace lamp
 
 	void Camera::update_proj(const v2& size)
 	{
-		proj = glm::perspective(glm::radians(60.0f), size.x / size.y, 0.1f, 100.0f);
+		proj = glm::perspective(glm::radians(fov), size.x / size.y, 0.1f, 100.0f);
 	}
 }

@@ -2,6 +2,7 @@
 #include "config.hpp"
 
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace lamp
 {
@@ -10,23 +11,19 @@ namespace lamp
 	{
 	}
 
-	bool Window::create(const std::string_view &title, const iv2& size, const u32 samples) noexcept
+	void Window::create(const char* title, const iv2& size, const u32 samples, const bool fullscreen) noexcept
 	{
 		if (samples > 0)
 		{
 			glfwWindowHint(GLFW_SAMPLES, samples);
 		}
 
-		ptr = glfwCreateWindow(size.x, size.y, title.data(), nullptr, nullptr);
+		GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
 
-		const bool result = ptr != nullptr;
+		ptr = glfwCreateWindow(size.x, size.y, title, monitor, nullptr);
+		assert(ptr != nullptr);
 
-		if (result)
-		{
-			glfwMakeContextCurrent(ptr);
-		}
-
-		return result;
+		glfwMakeContextCurrent(ptr);
 	}
 
 	bool Window::closing() const noexcept
@@ -49,18 +46,25 @@ namespace lamp
 		glfwTerminate();
 	}
 
-	bool Window::init() noexcept
+	void Window::init() noexcept
 	{
 		const bool result = glfwInit() == GLFW_TRUE;
+		assert(result);
 
-		if (result)
-		{
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versions::gl::major);
-			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versions::gl::minor);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versions::gl::major);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versions::gl::minor);
 
-			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		}
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	}
 
-		return result;
+	void Window::close() const noexcept
+	{
+		glfwSetWindowShouldClose(ptr, GLFW_TRUE);
+	}
+
+	void Window::init_loader() const noexcept
+	{
+		const bool result = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) != 0;
+		assert(result);
 	}
 }

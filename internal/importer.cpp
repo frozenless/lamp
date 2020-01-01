@@ -9,11 +9,16 @@
 
 namespace lamp
 {
-	meshPtr import_mesh(const std::string_view& path, u32 flag)
+	gl::mesh_ptr import_mesh(const std::string_view& path, const bool drop_normals)
 	{
 		Assimp::Importer importer;
+		u32 flag = aiProcess_Triangulate;
 
-		const aiScene* ai_scene = importer.ReadFile(path.data(), aiProcess_Triangulate | flag);
+		if (drop_normals) {
+			flag |= aiProcess_DropNormals;
+		}
+
+		const aiScene* ai_scene = importer.ReadFile(path.data(), flag);
 		const aiMesh*  ai_mesh  = ai_scene->mMeshes[0];
 
 		vertices vertices;

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "common.hpp"
+#include "types.hpp"
+#include <string_view>
 
 namespace lamp
 {
-	meshPtr import_mesh(const std::string_view& path, u32 flag = 0);
+	gl::mesh_ptr import_mesh(const std::string_view& path, bool drop_normals = false);
 }

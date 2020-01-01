@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util.hpp"
+#include "types.hpp"
 
 namespace lamp::gl
 {
@@ -9,13 +9,12 @@ namespace lamp::gl
 		void bind() const noexcept;
 		void draw() const noexcept;
 
-		u32 id;
-
-		u32 vbo;
-		u32 ibo;
-
+		std::size_t count;
 		u32 primitive;
 
-		std::size_t count;
+		handle vbo;
+		handle ibo;
+
+		handle id;
 	};
 }

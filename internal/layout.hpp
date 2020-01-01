@@ -4,6 +4,6 @@ namespace lamp
 {
 	struct Layout
 	{
-		static int calculate_vertex_size(const attributes & attributes);
+		static int calculate_vertex_size(const attributes& attributes);
 	};
 }

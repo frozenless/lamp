@@ -3,8 +3,18 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
 
+#ifndef NDEBUG
+#include <vector>
+#include <iostream>
+#endif
+
 namespace lamp::gl
 {
+	Program::Program()
+		: id(0)
+	{
+	}
+
 	void Program::use() const noexcept
 	{
 		glUseProgram(id);
@@ -31,12 +41,12 @@ namespace lamp::gl
 		glUniform1f(location, value);
 	}
 
-	void Program::attach(const u32 shader) const noexcept
+	void Program::attach(const handle shader) const noexcept
 	{
 		glAttachShader(id, shader);
 	}
 
-	void Program::detach(const u32 shader) const noexcept
+	void Program::detach(const handle shader) const noexcept
 	{
 		glDetachShader(id, shader);
 	}
@@ -45,4 +55,37 @@ namespace lamp::gl
 	{
 		glLinkProgram(id);
 	}
+
+	void Program::release() const noexcept
+	{
+		assert(glIsProgram(id));
+
+		glDeleteProgram(id);
+	}
+
+	void Program::create() noexcept
+	{
+		id = glCreateProgram();
+	}
+
+#ifndef NDEBUG
+	void Program::status()
+	{
+		int success;
+		glGetProgramiv(id, GL_LINK_STATUS, &success);
+
+		if (!success)
+		{
+			int length;
+			glGetProgramiv(id, GL_INFO_LOG_LENGTH, &length);
+
+			std::vector<char> log;
+			log.reserve(length);
+
+			glGetProgramInfoLog(id, length, nullptr, log.data());
+
+			std::cout << "program linking failed\n" << log.data() << std::endl;
+		}
+	}
+#endif
 }

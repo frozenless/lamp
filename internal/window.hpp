@@ -1,7 +1,6 @@
-#pragma
+#pragma once
 
-#include "util.hpp"
-#include <string_view>
+#include "types.hpp"
 
 struct GLFWwindow;
 
@@ -12,13 +11,16 @@ namespace lamp
 	public:
 		Window() noexcept;
 
-		bool create(const std::string_view& title, const iv2& size, u32 samples = 0) noexcept;
+		void create(const char* title, const iv2& size, u32 samples = 0, bool fullscreen = false) noexcept;
+		void close() const noexcept;
+
 		bool closing() const noexcept;
 
-		static bool init() noexcept;
+		static void init() noexcept;
 		static void update() noexcept;
 		static void finish() noexcept;
 
+		void init_loader() const noexcept;
 		void swap() const noexcept;
 
 		GLFWwindow* ptr;

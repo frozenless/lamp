@@ -1,13 +1,20 @@
 #include "engine.hpp"
 
+#include "gl/program.hpp"
+#include "gl/mesh.hpp"
+
 namespace lamp
 {
-	void draw_model(const std::shared_ptr<Model>& model)
+	void draw_model(const transform_ptr& transform, const gl::mesh_ptr& mesh, const material_ptr& material)
 	{
-		gl::Program::uniform(2, model->world);
-		gl::Program::uniform(3, model->color);
+		gl::Program::uniform(2, transform->world);
 
-		if (const meshPtr& mesh = model->mesh; mesh)
+		if (material)
+		{
+			gl::Program::uniform(3, material->color);
+		}
+
+		if (mesh)
 		{
 			mesh->bind();
 			mesh->draw();

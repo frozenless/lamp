@@ -2,74 +2,53 @@
 #include "assets.inl"
 #include "config.hpp"
 #include "layout.hpp"
+#include "common.hpp"
 
-#include <iostream>
-#include <vector>
-#include <array>
+#include "gl/shader.hpp"
+#include "gl/program.hpp"
+#include "gl/mesh.hpp"
+#include "gl/texture.hpp"
 
 #include <stb_image.h>
+#include <iostream>
+
+#ifndef NDEBUG
+#include <vector>
+#endif
 
 namespace lamp
 {
-	using Sources = std::array<const char*, 2>;
-
-	shaderPtr create_shader(const std::string_view& path, const u32 type)
+	gl::shader_ptr create_shader(const std::string_view& path, const u32 type)
 	{
-		auto shader = std::make_shared<gl::Shader>();
+		const std::string& source = read_file(path.data());
+		auto  shader = std::make_shared<gl::Shader>();
 
-		const std::string& source = read_file(path);
-		Sources sources = { versions::glsl, source.c_str() };
+		shader->create(type);
 
-		shader->id = glCreateShader(type);
-
-		glShaderSource(shader->id, sources.size(), sources.data(), nullptr);
+		shader->set_source({ versions::glsl, source.c_str() });
 		shader->compile();
 
-		int success;
-		glGetShaderiv(shader->id, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			int length;
-			glGetShaderiv(shader->id, GL_INFO_LOG_LENGTH, &length);
-
-			std::vector<char> log;
-			log.reserve(length);
-
-			glGetShaderInfoLog(shader->id, length, nullptr, log.data());
-
-			std::cout << "shader compilation failed\n" << log.data() << std::endl;
-		}
+		#ifndef NDEBUG
+		shader->status();
+		#endif
 
 		return shader;
 	}
 
-	programPtr create_program(const shaderPtr& vertex, const shaderPtr& fragment)
+	gl::program_ptr create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
 	{
 		auto program = std::make_shared<gl::Program>();
 
-		program->id = glCreateProgram();
+		program->create();
 
 		program->attach(vertex->id);
 		program->attach(fragment->id);
 
 		program->link();
 
-		int success;
-		glGetProgramiv(program->id, GL_LINK_STATUS, &success);
-
-		if (!success)
-		{
-			int length;
-			glGetProgramiv(program->id, GL_INFO_LOG_LENGTH, &length);
-
-			std::vector<char> log;
-			log.reserve(length);
-
-			glGetProgramInfoLog(program->id, length, nullptr, log.data());
-
-			std::cout << "program linking failed\n" << log.data() << std::endl;
-		}
+		#ifndef NDEBUG
+		program->status();
+		#endif
 
 		program->detach(vertex->id);
 		program->detach(fragment->id);
@@ -80,13 +59,14 @@ namespace lamp
 		return program;
 	}
 
-	meshPtr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, const u32 primitive, const u32 usage)
+	gl::mesh_ptr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, const u32 primitive, const u32 usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
 
 		glGenVertexArrays(1, &mesh->id);
 
 		mesh->bind();
+
 		mesh->vbo = create_buffer(GL_ARRAY_BUFFER, vertices, usage);
 		mesh->ibo = create_buffer(GL_ELEMENT_ARRAY_BUFFER, indices, usage);
 
@@ -104,27 +84,22 @@ namespace lamp
 		return mesh;
 	}
 
-	texturePtr create_texture(const std::string_view& path, const bool mipmap)
+	gl::texture_ptr create_texture(const std::string_view& path, const bool mipmap)
 	{
-		int channels;
-		int width, height;
-		int format = GL_RGB;
+		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 
 		stbi_set_flip_vertically_on_load(true);
 
-		unsigned char* data = stbi_load(path.data(), &width, &height, &channels, 0);
+		unsigned char* data = stbi_load(path.data(), &texture->width,
+				                                     &texture->height, &texture->channels, 0);
 		assert(data != nullptr);
 
-		if (channels == 4) {
-			format = GL_RGBA;
-		}
-
-		auto texture = std::make_shared<gl::Texture>();
-
 		glGenTextures(1, &texture->id);
-		texture->bind();
 
-		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+		texture->bind();
+		texture->set_data(data);
+
+		stbi_image_free(data);
 
 		if (mipmap) {
 			glGenerateMipmap(GL_TEXTURE_2D);
@@ -132,8 +107,6 @@ namespace lamp
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		stbi_image_free(data);
 
 		return texture;
 	}

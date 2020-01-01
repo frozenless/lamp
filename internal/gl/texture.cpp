@@ -4,8 +4,34 @@
 
 namespace lamp::gl
 {
-	void Texture::bind() noexcept
+	Texture::Texture(u32 target)
+		: _target(target)
+		, id(0)
 	{
-		glBindTexture(GL_TEXTURE_2D, id);
+	}
+
+	void Texture::bind() const noexcept
+	{
+		glBindTexture(_target, id);
+	}
+
+	u32 Texture::_get_format() const noexcept
+	{
+		u32 format = GL_NONE;
+
+		switch (channels)
+		{
+			case 4: format = GL_RGBA; break;
+			case 3: format = GL_RGB;  break;
+		}
+
+		assert(format != GL_NONE);
+		return format;
+	}
+
+	void Texture::set_data(const unsigned char* data)
+	{
+		const int format = _get_format();
+		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 	}
 }

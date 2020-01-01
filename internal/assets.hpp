@@ -1,8 +1,9 @@
 #pragma once
 
 #include "gl/attribute.hpp"
-#include "common.hpp"
+#include "types.hpp"
 
+#include <string_view>
 #include <vector>
 
 namespace lamp
@@ -12,9 +13,9 @@ namespace lamp
 
 	using attributes = std::vector<gl::Attribute>;
 
-	shaderPtr  create_shader(const std::string_view& path, u32 type);
-	texturePtr create_texture(const std::string_view& path, bool mipmap);
-	programPtr create_program(const shaderPtr& vertex, const shaderPtr& fragment);
+	gl::shader_ptr  create_shader(const std::string_view& path, u32 type);
+	gl::texture_ptr create_texture(const std::string_view& path, bool mipmap);
+	gl::program_ptr create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment);
 
-	meshPtr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, u32 primitive, u32 usage);
+	gl::mesh_ptr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, u32 primitive, u32 usage);
 }

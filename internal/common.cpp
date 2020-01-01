@@ -2,27 +2,18 @@
 
 #include <sstream>
 #include <fstream>
-#include <ctime>
+#include <cassert>
 
 namespace lamp
 {
-	std::string read_file(const std::string_view& path)
+	std::string read_file(const char* path)
 	{
-		std::ifstream file(path.data(), std::ios::in);
+		std::ifstream file(path, std::ios::in);
+		assert(file.is_open());
 
-		if (file.is_open())
-		{
-			std::stringstream stream;
-			stream << file.rdbuf();
+		std::stringstream stream;
+		stream << file.rdbuf();
 
-			return stream.str();
-		}
-
-		return std::string();
-	}
-
-	void seed_random() noexcept
-	{
-		srand(static_cast<u32>(time(nullptr)));
+		return stream.str();
 	}
 }
