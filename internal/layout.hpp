@@ -1,9 +1,22 @@
-#include "assets.hpp"
+#pragma once
+
+#include "gl/attribute.hpp"
+#include "types.hpp"
+
+#include <vector>
 
 namespace lamp
 {
-	struct Layout
+	class Layout
 	{
-		static int calculate_vertex_size(const attributes& attributes);
+	public:
+		Layout();
+
+		template <typename T> void add(u32 count, u32 type) noexcept;
+			void update() const noexcept;
+
+	private:
+		std::vector<gl::Attribute> _attributes;
+		u32 _size;
 	};
 }

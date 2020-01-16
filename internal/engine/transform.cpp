@@ -4,6 +4,11 @@
 
 namespace lamp
 {
+	Transform::Transform()
+		: world(1.0f)
+	{
+	}
+
 	void Transform::from(const v3& p, f32 s)
 	{
 		position = p;

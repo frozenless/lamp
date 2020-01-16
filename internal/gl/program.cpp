@@ -68,7 +68,7 @@ namespace lamp::gl
 		id = glCreateProgram();
 	}
 
-#ifndef NDEBUG
+    #ifndef NDEBUG
 	void Program::status()
 	{
 		int success;
@@ -87,5 +87,5 @@ namespace lamp::gl
 			std::cout << "program linking failed\n" << log.data() << std::endl;
 		}
 	}
-#endif
+	#endif
 }

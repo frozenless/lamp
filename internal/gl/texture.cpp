@@ -4,7 +4,7 @@
 
 namespace lamp::gl
 {
-	Texture::Texture(u32 target)
+	Texture::Texture(const u32 target)
 		: _target(target)
 		, id(0)
 	{
@@ -32,6 +32,13 @@ namespace lamp::gl
 	void Texture::set_data(const unsigned char* data)
 	{
 		const int format = _get_format();
+		
 		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+	}
+
+	void Texture::set_sampler(const u32 min_filter, const u32 mag_filter) const
+	{
+		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, min_filter);
+		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, mag_filter);
 	}
 }

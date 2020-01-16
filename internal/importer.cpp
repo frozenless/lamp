@@ -1,5 +1,5 @@
 #include "importer.hpp"
-#include "assets.hpp"
+#include "assets.inl"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
@@ -21,28 +21,40 @@ namespace lamp
 		const aiScene* ai_scene = importer.ReadFile(path.data(), flag);
 		const aiMesh*  ai_mesh  = ai_scene->mMeshes[0];
 
-		vertices vertices;
-		indices indices;
-
-		attributes attributes;
+		Layout layout;
 
 		if (ai_mesh->HasPositions()) {
-			attributes.emplace_back(0, 3, 0);
+			layout.add<f32>(3, GL_FLOAT);
+		}
+
+		if (ai_mesh->HasTextureCoords(0)) {
+			layout.add<f32>(2, GL_FLOAT);
 		}
 
 		if (ai_mesh->HasNormals()) {
-			attributes.emplace_back(1, 3, 3 * sizeof(f32));
+			layout.add<f32>(3, GL_FLOAT);
 		}
+
+		std::vector<f32> vertices;
+		std::vector<u32> indices;
 
 		for (u32 i = 0; i < ai_mesh->mNumVertices; i++)
 		{
 			if (ai_mesh->HasPositions())
 			{
-				const aiVector3D &position = ai_mesh->mVertices[i];
+				const aiVector3D& position = ai_mesh->mVertices[i];
 
 				vertices.emplace_back(position.x);
 				vertices.emplace_back(position.y);
 				vertices.emplace_back(position.z);
+			}
+
+			if (ai_mesh->HasTextureCoords(0))
+			{
+				const aiVector3D& uv = ai_mesh->mTextureCoords[0][i];
+
+				vertices.emplace_back(uv.x);
+				vertices.emplace_back(uv.y);
 			}
 
 			if (ai_mesh->HasNormals())
@@ -57,7 +69,7 @@ namespace lamp
 
 		for (u32 i = 0; i < ai_mesh->mNumFaces; i++)
 		{
-			const auto face = ai_mesh->mFaces[i];
+			const auto& face = ai_mesh->mFaces[i];
 
 			for (u32 j = 0; j < face.mNumIndices; j++)
 			{
@@ -65,6 +77,6 @@ namespace lamp
 			}
 		}
 
-		return create_mesh(vertices, indices, attributes, GL_TRIANGLES, GL_STATIC_DRAW);
+		return Assets::create_mesh(vertices, indices, layout, GL_TRIANGLES, GL_UNSIGNED_INT, GL_STATIC_DRAW);
 	}
 }

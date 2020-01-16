@@ -1,14 +1,20 @@
-#include "layout.hpp"
-#include "types.hpp"
+#include "layout.inl"
 
-#include <numeric>
+#include <glad/glad.h>
 
 namespace lamp
 {
-	int Layout::calculate_vertex_size(const attributes& attributes) {
+	Layout::Layout()
+		: _size(0)
+	{
+	}
 
-		return std::accumulate(attributes.begin(), attributes.end(), 0, [](const int count, const gl::Attribute& attribute) {
-			return count + attribute.count * sizeof(f32);
-		});
+	void Layout::update() const noexcept
+	{
+		for (const auto& attribute : _attributes)
+		{
+			glVertexAttribPointer(attribute.index, attribute.count, attribute.type, GL_FALSE, _size, (void*)attribute.offset);
+			glEnableVertexAttribArray(attribute.index);
+		}
 	}
 }

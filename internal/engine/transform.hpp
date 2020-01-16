@@ -6,6 +6,8 @@ namespace lamp
 {
 	struct Transform
 	{
+		Transform();
+
 		void from(const v3& p, f32 s = 1.0f);
 		void update();
 

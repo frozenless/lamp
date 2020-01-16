@@ -1,16 +1,14 @@
-#include "assets.hpp"
 #include "assets.inl"
-#include "config.hpp"
-#include "layout.hpp"
 #include "common.hpp"
+
+#include "utils/config.hpp"
 
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
-#include "gl/mesh.hpp"
 #include "gl/texture.hpp"
+#include "gl/mesh.hpp"
 
 #include <stb_image.h>
-#include <iostream>
 
 #ifndef NDEBUG
 #include <vector>
@@ -18,7 +16,7 @@
 
 namespace lamp
 {
-	gl::shader_ptr create_shader(const std::string_view& path, const u32 type)
+	gl::shader_ptr Assets::create_shader(const std::string_view& path, const u32 type)
 	{
 		const std::string& source = read_file(path.data());
 		auto  shader = std::make_shared<gl::Shader>();
@@ -35,7 +33,7 @@ namespace lamp
 		return shader;
 	}
 
-	gl::program_ptr create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
+	gl::program_ptr Assets::create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
 	{
 		auto program = std::make_shared<gl::Program>();
 
@@ -59,39 +57,37 @@ namespace lamp
 		return program;
 	}
 
-	gl::mesh_ptr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, const u32 primitive, const u32 usage)
+	gl::mesh_ptr Assets::create_sprite(const v2& size)
 	{
-		auto mesh = std::make_shared<gl::Mesh>();
-
-		glGenVertexArrays(1, &mesh->id);
-
-		mesh->bind();
-
-		mesh->vbo = create_buffer(GL_ARRAY_BUFFER, vertices, usage);
-		mesh->ibo = create_buffer(GL_ELEMENT_ARRAY_BUFFER, indices, usage);
-
-		const int vertex_size = Layout::calculate_vertex_size(attributes);
-
-		for (const gl::Attribute& attribute : attributes)
+		std::vector<f32> vertices =
 		{
-			attribute.update(vertex_size);
-			attribute.enable();
-		}
+			size.x,  size.y, 0.0f, 1.0f, 1.0f,
+			size.x, -size.y, 0.0f, 1.0f, 0.0f,
+		   -size.x, -size.y, 0.0f, 0.0f, 0.0f,
+		   -size.x,  size.y, 0.0f, 0.0f, 1.0f
+		};
 
-		mesh->primitive = primitive;
-		mesh->count     = indices.size();
+		std::vector<u8> indices =
+		{
+			0, 3, 1,
+			1, 3, 2
+		};
 
-		return mesh;
+		Layout layout;
+		layout.add<f32>(3, GL_FLOAT);
+		layout.add<f32>(2, GL_FLOAT);
+
+		return create_mesh(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}
 
-	gl::texture_ptr create_texture(const std::string_view& path, const bool mipmap)
+	gl::texture_ptr Assets::create_texture(const std::string_view& path, const bool mipmap, const bool flip)
 	{
 		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 
-		stbi_set_flip_vertically_on_load(true);
+		stbi_set_flip_vertically_on_load(flip);
 
 		unsigned char* data = stbi_load(path.data(), &texture->width,
-				                                     &texture->height, &texture->channels, 0);
+		                                             &texture->height, &texture->channels, 0);
 		assert(data != nullptr);
 
 		glGenTextures(1, &texture->id);
@@ -103,10 +99,11 @@ namespace lamp
 
 		if (mipmap) {
 			glGenerateMipmap(GL_TEXTURE_2D);
-		}
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			texture->set_sampler(GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR);
+		} else {
+			texture->set_sampler(GL_LINEAR, GL_LINEAR);
+		}
 
 		return texture;
 	}

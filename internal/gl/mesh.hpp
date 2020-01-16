@@ -10,10 +10,12 @@ namespace lamp::gl
 		void draw() const noexcept;
 
 		std::size_t count;
-		u32 primitive;
 
-		handle vbo;
-		handle ibo;
+		u32 primitive;
+		u32 type;
+
+		buffer_ptr vbo;
+		buffer_ptr ibo;
 
 		handle id;
 	};

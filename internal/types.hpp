@@ -1,10 +1,14 @@
 #pragma once
 
-#include <memory>
+#include "utils/forward.hpp"
+
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace lamp
 {
+	using u8  = glm::u8;
+	using u16 = glm::u16;
 	using u32 = glm::u32;
 
 	using f32 = glm::f32;
@@ -22,13 +26,12 @@ namespace lamp
 	using rgb  = glm::vec3;
 	using rgba = glm::vec4;
 
+	using material_ptr  = std::shared_ptr<Material>;
+	using transform_ptr = std::shared_ptr<Transform>;
+
 	namespace gl
 	{
-		struct Mesh;
-		struct Shader;
-		struct Program;
-		struct Texture;
-
+		using buffer_ptr = std::shared_ptr<Buffer>;
 		using mesh_ptr   = std::shared_ptr<Mesh>;
 		using shader_ptr = std::shared_ptr<Shader>;
 

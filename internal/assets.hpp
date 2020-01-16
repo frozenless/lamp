@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gl/attribute.hpp"
+#include "layout.hpp"
 #include "types.hpp"
 
 #include <string_view>
@@ -8,14 +8,16 @@
 
 namespace lamp
 {
-	using vertices = std::vector<f32>;
-	using indices  = std::vector<u32>;
+	class Assets
+	{
+	public:
+		static gl::shader_ptr  create_shader (const std::string_view& path, u32 type);
+		static gl::texture_ptr create_texture(const std::string_view& path, bool mipmap, bool flip);
+		static gl::program_ptr create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment);
 
-	using attributes = std::vector<gl::Attribute>;
+		template<typename T, typename U> static gl::mesh_ptr create_mesh(const std::vector<T>& vertices, const std::vector<U>& indices, const Layout& layout, u32 primitive, u32 type, u32 usage);
+		template<typename T> static gl::buffer_ptr create_buffer(u32 type, const std::vector<T>& info, u32 usage) noexcept;
 
-	gl::shader_ptr  create_shader(const std::string_view& path, u32 type);
-	gl::texture_ptr create_texture(const std::string_view& path, bool mipmap);
-	gl::program_ptr create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment);
-
-	gl::mesh_ptr create_mesh(const vertices& vertices, const indices& indices, const attributes& attributes, u32 primitive, u32 usage);
+		static gl::mesh_ptr create_sprite(const v2& size);
+	};
 }

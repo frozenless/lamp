@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Lamp VERSION 0.0.1 LANGUAGES CXX)
+project(Lamp VERSION 0.0.3 LANGUAGES CXX)
 
 add_subdirectory(config)
 add_subdirectory(external)
@@ -16,7 +16,11 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/material.cpp
         internal/engine/camera.cpp
         internal/engine/transform.cpp
+        internal/physics/renderer.cpp
+        internal/physics/utils.cpp
+        internal/physics/ray.cpp
         internal/gl/mesh.cpp
+        internal/gl/buffer.cpp
         internal/gl/shader.cpp
         internal/gl/program.cpp
         internal/gl/attribute.cpp

@@ -1,8 +1,9 @@
 #include "window.hpp"
-#include "config.hpp"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+
+#include "utils/config.hpp"
 
 namespace lamp
 {

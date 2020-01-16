@@ -1,19 +1,16 @@
 #pragma once
 
+#include "types.hpp"
+
 namespace lamp::gl
 {
-	class Attribute
+	struct Attribute
 	{
-	public:
-		Attribute(int index, int count, int offset);
+		Attribute(int index, int count, u32 type, int offset);
 
-		void update(int vertex_size) const noexcept;
-		void enable() const noexcept;
-
+		int index;
+		int offset;
 		int count;
-
-	private:
-		int _index;
-		int _offset;
+		u32 type;
 	};
 }

@@ -4,11 +4,6 @@
 
 namespace lamp
 {
-	Game::Game()
-		: _show_editor(false)
-	{
-	}
-
 	void Game::run()
 	{
 		Window::init();

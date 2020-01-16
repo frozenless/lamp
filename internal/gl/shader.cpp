@@ -37,7 +37,7 @@ namespace lamp::gl
 		glShaderSource(id, sources.size(), sources.data(), nullptr);
 	}
 
-#ifndef NDEBUG
+	#ifndef NDEBUG
 	void Shader::status()
 	{
 		int success;
@@ -56,5 +56,5 @@ namespace lamp::gl
 			std::cout << "shader compilation failed\n" << log.data() << std::endl;
 		}
 	}
-#endif
+	#endif
 }

@@ -11,6 +11,6 @@ namespace lamp::gl
 
 	void Mesh::draw() const noexcept
 	{
-		glDrawElements(primitive, count, GL_UNSIGNED_INT, nullptr);
+		glDrawElements(primitive, count, type, nullptr);
 	}
 }
