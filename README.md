@@ -8,8 +8,9 @@ Libraries used: **[glfw](https://github.com/glfw/glfw)**
                 **[stb](https://github.com/nothings/stb)**
                 **[assimp](https://github.com/assimp/assimp)**
                 **[imgui](https://github.com/ocornut/imgui)**
-                **[bullet3](https://github.com/bulletphysics/bullet3)**.
-
+                **[bullet3](https://github.com/bulletphysics/bullet3)**
+                **[recastnavigation](https://github.com/recastnavigation/recastnavigation)**.
+                
 ## Games
 
 ### Traders
