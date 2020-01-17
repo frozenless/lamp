@@ -8,6 +8,10 @@ option(BUILD_OPENGL3_DEMOS OFF)
 option(USE_GRAPHICAL_BENCHMARK OFF)
 option(INSTALL_LIBS OFF)
 
+option(RECASTNAVIGATION_DEMO OFF)
+option(RECASTNAVIGATION_TESTS OFF)
+option(RECASTNAVIGATION_EXAMPLES OFF)
+
 option(ENTITYX_BUILD_TESTING OFF)
 
 option(GLFW_BUILD_EXAMPLES OFF)
@@ -32,6 +36,7 @@ set(GLAD_PROFILE "core")
 set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_NO_EXPORT ON)
 
+add_subdirectory(recastnavigation)
 add_subdirectory(bullet3)
 add_subdirectory(assimp)
 add_subdirectory(glfw)
