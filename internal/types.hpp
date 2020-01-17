@@ -1,9 +1,9 @@
 #pragma once
 
 #include "utils/forward.hpp"
+#include "utils/dependencies.hpp"
 
 #include <glm/glm.hpp>
-#include <memory>
 
 namespace lamp
 {

@@ -2,10 +2,6 @@
 
 #include <glad/glad.h>
 
-#ifndef NDEBUG
-#include <iostream>
-#endif
-
 namespace lamp::gl
 {
 	Shader::Shader()

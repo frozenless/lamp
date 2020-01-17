@@ -3,8 +3,6 @@
 #include "gl/attribute.hpp"
 #include "types.hpp"
 
-#include <vector>
-
 namespace lamp
 {
 	class Layout

@@ -1,9 +1,5 @@
 #include "common.hpp"
 
-#include <sstream>
-#include <fstream>
-#include <cassert>
-
 namespace lamp
 {
 	std::string read_file(const char* path)
