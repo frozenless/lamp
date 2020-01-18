@@ -9,7 +9,8 @@ Libraries used: **[glfw](https://github.com/glfw/glfw)**
                 **[assimp](https://github.com/assimp/assimp)**
                 **[imgui](https://github.com/ocornut/imgui)**
                 **[bullet3](https://github.com/bulletphysics/bullet3)**
-                **[recastnavigation](https://github.com/recastnavigation/recastnavigation)**.
+                **[recastnavigation](https://github.com/recastnavigation/recastnavigation)**
+                **[ozz-animation](https://github.com/guillaumeblanc/ozz-animation)**.
                 
 ## Games
 
