@@ -3,13 +3,45 @@
 
 namespace lamp
 {
-	btCollisionWorld::ClosestRayResultCallback Physics::ray(btCollisionWorld* world, const Ray& ray)
+	void Physics::init()
+	{
+		auto config = new btDefaultCollisionConfiguration();
+
+		_world = std::make_unique<btDiscreteDynamicsWorld>(
+				new btCollisionDispatcher(config), new btDbvtBroadphase(),
+				new btSequentialImpulseConstraintSolver(), config);
+
+		_world->setGravity(btVector3(0, -9.8f, 0));
+	}
+
+	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray)
 	{
 		const v3 end = ray.origin + ray.direction * 100.0f;
 
 		btCollisionWorld::ClosestRayResultCallback hit(math::from(ray.origin), math::from(end));
-		world->rayTest(math::from(ray.origin), math::from(end), hit);
+		_world->rayTest(math::from(ray.origin), math::from(end), hit);
 
 		return hit;
+	}
+
+	void Physics::add_rigidbody(btRigidBody* body)
+	{
+		_world->addRigidBody(body);
+	}
+
+	void Physics::add_collision(btCollisionObject* object)
+	{
+		_world->addCollisionObject(object);
+	}
+
+	void Physics::update(const f32 delta_time)
+	{
+		_world->stepSimulation(delta_time, 10);
+		_world->debugDrawWorld();
+	}
+
+	void Physics::init_renderer(const gl::mesh_ptr& mesh, u32 mode)
+	{
+		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
 	}
 }

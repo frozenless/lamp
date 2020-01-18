@@ -10,10 +10,6 @@
 
 #include <stb_image.h>
 
-#ifndef NDEBUG
-#include <vector>
-#endif
-
 namespace lamp
 {
 	gl::shader_ptr Assets::create_shader(const std::string_view& path, const u32 type)

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "types.hpp"
-#include <string_view>
 
 namespace lamp
 {

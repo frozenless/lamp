@@ -3,9 +3,6 @@
 #include "layout.hpp"
 #include "types.hpp"
 
-#include <string_view>
-#include <vector>
-
 namespace lamp
 {
 	class Assets

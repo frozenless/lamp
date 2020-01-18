@@ -3,11 +3,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glad/glad.h>
 
-#ifndef NDEBUG
-#include <vector>
-#include <iostream>
-#endif
-
 namespace lamp::gl
 {
 	Program::Program()

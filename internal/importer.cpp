@@ -1,5 +1,6 @@
 #include "importer.hpp"
 #include "assets.inl"
+#include "layout.inl"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>

@@ -3,9 +3,6 @@
 #include "gl/mesh.hpp"
 #include "gl/buffer.hpp"
 
-#include <glad/glad.h>
-#include <utility>
-
 namespace lamp::debug
 {
     Renderer::Renderer(gl::mesh_ptr mesh, const u32 mode)

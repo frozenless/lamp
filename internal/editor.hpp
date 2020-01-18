@@ -1,7 +1,6 @@
 #pragma once
 
 #include "engine/light.hpp"
-#include <string>
 
 struct GLFWwindow;
 

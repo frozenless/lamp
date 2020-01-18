@@ -2,9 +2,8 @@
 
 namespace lamp::gl
 {
-	Attribute::Attribute(int index, int count, u32 type, int offset)
+	Attribute::Attribute(const int count, const u32 type, const int offset)
 		: count(count)
-		, index(index)
 		, offset(offset)
 		, type(type)
 	{
