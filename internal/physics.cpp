@@ -10,6 +10,8 @@ namespace lamp
 		_world = std::make_unique<btDiscreteDynamicsWorld>(
 				new btCollisionDispatcher(config), new btDbvtBroadphase(),
 				new btSequentialImpulseConstraintSolver(), config);
+
+		_world->setGravity(btVector3(0, -9.8f, 0));
 	}
 
 	void Physics::set_renderer(debug::Renderer* renderer)

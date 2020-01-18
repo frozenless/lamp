@@ -11,6 +11,12 @@ namespace lamp
 	class Physics
 	{
 	public:
+		Physics(Physics&&)      = delete;
+		Physics(const Physics&) = delete;
+
+		Physics& operator=(Physics&&)      = delete;
+		Physics& operator=(const Physics&) = delete;
+
 		void init();
 		void update(f32 delta_time);
 
