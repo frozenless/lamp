@@ -14,11 +14,6 @@ namespace lamp
 		_world->setGravity(btVector3(0, -9.8f, 0));
 	}
 
-	void Physics::set_renderer(debug::Renderer* renderer)
-	{
-		_world->setDebugDrawer(renderer);
-	}
-
 	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray)
 	{
 		const v3 end = ray.origin + ray.direction * 100.0f;
@@ -43,5 +38,10 @@ namespace lamp
 	{
 		_world->stepSimulation(delta_time, 10);
 		_world->debugDrawWorld();
+	}
+
+	void Physics::init_renderer(const gl::mesh_ptr& mesh, u32 mode)
+	{
+		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
 	}
 }

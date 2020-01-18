@@ -20,12 +20,12 @@ namespace lamp
 		Physics& operator=(const Physics&) = delete;
 
 		void init();
+		void init_renderer(const gl::mesh_ptr& mesh, u32 mode);
+
 		void update(f32 delta_time);
 
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object);
-
-		void set_renderer(debug::Renderer* renderer);
 
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
 
