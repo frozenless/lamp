@@ -31,7 +31,7 @@ namespace lamp
 
 	void Physics::add_rigidbody(btRigidBody* body)
 	{
-		_world->addCollisionObject(body);
+		_world->addRigidBody(body);
 	}
 
 	void Physics::add_collision(btCollisionObject* object)
