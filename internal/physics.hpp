@@ -11,6 +11,8 @@ namespace lamp
 	class Physics
 	{
 	public:
+		Physics() = default;
+
 		Physics(Physics&&)      = delete;
 		Physics(const Physics&) = delete;
 
