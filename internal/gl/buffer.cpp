@@ -14,7 +14,7 @@ namespace lamp::gl
 		glBindBuffer(_target, id);
 	}
 
-	void Buffer::bind_buffer_base(const u32 index) const
+	void Buffer::bind_base(const u32 index) const
 	{
 		assert(_target == GL_UNIFORM_BUFFER);
 
