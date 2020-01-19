@@ -10,6 +10,7 @@ namespace lamp::gl
 		Buffer(u32 target, u32 usage);
 
 		void bind() const;
+		void bind_buffer_base(u32 index) const;
 
 		template <typename T> void set_data(const std::vector<T>& info);
 
