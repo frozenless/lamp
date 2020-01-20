@@ -15,11 +15,7 @@ namespace lamp
 		auto buffer = std::make_shared<gl::Buffer>(type, usage);
 		glGenBuffers(1, &buffer->id);
 
-		buffer->bind();
-
-		if (!info.empty()) {
-			buffer->set_data(info);
-		}
+		buffer->set_data(info);
 
 		return buffer;
 	}

@@ -35,10 +35,7 @@ namespace lamp::debug
     {
     	_mesh->bind();
 
-	    _mesh->vbo->bind();
 	    _mesh->vbo->set_data(_vertices);
-
-	    _mesh->ibo->bind();
 	    _mesh->ibo->set_data(_indices);
 
 	    _mesh->count = _indices.size();
