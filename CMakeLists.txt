@@ -19,6 +19,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
         internal/physics/ray.cpp
+        internal/utils/random.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp
         internal/gl/shader.cpp
@@ -33,7 +34,6 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/window.cpp
         internal/common.cpp
         internal/assets.cpp
-        internal/random.cpp
         internal/layout.cpp
         internal/game.cpp)
 
