@@ -10,11 +10,11 @@ namespace lamp
 {
 	void Engine::draw(const transform_ptr& transform, const gl::mesh_ptr& mesh, const material_ptr& material)
 	{
-		gl::Program::uniform(2, transform->world);
+		gl::Program::uniform(0, transform->world);
 
 		if (material)
 		{
-			gl::Program::uniform(3, material->color);
+			gl::Program::uniform(1, material->color);
 		}
 
 		if (mesh)
