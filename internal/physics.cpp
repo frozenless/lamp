@@ -40,7 +40,7 @@ namespace lamp
 		_world->debugDrawWorld();
 	}
 
-	void Physics::init_renderer(const gl::mesh_ptr& mesh, u32 mode)
+	void Physics::init_renderer(const gl::mesh_ptr& mesh, const u32 mode)
 	{
 		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
 	}

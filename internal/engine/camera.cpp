@@ -16,7 +16,7 @@ namespace lamp
 		_projection = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
 	}
 
-	void Camera::otho()
+	void Camera::ortho()
 	{
 		_projection = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
 	}
