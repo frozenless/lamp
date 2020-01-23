@@ -13,15 +13,15 @@ Libraries used: **[glfw](https://github.com/glfw/glfw)**
 ## Games
 
 ### Traders
-![ScreenShot](images/traders.png)
+![ScreenShot](https://frozenless.com/images/traders.webp)
 
 ### Connect Four
 ![ScreenShot](https://frozenless.com/images/connect-four.webp)
 
 ### Tic Tac Toe
-![ScreenShot](images/tic-tac-toe.png)
+![ScreenShot](https://frozenless.com/images/tic-tac-toe.webp)
 
 ## Demo
 
 ### Squares
-![ScreenShot](images/squares.png)
+![ScreenShot](https://frozenless.com/images/squares.webp)
