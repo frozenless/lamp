@@ -22,15 +22,22 @@ option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
 option(ASSIMP_BUILD_SAMPLES OFF)
 option(ASSIMP_BUILD_TESTS OFF)
 
-if (MSVC)
-    set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
-endif()
+set(ASSIMP_BUILD_OBJ_IMPORTER ON)
+set(ASSIMP_NO_EXPORT ON)
+
+set(GL_MAJOR_VERSION 4 CACHE STRING "gl major version")
+set(GL_MINOR_VERSION 3 CACHE STRING "gl minor version")
+
+set(GLSL_VERSION "#version ${GL_MAJOR_VERSION}${GL_MINOR_VERSION}0 core" CACHE STRING "glsl version")
 
 set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
 set(GLAD_PROFILE "core")
 
-set(ASSIMP_BUILD_OBJ_IMPORTER ON)
-set(ASSIMP_NO_EXPORT ON)
+if (MSVC)
+    set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
+endif()
+
+configure_file(config.hpp ../internal/utils/config.hpp)
 
 add_subdirectory(bullet3)
 add_subdirectory(assimp)
