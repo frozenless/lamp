@@ -1,5 +1,5 @@
 #include "assets.inl"
-#include "common.hpp"
+#include "file.hpp"
 
 #include "utils/config.hpp"
 
@@ -14,7 +14,7 @@ namespace lamp
 {
 	gl::shader_ptr Assets::create_shader(const std::string_view& path, const u32 type)
 	{
-		const std::string& source = read_file(path.data());
+		const std::string& source = File::read(path.data());
 		auto  shader = std::make_shared<gl::Shader>();
 
 		shader->create(type);

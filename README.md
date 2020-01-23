@@ -16,7 +16,7 @@ Libraries used: **[glfw](https://github.com/glfw/glfw)**
 ![ScreenShot](images/traders.png)
 
 ### Connect Four
-![ScreenShot](images/connect-four.png)
+![ScreenShot](https://frozenless.com/images/connect-four.webp)
 
 ### Tic Tac Toe
 ![ScreenShot](images/tic-tac-toe.png)
