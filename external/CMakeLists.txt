@@ -26,7 +26,7 @@ set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_NO_EXPORT ON)
 
 set(GL_MAJOR_VERSION 4 CACHE STRING "gl major version")
-set(GL_MINOR_VERSION 3 CACHE STRING "gl minor version")
+set(GL_MINOR_VERSION 1 CACHE STRING "gl minor version")
 
 set(GLSL_VERSION "#version ${GL_MAJOR_VERSION}${GL_MINOR_VERSION}0 core" CACHE STRING "glsl version")
 
@@ -37,7 +37,7 @@ if (MSVC)
     set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 endif()
 
-configure_file(config.hpp ../internal/utils/config.hpp)
+configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/utils/config.hpp)
 
 add_subdirectory(bullet3)
 add_subdirectory(assimp)
