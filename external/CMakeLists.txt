@@ -37,7 +37,7 @@ if (MSVC)
     set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 endif()
 
-configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/utils/config.hpp)
+configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.hpp)
 
 add_subdirectory(bullet3)
 add_subdirectory(assimp)

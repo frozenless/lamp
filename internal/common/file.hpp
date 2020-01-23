@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/dependencies.hpp"
+#include "dependencies.hpp"
 
 namespace lamp
 {

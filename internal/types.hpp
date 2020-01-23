@@ -1,7 +1,7 @@
 #pragma once
 
-#include "utils/forward.hpp"
-#include "utils/dependencies.hpp"
+#include "common/fwd.hpp"
+#include "common/dependencies.hpp"
 
 #include <glm/glm.hpp>
 

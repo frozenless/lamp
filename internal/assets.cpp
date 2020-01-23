@@ -1,7 +1,7 @@
 #include "assets.inl"
-#include "file.hpp"
 
-#include "utils/config.hpp"
+#include "common/file.hpp"
+#include "common/config.hpp"
 
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
