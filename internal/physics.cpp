@@ -1,4 +1,6 @@
 #include "physics.hpp"
+
+#include "physics/renderer.hpp"
 #include "physics/utils.hpp"
 
 namespace lamp
