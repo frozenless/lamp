@@ -12,7 +12,7 @@
 
 namespace lamp
 {
-	gl::shader_ptr Assets::create_shader(const std::string_view& path, const u32 type)
+	gl::shader_ptr Assets::create(const std::string_view& path, const u32 type)
 	{
 		const std::string& source = File::read(path.data());
 		auto  shader = std::make_shared<gl::Shader>();
@@ -29,7 +29,7 @@ namespace lamp
 		return shader;
 	}
 
-	gl::program_ptr Assets::create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
+	gl::program_ptr Assets::create(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
 	{
 		auto program = std::make_shared<gl::Program>();
 
@@ -53,7 +53,7 @@ namespace lamp
 		return program;
 	}
 
-	gl::mesh_ptr Assets::create_sprite(const v2& size)
+	gl::mesh_ptr Assets::create(const v2& size)
 	{
 		std::vector<f32> vertices =
 		{
@@ -73,10 +73,10 @@ namespace lamp
 		layout.add<f32>(3, GL_FLOAT);
 		layout.add<f32>(2, GL_FLOAT);
 
-		return create_mesh(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
+		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}
 
-	gl::texture_ptr Assets::create_texture(const std::string_view& path, const bool mipmap, const bool flip)
+	gl::texture_ptr Assets::create(const std::string_view& path, const bool mipmap, const bool flip)
 	{
 		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 
