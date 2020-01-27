@@ -31,4 +31,9 @@ namespace lamp
 
 		Window::Api::release();
 	}
+
+	const Window& Game::window() const
+	{
+		return _window;
+	}
 }
