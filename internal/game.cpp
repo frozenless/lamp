@@ -6,7 +6,7 @@ namespace lamp
 {
 	void Game::run()
 	{
-		Window::init();
+		Window::Api::init();
 
 		init();
 
@@ -29,6 +29,6 @@ namespace lamp
 
 		release();
 
-		Window::finish();
+		Window::Api::release();
 	}
 }

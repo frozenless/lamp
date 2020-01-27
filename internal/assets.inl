@@ -22,7 +22,6 @@ namespace lamp
 	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const Layout& layout, const u32 primitive, const u32 type, const u32 usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
-
 		glGenVertexArrays(1, &mesh->id);
 
 		mesh->bind();
