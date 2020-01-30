@@ -10,12 +10,12 @@ namespace lamp
 {
 	std::map<Engine::Bindings, gl::handle> Engine::bindings;
 
-	void Engine::bind(const Bindings type, const gl::Object& object)
+	void Engine::bind(const Bindings type, const gl::object_ptr& object)
 	{
-		if (bindings[type] != object.id) {
-			bindings[type]  = object.id;
+		if (bindings[type] != object->id) {
+			bindings[type]  = object->id;
 
-			object.bind();
+			object->bind();
 		}
 	}
 
@@ -30,7 +30,7 @@ namespace lamp
 
 		if (mesh)
 		{
-			Engine::bind(Bindings::Mesh, *mesh.get());
+			Engine::bind(Bindings::Mesh, mesh);
 
 			mesh->draw();
 		}

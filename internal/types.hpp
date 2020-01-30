@@ -31,6 +31,7 @@ namespace lamp
 
 	namespace gl
 	{
+		using object_ptr = std::shared_ptr<Object>;
 		using buffer_ptr = std::shared_ptr<Buffer>;
 		using mesh_ptr   = std::shared_ptr<Mesh>;
 		using shader_ptr = std::shared_ptr<Shader>;
