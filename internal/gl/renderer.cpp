@@ -4,6 +4,8 @@
 
 namespace lamp::gl
 {
+	std::map<Renderer::Bindings, handle> _bindings;
+
 	void Renderer::clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
