@@ -4,8 +4,6 @@
 
 namespace lamp::gl
 {
-	std::map<Renderer::Bindings, handle> Renderer::_bindings;
-
 	void Renderer::clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -46,14 +44,5 @@ namespace lamp::gl
 	void Renderer::disable(const u32 value)
 	{
 		glDisable(value);
-	}
-
-	void Renderer::bind(const Bindings type, const Object& object)
-	{
-		if (_bindings[type] != object.id) {
-			_bindings[type]  = object.id;
-
-			object.bind();
-		}
 	}
 }
