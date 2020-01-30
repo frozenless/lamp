@@ -4,7 +4,7 @@
 
 namespace lamp::gl
 {
-	std::map<Renderer::Bindings, handle> _bindings;
+	std::map<Renderer::Bindings, handle> Renderer::_bindings;
 
 	void Renderer::clear()
 	{
