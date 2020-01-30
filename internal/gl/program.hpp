@@ -1,17 +1,15 @@
 #pragma once
 
-#include "types.hpp"
+#include "object.hpp"
 
 namespace lamp::gl
 {
-	struct Program
+	struct Program : public Object
 	{
-		Program();
-
 		void create()  noexcept;
 		void release() const noexcept;
 
-		void use()  const noexcept;
+		void bind() const noexcept final;
 		void link() const noexcept;
 
 		void attach(handle shader) const noexcept;
@@ -24,7 +22,5 @@ namespace lamp::gl
 		#ifndef NDEBUG
 		void status();
 		#endif
-
-		handle id;
 	};
 }

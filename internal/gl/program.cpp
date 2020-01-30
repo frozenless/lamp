@@ -5,12 +5,7 @@
 
 namespace lamp::gl
 {
-	Program::Program()
-		: id(0)
-	{
-	}
-
-	void Program::use() const noexcept
+	void Program::bind() const noexcept
 	{
 		glUseProgram(id);
 	}

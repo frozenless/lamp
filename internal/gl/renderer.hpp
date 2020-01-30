@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.hpp"
+#include "object.hpp"
 
 namespace lamp::gl
 {
@@ -15,12 +15,11 @@ namespace lamp::gl
 		static void init();
 		static void init_blending();
 
-		static bool bind(Bindings type, handle id);
+		static void bind(Bindings type, const Object& object);
 
 		static void set_viewport(const iv4& size);
 		static void set_clear_color(const rgb& color);
 
-		static void set_shader(const program_ptr& shader);
 		static void set_wire_mode(bool value);
 
 		static void enable(u32 value);
@@ -30,6 +29,5 @@ namespace lamp::gl
 
 	private:
 		static std::map<Bindings, handle> _bindings;
-		static handle _shader;
 	};
 }
