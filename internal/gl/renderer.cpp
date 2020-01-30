@@ -57,4 +57,12 @@ namespace lamp::gl
 	{
 		glDisable(value);
 	}
+
+	bool Renderer::bind(const Bindings type, const handle id)
+	{
+		if (_bindings[type] != id) {
+			_bindings[type]  = id;
+			return true;
+		}   return false;
+	}
 }

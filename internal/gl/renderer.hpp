@@ -7,10 +7,15 @@ namespace lamp::gl
 	class Renderer
 	{
 	public:
+		enum class Bindings
+		{
+			Shader
+		};
+
 		static void init();
 		static void init_blending();
 
-		static void clear();
+		static bool bind(Bindings type, handle id);
 
 		static void set_viewport(const iv4& size);
 		static void set_clear_color(const rgb& color);
@@ -21,7 +26,10 @@ namespace lamp::gl
 		static void enable(u32 value);
 		static void disable(u32 value);
 
+		static void clear();
+
 	private:
+		static std::map<Bindings, handle> _bindings;
 		static handle _shader;
 	};
 }
