@@ -9,7 +9,9 @@ namespace lamp
 	public:
 		enum class Bindings
 		{
-			Shader
+			Shader,
+			Texture,
+			Mesh
 		};
 
 		static void bind(Bindings type, const gl::Object& object);

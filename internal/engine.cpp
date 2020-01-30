@@ -30,7 +30,8 @@ namespace lamp
 
 		if (mesh)
 		{
-			mesh->bind();
+			Engine::bind(Bindings::Mesh, *mesh.get());
+
 			mesh->draw();
 		}
 	}

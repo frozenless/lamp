@@ -1,23 +1,21 @@
 #pragma once
 
-#include "types.hpp"
+#include "object.hpp"
 
 namespace lamp::gl
 {
-	class Texture
+	class Texture : public Object
 	{
 	public:
 		explicit Texture(u32 target);
 
-		void bind()   const noexcept;
+		void bind()   const noexcept final;
 
 		void set_data(const unsigned char* data);
 		void set_sampler(u32 min_filter, u32 mag_filter) const;
 
 		int width, height;
 		int channels;
-
-		handle id;
 
 	private:
 		[[nodiscard]]

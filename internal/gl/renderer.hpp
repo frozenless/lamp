@@ -1,6 +1,6 @@
 #pragma once
 
-#include "object.hpp"
+#include "types.hpp"
 
 namespace lamp::gl
 {

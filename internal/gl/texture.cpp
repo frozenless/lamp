@@ -6,7 +6,6 @@ namespace lamp::gl
 {
 	Texture::Texture(const u32 target)
 		: _target(target)
-		, id(0)
 	{
 	}
 

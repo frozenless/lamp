@@ -1,22 +1,20 @@
 #pragma once
 
-#include "types.hpp"
+#include "object.hpp"
 
 namespace lamp::gl
 {
-	struct Mesh
+	struct Mesh : public Object
 	{
-		void bind() const noexcept;
+		void bind() const noexcept final;
 		void draw() const noexcept;
 
 		std::size_t count;
 
-		u32 primitive;
-		u32 type;
-
 		buffer_ptr vbo;
 		buffer_ptr ibo;
 
-		handle id;
+		u32 primitive;
+		u32 type;
 	};
 }
