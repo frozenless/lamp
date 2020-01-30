@@ -4,6 +4,8 @@
 
 namespace lamp::gl
 {
+	std::map<u32, bool> Renderer::states;
+
 	void Renderer::clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -36,13 +38,12 @@ namespace lamp::gl
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void Renderer::enable(const u32 value)
+	void Renderer::set_state(const u32 state, const bool value)
 	{
-		glEnable(value);
-	}
+		if (states[state] != value) {
+			states[state]  = value;
 
-	void Renderer::disable(const u32 value)
-	{
-		glDisable(value);
+			value ? glEnable(state) : glDisable(state);
+		}
 	}
 }
