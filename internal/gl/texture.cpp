@@ -5,7 +5,8 @@
 namespace lamp::gl
 {
 	Texture::Texture(const u32 target)
-		: _target(target)
+		: Object(Type::Texture)
+		, _target(target)
 	{
 	}
 

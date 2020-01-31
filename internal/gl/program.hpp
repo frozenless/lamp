@@ -6,6 +6,8 @@ namespace lamp::gl
 {
 	struct Program : public Object
 	{
+		Program();
+
 		void create()  noexcept;
 		void release() const noexcept;
 

@@ -4,6 +4,11 @@
 
 namespace lamp::gl
 {
+	Mesh::Mesh()
+		: Object(Type::Mesh)
+	{
+	}
+
 	void Mesh::bind() const noexcept
 	{
 		glBindVertexArray(id);

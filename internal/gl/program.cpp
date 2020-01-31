@@ -5,6 +5,11 @@
 
 namespace lamp::gl
 {
+	Program::Program()
+		: Object(Type::Shader)
+	{
+	}
+
 	void Program::bind() const noexcept
 	{
 		glUseProgram(id);

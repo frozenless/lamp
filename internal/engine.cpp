@@ -8,12 +8,12 @@
 
 namespace lamp
 {
-	std::map<Engine::Bindings, gl::handle> Engine::bindings;
+	std::map<gl::Object::Type, gl::handle> Engine::bindings;
 
-	void Engine::bind(const Bindings type, const gl::object_ptr& object)
+	void Engine::bind(const gl::object_ptr& object)
 	{
-		if (bindings[type] != object->id) {
-			bindings[type]  = object->id;
+		if (bindings[object->type] != object->id) {
+			bindings[object->type]  = object->id;
 
 			object->bind();
 		}
@@ -30,9 +30,7 @@ namespace lamp
 
 		if (mesh)
 		{
-			Engine::bind(Bindings::Mesh, mesh);
-
-			mesh->draw();
+			Engine::bind(mesh); mesh->draw();
 		}
 	}
 }

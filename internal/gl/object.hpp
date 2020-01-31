@@ -6,10 +6,16 @@ namespace lamp::gl
 {
 	struct Object
 	{
-		Object();
+		enum class Type {
+			Shader,
+			Texture,
+			Mesh
+		};
 
-		virtual void bind() const noexcept = 0;
+		explicit Object(Type type);
+		virtual  void bind() const noexcept = 0;
 
+		Type   type;
 		handle id;
 	};
 }

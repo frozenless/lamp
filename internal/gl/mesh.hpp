@@ -6,6 +6,8 @@ namespace lamp::gl
 {
 	struct Mesh : public Object
 	{
+		Mesh();
+
 		void bind() const noexcept final;
 		void draw() const noexcept;
 
