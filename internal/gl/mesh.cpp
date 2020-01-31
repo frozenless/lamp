@@ -18,4 +18,14 @@ namespace lamp::gl
 	{
 		glDrawElements(primitive, count, type, nullptr);
 	}
+
+	void Mesh::create() noexcept
+	{
+		glGenVertexArrays(1, &id);
+	}
+
+	void Mesh::release() noexcept
+	{
+		glDeleteVertexArrays(1, &id);
+	}
 }

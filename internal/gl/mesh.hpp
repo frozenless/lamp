@@ -8,6 +8,9 @@ namespace lamp::gl
 	{
 		Mesh();
 
+		void create()  noexcept final;
+		void release() noexcept final;
+
 		void bind() const noexcept final;
 		void draw() const noexcept;
 

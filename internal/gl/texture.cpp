@@ -41,4 +41,14 @@ namespace lamp::gl
 		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, min_filter);
 		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, mag_filter);
 	}
+
+	void Texture::create() noexcept
+	{
+		glGenTextures(1, &id);
+	}
+
+	void Texture::release() noexcept
+	{
+		glDeleteTextures(1, &id);
+	}
 }

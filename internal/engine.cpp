@@ -8,7 +8,7 @@
 
 namespace lamp
 {
-	std::map<gl::Object::Type, gl::handle> Engine::bindings;
+	std::map<gl::Object::Type, gl::ID> Engine::bindings;
 
 	void Engine::bind(const gl::object_ptr& object)
 	{

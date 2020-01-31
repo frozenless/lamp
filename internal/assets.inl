@@ -12,8 +12,8 @@ namespace lamp
 	template<typename T> gl::buffer_ptr Assets::create(const u32 type, const std::vector<T>& info, const u32 usage) noexcept
 	{
 		auto buffer = std::make_shared<gl::Buffer>(type, usage);
-		glGenBuffers(1, &buffer->id);
 
+		buffer->create();
 		buffer->set_data(info);
 
 		return buffer;
@@ -22,8 +22,8 @@ namespace lamp
 	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const Layout& layout, const u32 primitive, const u32 type, const u32 usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
-		glGenVertexArrays(1, &mesh->id);
 
+		mesh->create();
 		mesh->bind();
 
 		mesh->vbo = Assets::create(GL_ARRAY_BUFFER,         vertices, usage);

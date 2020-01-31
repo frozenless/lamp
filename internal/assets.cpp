@@ -6,7 +6,6 @@
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
 #include "gl/texture.hpp"
-#include "gl/mesh.hpp"
 
 #include <stb_image.h>
 
@@ -55,7 +54,7 @@ namespace lamp
 
 	gl::mesh_ptr Assets::create(const v2& size)
 	{
-		std::vector<f32> vertices =
+		const std::vector<f32> vertices =
 		{
 			size.x,  size.y, 0.0f, 1.0f, 1.0f,
 			size.x, -size.y, 0.0f, 1.0f, 0.0f,
@@ -63,7 +62,7 @@ namespace lamp
 		   -size.x,  size.y, 0.0f, 0.0f, 1.0f
 		};
 
-		std::vector<u8> indices =
+		const std::vector<u8> indices =
 		{
 			0, 3, 1,
 			1, 3, 2
@@ -86,9 +85,9 @@ namespace lamp
 		                                             &texture->height, &texture->channels, 0);
 		assert(data != nullptr);
 
-		glGenTextures(1, &texture->id);
-
+		texture->create();
 		texture->bind();
+
 		texture->set_data(data);
 
 		stbi_image_free(data);

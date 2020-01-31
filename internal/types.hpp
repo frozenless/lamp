@@ -39,6 +39,6 @@ namespace lamp
 		using program_ptr = std::shared_ptr<Program>;
 		using texture_ptr = std::shared_ptr<Texture>;
 
-		using handle = u32;
+		using ID = u32;
 	}
 }

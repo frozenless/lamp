@@ -9,7 +9,10 @@ namespace lamp::gl
 	public:
 		explicit Texture(u32 target);
 
-		void bind()   const noexcept final;
+		void create()  noexcept final;
+		void release() noexcept final;
+
+		void bind() const noexcept final;
 
 		void set_data(const unsigned char* data);
 		void set_sampler(u32 min_filter, u32 mag_filter) const;

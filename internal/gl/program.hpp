@@ -8,14 +8,14 @@ namespace lamp::gl
 	{
 		Program();
 
-		void create()  noexcept;
-		void release() const noexcept;
+		void create()  noexcept final;
+		void release() noexcept final;
 
 		void bind() const noexcept final;
 		void link() const noexcept;
 
-		void attach(handle shader) const noexcept;
-		void detach(handle shader) const noexcept;
+		void attach(ID shader) const noexcept;
+		void detach(ID shader) const noexcept;
 
 		static void uniform(int location, f32 value) noexcept;
 		static void uniform(int location, const m4& mat);
