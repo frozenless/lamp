@@ -6,7 +6,7 @@ Libraries used: **[glfw](https://github.com/glfw/glfw)**
                 **[glad](https://github.com/Dav1dde/glad)**
                 **[glm](https://github.com/g-truc/glm)**
                 **[stb](https://github.com/nothings/stb)**
-                **[assimp](https://github.com/assimp/assimp)**
+                **[assimp](https://github.com/assimp/assimp)** [[#2994]( https://github.com/assimp/assimp/pull/2994 )]
                 **[imgui](https://github.com/ocornut/imgui)**
                 **[bullet3](https://github.com/bulletphysics/bullet3)**.
 
