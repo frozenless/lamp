@@ -7,6 +7,8 @@ namespace lamp
 
 	namespace gl
 	{
+		struct Object;
+
 		struct Mesh;
 		struct Shader;
 		struct Program;

@@ -6,11 +6,11 @@
 namespace lamp::gl
 {
 	Program::Program()
-		: id(0)
+		: Object(Type::Shader)
 	{
 	}
 
-	void Program::use() const noexcept
+	void Program::bind() const noexcept
 	{
 		glUseProgram(id);
 	}
@@ -36,12 +36,12 @@ namespace lamp::gl
 		glUniform1f(location, value);
 	}
 
-	void Program::attach(const handle shader) const noexcept
+	void Program::attach(const ID shader) const noexcept
 	{
 		glAttachShader(id, shader);
 	}
 
-	void Program::detach(const handle shader) const noexcept
+	void Program::detach(const ID shader) const noexcept
 	{
 		glDetachShader(id, shader);
 	}
@@ -51,7 +51,7 @@ namespace lamp::gl
 		glLinkProgram(id);
 	}
 
-	void Program::release() const noexcept
+	void Program::release() noexcept
 	{
 		assert(glIsProgram(id));
 

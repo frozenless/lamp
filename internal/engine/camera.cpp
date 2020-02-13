@@ -23,7 +23,9 @@ namespace lamp
 
 	void Camera::look_at(const v3& position, const v3& target)
 	{
-		_view = glm::lookAt(position, target, lamp::v3(0.0f, 1.0f, 0.0f));
+		constexpr lamp::v3 up(0.0f, 1.0f, 0.0f);
+
+		_view = glm::lookAt(position, target, up);
 	}
 
 	void Camera::view(const v3& position)

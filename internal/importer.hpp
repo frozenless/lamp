@@ -4,5 +4,9 @@
 
 namespace lamp
 {
-	gl::mesh_ptr import_mesh(const std::string_view& path, bool drop_normals = false);
+	class Importer
+	{
+	public:
+		static gl::mesh_ptr import(const char* path, bool drop_normals = false);
+	};
 }

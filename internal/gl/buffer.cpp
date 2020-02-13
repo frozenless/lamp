@@ -3,15 +3,10 @@
 namespace lamp::gl
 {
 	Buffer::Buffer(const u32 target, const u32 usage)
-		: _target(target)
+		: Object(Type::Buffer)
+		, _target(target)
 		, _usage(usage)
-		, id(0)
 	{
-	}
-
-	void Buffer::bind() const
-	{
-		glBindBuffer(_target, id);
 	}
 
 	void Buffer::bind_base(const u32 index) const
@@ -19,5 +14,20 @@ namespace lamp::gl
 		assert(_target == GL_UNIFORM_BUFFER);
 
 		glBindBufferBase(_target, index, id);
+	}
+
+	void Buffer::bind() const noexcept
+	{
+		glBindBuffer(_target, id);
+	}
+
+	void Buffer::create() noexcept
+	{
+		glGenBuffers(1, &id);
+	}
+
+	void Buffer::release() noexcept
+	{
+		glDeleteBuffers(1, &id);
 	}
 }

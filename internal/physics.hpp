@@ -1,7 +1,6 @@
 #pragma once
 
 #include "physics/ray.hpp"
-#include "physics/renderer.hpp"
 
 #include <btBulletDynamicsCommon.h>
 #include <BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>

@@ -17,6 +17,9 @@ namespace lamp
 
 		virtual ~Game() = default;
 
+		[[nodiscard]]
+		const Window& window() const;
+
 		void run();
 
 	protected:

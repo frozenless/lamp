@@ -1,7 +1,7 @@
 #pragma once
 
-#include "utils/forward.hpp"
-#include "utils/dependencies.hpp"
+#include "common/fwd.hpp"
+#include "common/dependencies.hpp"
 
 #include <glm/glm.hpp>
 
@@ -31,6 +31,7 @@ namespace lamp
 
 	namespace gl
 	{
+		using object_ptr = std::shared_ptr<Object>;
 		using buffer_ptr = std::shared_ptr<Buffer>;
 		using mesh_ptr   = std::shared_ptr<Mesh>;
 		using shader_ptr = std::shared_ptr<Shader>;
@@ -38,6 +39,6 @@ namespace lamp
 		using program_ptr = std::shared_ptr<Program>;
 		using texture_ptr = std::shared_ptr<Texture>;
 
-		using handle = u32;
+		using ID = u32;
 	}
 }

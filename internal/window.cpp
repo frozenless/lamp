@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "utils/config.hpp"
+#include "common/config.hpp"
 
 namespace lamp
 {
@@ -14,8 +14,7 @@ namespace lamp
 
 	void Window::create(const char* title, const iv2& size, const u32 samples, const bool fullscreen) noexcept
 	{
-		if (samples > 0)
-		{
+		if (samples > 0) {
 			glfwWindowHint(GLFW_SAMPLES, samples);
 		}
 
@@ -42,12 +41,12 @@ namespace lamp
 		glfwPollEvents();
 	}
 
-	void Window::finish() noexcept
+	void Window::Api::release() noexcept
 	{
 		glfwTerminate();
 	}
 
-	void Window::init() noexcept
+	void Window::Api::init() noexcept
 	{
 		const bool result = glfwInit() == GLFW_TRUE;
 		assert(result);
@@ -63,7 +62,7 @@ namespace lamp
 		glfwSetWindowShouldClose(ptr, GLFW_TRUE);
 	}
 
-	void Window::init_loader() const noexcept
+	void Window::init() noexcept
 	{
 		const bool result = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) != 0;
 		assert(result);

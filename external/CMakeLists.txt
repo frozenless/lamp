@@ -30,16 +30,24 @@ option(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF)
 option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
 option(ASSIMP_BUILD_SAMPLES OFF)
 option(ASSIMP_BUILD_TESTS OFF)
+option(ASSIMP_INSTALL OFF)
+
+set(ASSIMP_BUILD_OBJ_IMPORTER ON)
+set(ASSIMP_NO_EXPORT ON)
+
+set(GL_MAJOR_VERSION 4 CACHE STRING "gl major version")
+set(GL_MINOR_VERSION 3 CACHE STRING "gl minor version")
+
+set(GLSL_VERSION "#version ${GL_MAJOR_VERSION}${GL_MINOR_VERSION}0 core" CACHE STRING "glsl version")
+
+set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
+set(GLAD_PROFILE "core")
 
 if (MSVC)
     set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 endif()
 
-set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
-set(GLAD_PROFILE "core")
-
-set(ASSIMP_BUILD_OBJ_IMPORTER ON)
-set(ASSIMP_NO_EXPORT ON)
+configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.hpp)
 
 add_subdirectory(ozz-animation)
 add_subdirectory(recastnavigation)

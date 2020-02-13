@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "engine/material.hpp"
-#include "utils/config.hpp"
+#include "common/config.hpp"
 
 namespace lamp
 {

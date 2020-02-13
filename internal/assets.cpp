@@ -1,20 +1,19 @@
 #include "assets.inl"
-#include "common.hpp"
 
-#include "utils/config.hpp"
+#include "common/file.hpp"
+#include "common/config.hpp"
 
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
 #include "gl/texture.hpp"
-#include "gl/mesh.hpp"
 
 #include <stb_image.h>
 
 namespace lamp
 {
-	gl::shader_ptr Assets::create_shader(const std::string_view& path, const u32 type)
+	gl::shader_ptr Assets::create(const std::string_view& path, const u32 type)
 	{
-		const std::string& source = read_file(path.data());
+		const std::string& source = File::read(path.data());
 		auto  shader = std::make_shared<gl::Shader>();
 
 		shader->create(type);
@@ -29,7 +28,7 @@ namespace lamp
 		return shader;
 	}
 
-	gl::program_ptr Assets::create_program(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
+	gl::program_ptr Assets::create(const gl::shader_ptr& vertex, const gl::shader_ptr& fragment)
 	{
 		auto program = std::make_shared<gl::Program>();
 
@@ -53,9 +52,9 @@ namespace lamp
 		return program;
 	}
 
-	gl::mesh_ptr Assets::create_sprite(const v2& size)
+	gl::mesh_ptr Assets::create(const v2& size)
 	{
-		std::vector<f32> vertices =
+		const std::vector<f32> vertices =
 		{
 			size.x,  size.y, 0.0f, 1.0f, 1.0f,
 			size.x, -size.y, 0.0f, 1.0f, 0.0f,
@@ -63,7 +62,7 @@ namespace lamp
 		   -size.x,  size.y, 0.0f, 0.0f, 1.0f
 		};
 
-		std::vector<u8> indices =
+		const std::vector<u8> indices =
 		{
 			0, 3, 1,
 			1, 3, 2
@@ -73,10 +72,10 @@ namespace lamp
 		layout.add<f32>(3, GL_FLOAT);
 		layout.add<f32>(2, GL_FLOAT);
 
-		return create_mesh(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
+		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}
 
-	gl::texture_ptr Assets::create_texture(const std::string_view& path, const bool mipmap, const bool flip)
+	gl::texture_ptr Assets::create(const std::string_view& path, const bool mipmap, const bool flip)
 	{
 		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 
@@ -86,9 +85,9 @@ namespace lamp
 		                                             &texture->height, &texture->channels, 0);
 		assert(data != nullptr);
 
-		glGenTextures(1, &texture->id);
-
+		texture->create();
 		texture->bind();
+
 		texture->set_data(data);
 
 		stbi_image_free(data);

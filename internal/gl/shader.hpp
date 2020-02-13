@@ -19,6 +19,6 @@ namespace lamp::gl
 		void status();
 		#endif
 
-		handle id;
+		ID id;
 	};
 }
