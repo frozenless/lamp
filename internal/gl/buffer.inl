@@ -4,13 +4,13 @@
 
 namespace lamp::gl
 {
-	template <typename T> void Buffer::set_data(const std::vector<T>& info) const
+	template <typename T> void Buffer::set_data(const std::vector<T>& buffer) const
 	{
 		bind();
 
-		if (!info.empty())
-		{
-			glBufferData(_target, sizeof(T) * info.size(), info.data(), _usage);
+		if (!buffer.empty()) {
+			glBufferData(_target, sizeof(T) * buffer.size(),
+					                          buffer.data(), _usage);
 		}
 	}
 }

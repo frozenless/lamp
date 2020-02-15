@@ -12,7 +12,7 @@ namespace lamp::gl
 		void create()  noexcept final;
 		void release() noexcept final;
 
-		template <typename T> void set_data(const std::vector<T>& info) const;
+		template <typename T> void set_data(const std::vector<T>& buffer) const;
 			void bind_base(u32 index) const;
 
 	private:
