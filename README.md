@@ -9,7 +9,8 @@ Game engine for simple games created with **C++** and **OpenGL**.
 - **[stb](https://github.com/nothings/stb)**
 - **[assimp](https://github.com/assimp/assimp)
     [#2994](https://github.com/assimp/assimp/pull/2994)
-    [#3003](https://github.com/assimp/assimp/pull/3003)**
+    [#3003](https://github.com/assimp/assimp/pull/3003)
+    [#3014](https://github.com/assimp/assimp/pull/3014)**
 - **[imgui](https://github.com/ocornut/imgui)**
 - **[bullet3](https://github.com/bulletphysics/bullet3)**
 
