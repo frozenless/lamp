@@ -1,5 +1,8 @@
 #pragma once
 
+#include "engine/light.hpp"
+
+#include "physics.hpp"
 #include "window.hpp"
 
 namespace lamp
@@ -30,5 +33,8 @@ namespace lamp
 		virtual void draw()                 = 0;
 
 		Window _window;
+
+		Physics _physics;
+		Light   _light;
 	};
 }
