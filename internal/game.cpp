@@ -36,4 +36,12 @@ namespace lamp
 	{
 		return _window;
 	}
+
+	const Physics& Game::physics() {
+		return _physics;
+	}
+
+	const Light& Game::light() {
+		return _light;
+	}
 }
