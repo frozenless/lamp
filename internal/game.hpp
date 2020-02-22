@@ -21,8 +21,9 @@ namespace lamp
 		virtual ~Game() = default;
 
 		[[nodiscard]] const Window&  window() const;
-		[[nodiscard]] const Physics& physics();
-		[[nodiscard]] const Light&   light();
+		[[nodiscard]] const Light&   light()  const;
+
+		[[nodiscard]] Physics& physics();
 
 		void run();
 
