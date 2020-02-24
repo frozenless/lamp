@@ -11,9 +11,9 @@
 
 namespace lamp
 {
-	gl::shader_ptr Assets::create(const std::string_view& path, const u32 type)
+	gl::shader_ptr Assets::create(const char* path, const u32 type)
 	{
-		const std::string& source = File::read(path.data());
+		const std::string& source = File::read(path);
 		auto  shader = std::make_shared<gl::Shader>();
 
 		shader->create(type);
@@ -75,14 +75,14 @@ namespace lamp
 		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}
 
-	gl::texture_ptr Assets::create(const std::string_view& path, const bool mipmap, const bool flip)
+	gl::texture_ptr Assets::create(const char* path, const bool mipmap, const bool flip)
 	{
 		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 
 		stbi_set_flip_vertically_on_load(flip);
 
-		unsigned char* data = stbi_load(path.data(), &texture->width,
-		                                             &texture->height, &texture->channels, 0);
+		unsigned char* data = stbi_load(path, &texture->width,
+		                                      &texture->height, &texture->channels, 0);
 		assert(data != nullptr);
 
 		texture->create();
