@@ -8,7 +8,7 @@ namespace lamp
 	{
 		Window::Api::init();
 
-		if (config.decorated)
+		if (!config.decorated)
 		{
 			glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 		}
