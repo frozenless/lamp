@@ -27,5 +27,8 @@ Game engine for simple games created with **C++** and **OpenGL**.
 
 ## Demo
 
+### Cubes
+![ScreenShot](https://frozenless.com/images/cubes.webp)
+
 ### Squares
 ![ScreenShot](https://frozenless.com/images/squares.webp)

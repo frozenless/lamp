@@ -25,7 +25,7 @@ namespace lamp
 
 		[[nodiscard]] Physics& physics();
 
-		void run();
+		void run(const Window::Config& config);
 
 	protected:
 		virtual void init()    = 0;

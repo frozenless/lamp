@@ -4,9 +4,18 @@
 
 namespace lamp
 {
-	void Game::run()
+	void Game::run(const Window::Config& config)
 	{
 		Window::Api::init();
+
+		if (config.decorated)
+		{
+			glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+		}
+
+		_window.create(config.title, config.size, config.samples);
+
+		lamp::Window::init();
 
 		init();
 

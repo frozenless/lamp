@@ -16,6 +16,14 @@ namespace lamp
 			static void release() noexcept;
 		};
 
+		struct Config
+		{
+			const char* title;
+			bool  decorated;
+			u8  samples;
+			iv2 size;
+		};
+
 		Window() noexcept;
 
 		void create(const char* title, const iv2& size, u32 samples = 0, bool fullscreen = false) noexcept;
@@ -23,6 +31,7 @@ namespace lamp
 		void close() const noexcept;
 		void swap()  const noexcept;
 
+		[[nodiscard]]
 		bool closing() const noexcept;
 
 		static void init()   noexcept;

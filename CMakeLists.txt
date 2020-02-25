@@ -19,6 +19,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/physics/ray.cpp
         internal/common/random.cpp
         internal/common/file.cpp
+        internal/common/timer.cpp
         internal/gl/object.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp
