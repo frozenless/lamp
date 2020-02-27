@@ -19,14 +19,15 @@ namespace lamp
 		struct Config
 		{
 			const char* title;
-			bool  decorated;
-			u8  samples;
-			iv2 size;
+            iv2  size;
+            u8   samples;
+			bool decorated;
+			bool fullscreen;
 		};
 
 		Window() noexcept;
 
-		void create(const char* title, const iv2& size, u32 samples = 0, bool fullscreen = false) noexcept;
+		void create(const Config& config) noexcept;
 
 		void close() const noexcept;
 		void swap()  const noexcept;
