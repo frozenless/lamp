@@ -19,8 +19,10 @@ namespace lamp
 		struct Config
 		{
 			const char* title;
-            iv2  size;
-            u8   samples;
+
+            iv2 size;
+            u8  samples;
+
 			bool decorated;
 			bool fullscreen;
 		};
