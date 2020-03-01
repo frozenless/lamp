@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "common/random.inl"
 
 #include <GLFW/glfw3.h>
 
@@ -11,6 +12,7 @@ namespace lamp
 		_window.create(config);
 
 		lamp::Window::init();
+		lamp::Random::seed();
 
 		init();
 
