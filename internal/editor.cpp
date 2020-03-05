@@ -5,8 +5,10 @@
 #include <imgui_impl_opengl3.h>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "engine/material.hpp"
 #include "common/config.hpp"
+#include "engine/material.hpp"
+
+#include "gl/texture.hpp"
 
 namespace lamp
 {
@@ -47,10 +49,12 @@ namespace lamp
 	void Editor::draw(Light& light)
 	{
 		ImGui::Begin("Light");
+
 		ImGui::InputFloat3("Position", glm::value_ptr(light.position), 3);
 		ImGui::ColorEdit3( "Color",    glm::value_ptr(light.color));
 		ImGui::InputFloat("Diffuse", &light.diffuse, 1);
 		ImGui::InputFloat("Ambient", &light.ambient, 1);
+
 		ImGui::End();
 	}
 
@@ -58,6 +62,12 @@ namespace lamp
 	{
 		ImGui::Begin(title);
 		ImGui::ColorEdit3("Color", glm::value_ptr(material->color));
+
+		if (material->texture)
+		{
+			ImGui::Image(reinterpret_cast<void *>(material->texture->id), ImVec2(70.0f, 70.0f));
+		}
+
 		ImGui::End();
 	}
 }
