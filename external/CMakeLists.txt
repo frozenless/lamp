@@ -49,6 +49,9 @@ endif()
 
 configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.hpp)
 
+add_subdirectory(vulkan-headers)
+add_subdirectory(vulkan-loader)
+
 add_subdirectory(ozz-animation)
 add_subdirectory(recastnavigation)
 add_subdirectory(bullet3)
