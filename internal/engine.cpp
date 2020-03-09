@@ -1,5 +1,6 @@
 #include "engine.hpp"
 
+#include "gl/texture.hpp"
 #include "gl/program.hpp"
 #include "gl/mesh.hpp"
 
@@ -26,6 +27,11 @@ namespace lamp
 		if (material)
 		{
 			gl::Program::uniform(1, material->color);
+
+			if (auto texture = material->texture; texture)
+			{
+				Engine::bind(texture);
+			}
 		}
 
 		if (mesh)

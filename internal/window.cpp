@@ -12,15 +12,21 @@ namespace lamp
 	{
 	}
 
-	void Window::create(const char* title, const iv2& size, const u32 samples, const bool fullscreen) noexcept
+	void Window::create(const Config& config) noexcept
 	{
-		if (samples > 0) {
-			glfwWindowHint(GLFW_SAMPLES, samples);
+		if (config.samples != 0)
+		{
+			glfwWindowHint(GLFW_SAMPLES, config.samples);
 		}
 
-		GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
+		if (!config.decorated)
+		{
+			glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+		}
 
-		ptr = glfwCreateWindow(size.x, size.y, title, monitor, nullptr);
+		GLFWmonitor* monitor = config.fullscreen ? glfwGetPrimaryMonitor() : nullptr;
+
+		ptr = glfwCreateWindow(config.size.x, config.size.y, config.title, monitor, nullptr);
 		assert(ptr != nullptr);
 
 		glfwMakeContextCurrent(ptr);

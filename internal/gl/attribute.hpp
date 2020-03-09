@@ -6,10 +6,10 @@ namespace lamp::gl
 {
 	struct Attribute
 	{
-		Attribute(int count, u32 type, int offset);
+		Attribute(u32 count, u32 type, u32 offset) noexcept;
 
-		int count;
-		int offset;
+		u32 count;
 		u32 type;
+		u32 offset;
 	};
 }

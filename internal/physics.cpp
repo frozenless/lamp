@@ -20,8 +20,8 @@ namespace lamp
 	{
 		const v3 end = ray.origin + ray.direction * 100.0f;
 
-		btCollisionWorld::ClosestRayResultCallback hit(math::from(ray.origin), math::from(end));
-		_world->rayTest(math::from(ray.origin), math::from(end), hit);
+		btCollisionWorld::ClosestRayResultCallback hit(utils::from(ray.origin), utils::from(end));
+		_world->rayTest(utils::from(ray.origin), utils::from(end), hit);
 
 		return hit;
 	}

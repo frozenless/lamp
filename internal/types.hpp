@@ -4,6 +4,7 @@
 #include "common/dependencies.hpp"
 
 #include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 namespace lamp
 {
@@ -21,7 +22,8 @@ namespace lamp
 	using v3 = glm::vec3;
 	using v4 = glm::vec4;
 
-	using m4 = glm::mat4;
+	using m4   = glm::mat4;
+	using quat = glm::quat;
 
 	using rgb  = glm::vec3;
 	using rgba = glm::vec4;

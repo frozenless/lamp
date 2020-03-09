@@ -1,12 +1,18 @@
 #include "game.hpp"
+#include "common/random.inl"
 
 #include <GLFW/glfw3.h>
 
 namespace lamp
 {
-	void Game::run()
+	void Game::run(const Window::Config& config)
 	{
 		Window::Api::init();
+
+		_window.create(config);
+
+		lamp::Window::init();
+		lamp::Random::seed();
 
 		init();
 
@@ -35,5 +41,15 @@ namespace lamp
 	const Window& Game::window() const
 	{
 		return _window;
+	}
+
+	const Light& Game::light() const
+	{
+		return _light;
+	}
+
+	Physics& Game::physics()
+	{
+		return _physics;
 	}
 }

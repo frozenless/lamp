@@ -1,5 +1,8 @@
 #pragma once
 
+#include "engine/light.hpp"
+
+#include "physics.hpp"
 #include "window.hpp"
 
 namespace lamp
@@ -17,10 +20,12 @@ namespace lamp
 
 		virtual ~Game() = default;
 
-		[[nodiscard]]
-		const Window& window() const;
+		[[nodiscard]] const Window&  window() const;
+		[[nodiscard]] const Light&   light()  const;
 
-		void run();
+		[[nodiscard]] Physics& physics();
+
+		void run(const Window::Config& config);
 
 	protected:
 		virtual void init()    = 0;
@@ -30,5 +35,8 @@ namespace lamp
 		virtual void draw()                 = 0;
 
 		Window _window;
+
+		Physics _physics;
+		Light   _light;
 	};
 }
