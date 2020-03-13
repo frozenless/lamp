@@ -16,14 +16,16 @@ namespace lamp
 		_projection = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
 	}
 
-	void Camera::otho()
+	void Camera::ortho()
 	{
 		_projection = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
 	}
 
 	void Camera::look_at(const v3& position, const v3& target)
 	{
-		_view = glm::lookAt(position, target, lamp::v3(0.0f, 1.0f, 0.0f));
+		constexpr lamp::v3 up(0.0f, 1.0f, 0.0f);
+
+		_view = glm::lookAt(position, target, up);
 	}
 
 	void Camera::view(const v3& position)

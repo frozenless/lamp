@@ -1,11 +1,10 @@
 #include "renderer.hpp"
 
-#include "gl/program.hpp"
 #include <glad/glad.h>
 
 namespace lamp::gl
 {
-	handle Renderer::_shader = 0;
+	std::map<u32, bool> Renderer::states;
 
 	void Renderer::clear()
 	{
@@ -33,28 +32,18 @@ namespace lamp::gl
 		glPolygonMode(GL_FRONT_AND_BACK, value ? GL_LINE : GL_FILL);
 	}
 
-	void Renderer::set_shader(const program_ptr& shader)
-	{
-		if (_shader == shader->id)
-		    return;
-
-		_shader = shader->id;
-	              shader->use();
-	}
-
 	void Renderer::init_blending()
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void Renderer::enable(const u32 value)
+	void Renderer::set_state(const u32 state, const bool value)
 	{
-		glEnable(value);
-	}
+		if (states[state] != value) {
+			states[state]  = value;
 
-	void Renderer::disable(const u32 value)
-	{
-		glDisable(value);
+			value ? glEnable(state) : glDisable(state);
+		}
 	}
 }

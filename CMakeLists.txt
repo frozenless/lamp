@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Lamp VERSION 0.0.3 LANGUAGES CXX)
+project(Lamp VERSION 0.0.4 LANGUAGES CXX)
 
-add_subdirectory(config)
 add_subdirectory(external)
-
 add_library(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME}
@@ -13,12 +11,18 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         external/imgui/imgui_widgets.cpp
         external/imgui/imgui_draw.cpp
         external/imgui/imgui.cpp
+        internal/ecs/systems/mesh_renderer.cpp
+        internal/ecs/systems/physics.cpp
+        internal/ecs/systems/transform.cpp
         internal/engine/material.cpp
         internal/engine/camera.cpp
-        internal/engine/transform.cpp
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
         internal/physics/ray.cpp
+        internal/common/random.cpp
+        internal/common/file.cpp
+        internal/common/timer.cpp
+        internal/gl/object.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp
         internal/gl/shader.cpp
@@ -31,9 +35,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/physics.cpp
         internal/importer.cpp
         internal/window.cpp
-        internal/common.cpp
         internal/assets.cpp
-        internal/random.cpp
         internal/layout.cpp
         internal/game.cpp)
 
@@ -44,7 +46,7 @@ PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
 
 target_link_libraries(${PROJECT_NAME}
-PUBLIC  BulletDynamics BulletCollision LinearMath glfw glad glm
+PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm
 PRIVATE assimp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)

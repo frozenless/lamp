@@ -1,5 +1,7 @@
 #include "importer.hpp"
+
 #include "assets.inl"
+#include "layout.inl"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
@@ -9,16 +11,16 @@
 
 namespace lamp
 {
-	gl::mesh_ptr import_mesh(const std::string_view& path, const bool drop_normals)
+	gl::mesh_ptr Importer::import(const char* path, const bool drop_normals)
 	{
 		Assimp::Importer importer;
-		u32 flag = aiProcess_Triangulate;
+		u32 flag = aiProcess_Triangulate | aiProcess_JoinIdenticalVertices;
 
 		if (drop_normals) {
 			flag |= aiProcess_DropNormals;
 		}
 
-		const aiScene* ai_scene = importer.ReadFile(path.data(), flag);
+		const aiScene* ai_scene = importer.ReadFile(path, flag);
 		const aiMesh*  ai_mesh  = ai_scene->mMeshes[0];
 
 		Layout layout;
@@ -37,6 +39,7 @@ namespace lamp
 
 		std::vector<f32> vertices;
 		std::vector<u32> indices;
+		indices.reserve(ai_mesh->mNumFaces * 3);
 
 		for (u32 i = 0; i < ai_mesh->mNumVertices; i++)
 		{
@@ -77,6 +80,6 @@ namespace lamp
 			}
 		}
 
-		return Assets::create_mesh(vertices, indices, layout, GL_TRIANGLES, GL_UNSIGNED_INT, GL_STATIC_DRAW);
+		return Assets::create(vertices, indices, layout, GL_TRIANGLES, GL_UNSIGNED_INT, GL_STATIC_DRAW);
 	}
 }

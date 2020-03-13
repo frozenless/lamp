@@ -2,11 +2,10 @@
 
 namespace lamp::gl
 {
-	Attribute::Attribute(int index, int count, u32 type, int offset)
+	Attribute::Attribute(const u32 count, const u32 type, const u32 offset) noexcept
 		: count(count)
-		, index(index)
-		, offset(offset)
 		, type(type)
+		, offset(offset)
 	{
 	}
 }

@@ -1,12 +1,8 @@
-#include "common.hpp"
-
-#include <sstream>
-#include <fstream>
-#include <cassert>
+#include "file.hpp"
 
 namespace lamp
 {
-	std::string read_file(const char* path)
+	std::string File::read(const char* path)
 	{
 		std::ifstream file(path, std::ios::in);
 		assert(file.is_open());

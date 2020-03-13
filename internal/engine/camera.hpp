@@ -12,7 +12,7 @@ namespace lamp
 		void look_at(const v3& position, const v3& target);
 
 		void perspective();
-		void otho();
+		void ortho();
 
 		void set_size(const v2& size);
 		void view(const v3& position);

@@ -1,10 +1,8 @@
 #include "renderer.hpp"
+#include "engine.hpp"
 
 #include "gl/mesh.hpp"
 #include "gl/buffer.hpp"
-
-#include <glad/glad.h>
-#include <utility>
 
 namespace lamp::debug
 {
@@ -36,15 +34,15 @@ namespace lamp::debug
 
     void Renderer::flushLines()
     {
-    	_mesh->bind();
+    	if (!_vertices.empty() && !_indices.empty())
+    	{
+		    lamp::Engine::bind(_mesh);
 
-	    _mesh->vbo->bind();
-	    _mesh->vbo->set_data(_vertices);
+		    _mesh->vbo->set_data(_vertices);
+		    _mesh->ibo->set_data(_indices);
 
-	    _mesh->ibo->bind();
-	    _mesh->ibo->set_data(_indices);
-
-	    _mesh->count = _indices.size();
+		    _mesh->count = _indices.size();
+	    }
     }
 
 	void Renderer::setDebugMode(const int mode)

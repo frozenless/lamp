@@ -1,9 +1,6 @@
 #pragma once
 
 #include "gl/attribute.hpp"
-#include "types.hpp"
-
-#include <vector>
 
 namespace lamp
 {

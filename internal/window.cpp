@@ -3,38 +3,43 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "utils/config.hpp"
+#include "common/config.hpp"
 
 namespace lamp
 {
 	Window::Window() noexcept
-		: ptr(nullptr)
+		: _ptr(nullptr)
 	{
 	}
 
-	void Window::create(const char* title, const iv2& size, const u32 samples, const bool fullscreen) noexcept
+	void Window::create(const Config& config) noexcept
 	{
-		if (samples > 0)
+		if (config.samples != 0)
 		{
-			glfwWindowHint(GLFW_SAMPLES, samples);
+			glfwWindowHint(GLFW_SAMPLES, config.samples);
 		}
 
-		GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
+		if (!config.decorated)
+		{
+			glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+		}
 
-		ptr = glfwCreateWindow(size.x, size.y, title, monitor, nullptr);
-		assert(ptr != nullptr);
+		GLFWmonitor* monitor = config.fullscreen ? glfwGetPrimaryMonitor() : nullptr;
 
-		glfwMakeContextCurrent(ptr);
+		_ptr = glfwCreateWindow(config.size.x, config.size.y, config.title, monitor, nullptr);
+		assert(_ptr != nullptr);
+
+		glfwMakeContextCurrent(_ptr);
 	}
 
 	bool Window::closing() const noexcept
 	{
-		return glfwWindowShouldClose(ptr) == GLFW_TRUE;
+		return glfwWindowShouldClose(_ptr) == GLFW_TRUE;
 	}
 
 	void Window::swap() const noexcept
 	{
-		glfwSwapBuffers(ptr);
+		glfwSwapBuffers(_ptr);
 	}
 
 	void Window::update() noexcept
@@ -42,12 +47,12 @@ namespace lamp
 		glfwPollEvents();
 	}
 
-	void Window::finish() noexcept
+	void Window::Api::release() noexcept
 	{
 		glfwTerminate();
 	}
 
-	void Window::init() noexcept
+	void Window::Api::init() noexcept
 	{
 		const bool result = glfwInit() == GLFW_TRUE;
 		assert(result);
@@ -60,12 +65,17 @@ namespace lamp
 
 	void Window::close() const noexcept
 	{
-		glfwSetWindowShouldClose(ptr, GLFW_TRUE);
+		glfwSetWindowShouldClose(_ptr, GLFW_TRUE);
 	}
 
-	void Window::init_loader() const noexcept
+	void Window::init() noexcept
 	{
 		const bool result = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) != 0;
 		assert(result);
+	}
+
+	Window::operator GLFWwindow*() const
+	{
+		return _ptr;
 	}
 }

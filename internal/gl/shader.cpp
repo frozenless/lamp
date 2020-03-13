@@ -2,10 +2,6 @@
 
 #include <glad/glad.h>
 
-#ifndef NDEBUG
-#include <iostream>
-#endif
-
 namespace lamp::gl
 {
 	Shader::Shader()
@@ -30,11 +26,9 @@ namespace lamp::gl
 		glDeleteShader(id);
 	}
 
-	void Shader::set_source(const std::vector<const char*>& sources)
+	void Shader::set_source(const char* source)
 	{
-		assert(!sources.empty());
-
-		glShaderSource(id, sources.size(), sources.data(), nullptr);
+		glShaderSource(id, 1, &source, nullptr);
 	}
 
 	#ifndef NDEBUG

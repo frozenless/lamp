@@ -11,10 +11,12 @@ namespace lamp
 
 	void Layout::update() const noexcept
 	{
+		u32 index = 0;
+
 		for (const auto& attribute : _attributes)
 		{
-			glVertexAttribPointer(attribute.index, attribute.count, attribute.type, GL_FALSE, _size, (void*)attribute.offset);
-			glEnableVertexAttribArray(attribute.index);
+			glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, _size, reinterpret_cast<void*>(attribute.offset));
+			glEnableVertexAttribArray(index++);
 		}
 	}
 }

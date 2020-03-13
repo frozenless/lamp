@@ -2,8 +2,6 @@
 
 #include "types.hpp"
 
-#include <vector>
-
 namespace lamp::gl
 {
 	struct Shader
@@ -15,12 +13,12 @@ namespace lamp::gl
 		void compile() const noexcept;
 		void release() const noexcept;
 
-		void set_source(const std::vector<const char*>& sources);
+		void set_source(const char* source);
 
 		#ifndef NDEBUG
 		void status();
 		#endif
 
-		handle id;
+		ID id;
 	};
 }

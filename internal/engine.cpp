@@ -1,26 +1,15 @@
 #include "engine.hpp"
 
-#include "gl/program.hpp"
-#include "gl/mesh.hpp"
-
-#include "engine/transform.hpp"
-#include "engine/material.hpp"
-
 namespace lamp
 {
-	void Engine::draw(const transform_ptr& transform, const gl::mesh_ptr& mesh, const material_ptr& material)
+	std::map<gl::Object::Type, gl::ID> Engine::bindings;
+
+	void Engine::bind(const gl::object_ptr& object)
 	{
-		gl::Program::uniform(2, transform->world);
+		if (bindings[object->type] != object->id) {
+			bindings[object->type]  = object->id;
 
-		if (material)
-		{
-			gl::Program::uniform(3, material->color);
-		}
-
-		if (mesh)
-		{
-			mesh->bind();
-			mesh->draw();
+			object->bind();
 		}
 	}
 }

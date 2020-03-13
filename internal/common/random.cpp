@@ -1,8 +1,6 @@
 #include "random.hpp"
 #include "types.hpp"
 
-#include <ctime>
-
 namespace lamp
 {
 	void Random::seed()

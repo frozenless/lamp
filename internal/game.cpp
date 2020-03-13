@@ -1,14 +1,30 @@
 #include "game.hpp"
+#include "gl/renderer.hpp"
+
+#include "common/random.inl"
 
 #include <GLFW/glfw3.h>
 
 namespace lamp
 {
-	void Game::run()
+	Game::Game()
+		: _show_wires(false)
+		, _show_editor(false)
 	{
-		Window::init();
+	}
+
+	void Game::run(const Window::Config& config)
+	{
+		Window::Api::init();
+
+		_window.create(config);
+
+		lamp::Window::init();
+		lamp::Random::seed();
 
 		init();
+
+		_ecs.systems.configure();
 
 		f64 old_time = glfwGetTime();
 
@@ -29,6 +45,33 @@ namespace lamp
 
 		release();
 
-		Window::finish();
+		Window::Api::release();
+	}
+
+	const Window& Game::window() const
+	{
+		return _window;
+	}
+
+	const Light& Game::light() const
+	{
+		return _light;
+	}
+
+	Physics& Game::physics()
+	{
+		return _physics;
+	}
+
+	void Game::toggle_editor()
+	{
+		_show_editor = !_show_editor;
+	}
+
+	void Game::toggle_wires()
+	{
+		_show_wires = !_show_wires;
+
+		gl::Renderer::set_wire_mode(_show_wires);
 	}
 }

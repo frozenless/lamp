@@ -3,7 +3,6 @@
 #include "types.hpp"
 
 #include <LinearMath/btIDebugDraw.h>
-#include <vector>
 
 namespace lamp::debug
 {

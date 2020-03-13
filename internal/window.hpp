@@ -9,20 +9,40 @@ namespace lamp
 	class Window
 	{
 	public:
+		class Api
+		{
+		public:
+			static void init()    noexcept;
+			static void release() noexcept;
+		};
+
+		struct Config
+		{
+			const char* title;
+
+            iv2 size;
+            u8  samples;
+
+			bool decorated;
+			bool fullscreen;
+		};
+
 		Window() noexcept;
 
-		void create(const char* title, const iv2& size, u32 samples = 0, bool fullscreen = false) noexcept;
-		void close() const noexcept;
+		void create(const Config& config) noexcept;
 
+		void close() const noexcept;
+		void swap()  const noexcept;
+
+		[[nodiscard]]
 		bool closing() const noexcept;
 
-		static void init() noexcept;
+		static void init()   noexcept;
 		static void update() noexcept;
-		static void finish() noexcept;
 
-		void init_loader() const noexcept;
-		void swap() const noexcept;
+		operator GLFWwindow*() const;
 
-		GLFWwindow* ptr;
+	private:
+		GLFWwindow* _ptr;
 	};
 }
