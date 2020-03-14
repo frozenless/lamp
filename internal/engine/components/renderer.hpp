@@ -4,7 +4,7 @@
 
 namespace lamp::components
 {
-	struct MeshRenderer
+	struct Renderer
 	{
 		material_ptr material;
 

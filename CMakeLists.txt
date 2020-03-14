@@ -11,17 +11,21 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         external/imgui/imgui_widgets.cpp
         external/imgui/imgui_draw.cpp
         external/imgui/imgui.cpp
-        internal/engine/systems/mesh_renderer.cpp
+
+        internal/engine/systems/renderer.cpp
         internal/engine/systems/physics.cpp
         internal/engine/systems/transform.cpp
         internal/engine/material.cpp
         internal/engine/camera.cpp
+
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
         internal/physics/ray.cpp
+
         internal/common/random.cpp
         internal/common/file.cpp
         internal/common/timer.cpp
+
         internal/gl/object.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp
@@ -30,6 +34,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/gl/attribute.cpp
         internal/gl/texture.cpp
         internal/gl/renderer.cpp
+
         internal/engine.cpp
         internal/editor.cpp
         internal/physics.cpp

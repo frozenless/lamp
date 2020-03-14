@@ -1,6 +1,6 @@
-#include "mesh_renderer.hpp"
+#include "renderer.hpp"
 
-#include "engine/components/mesh_renderer.hpp"
+#include "engine/components/renderer.hpp"
 #include "engine/components/transform.hpp"
 
 #include "engine/material.hpp"
@@ -13,10 +13,10 @@
 
 namespace lamp::systems
 {
-	void MeshRenderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
+	void Renderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{
-		es.each<components::MeshRenderer, components::Transform>([](entityx::Entity,
-				components::MeshRenderer& renderer, components::Transform& transform) {
+		es.each<components::Renderer, components::Transform>([](entityx::Entity,
+		        components::Renderer& renderer, components::Transform& transform) {
 
 			Engine::bind(renderer.shader);
 

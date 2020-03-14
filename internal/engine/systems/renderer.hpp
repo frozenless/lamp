@@ -4,7 +4,7 @@
 
 namespace lamp::systems
 {
-	class MeshRenderer : public entityx::System<MeshRenderer>
+	class Renderer : public entityx::System<Renderer>
 	{
 	public:
 		void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
