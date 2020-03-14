@@ -2,9 +2,9 @@
 
 #include "types.hpp"
 
-namespace lamp::ecs::components
+namespace lamp::components
 {
-	struct Position
+	struct Scale
 	{
 		f32 x, y, z;
 	};

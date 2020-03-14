@@ -1,11 +1,11 @@
 #include "physics.hpp"
 
-#include "ecs/components/transform.hpp"
-#include "ecs/components/rigid_body.hpp"
+#include "engine/components/transform.hpp"
+#include "engine/components/rigidbody.hpp"
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace lamp::ecs::systems
+namespace lamp::systems
 {
 	void Physics::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{

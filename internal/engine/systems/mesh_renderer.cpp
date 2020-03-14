@@ -1,16 +1,17 @@
 #include "mesh_renderer.hpp"
-#include "engine.hpp"
 
-#include "ecs/components/mesh_renderer.hpp"
-#include "ecs/components/transform.hpp"
+#include "engine/components/mesh_renderer.hpp"
+#include "engine/components/transform.hpp"
 
 #include "engine/material.hpp"
+
+#include "engine.hpp"
 
 #include "gl/program.hpp"
 #include "gl/texture.hpp"
 #include "gl/mesh.hpp"
 
-namespace lamp::ecs::systems
+namespace lamp::systems
 {
 	void MeshRenderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{

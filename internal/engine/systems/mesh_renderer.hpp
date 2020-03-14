@@ -2,9 +2,9 @@
 
 #include <entityx/entityx.h>
 
-namespace lamp::ecs::systems
+namespace lamp::systems
 {
-	class Transform : public entityx::System<Transform>
+	class MeshRenderer : public entityx::System<MeshRenderer>
 	{
 	public:
 		void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;

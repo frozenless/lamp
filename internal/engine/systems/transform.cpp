@@ -1,10 +1,10 @@
 #include "transform.hpp"
 
-#include "ecs/components/transform.hpp"
-#include "ecs/components/position.hpp"
-#include "ecs/components/scale.hpp"
+#include "engine/components/transform.hpp"
+#include "engine/components/position.hpp"
+#include "engine/components/scale.hpp"
 
-namespace lamp::ecs::systems
+namespace lamp::systems
 {
 	void Transform::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{

@@ -2,7 +2,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
-namespace lamp::ecs::components
+namespace lamp::components
 {
 	struct RigidBody
 	{

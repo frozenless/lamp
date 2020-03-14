@@ -45,7 +45,7 @@ namespace lamp
 		ImGui::DestroyContext();
 	}
 
-	void Editor::draw(Light& light)
+	void Editor::draw(components::Light& light)
 	{
 		ImGui::Begin("Light");
 

@@ -2,7 +2,7 @@
 
 #include <entityx/entityx.h>
 
-namespace lamp::ecs::systems
+namespace lamp::systems
 {
 	class Physics : public entityx::System<Physics>
 	{
