@@ -27,7 +27,9 @@ namespace lamp
 		lamp::gl::Renderer::init();
 		lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
 
-		init();
+		_physics.init();
+
+		this->init();
 
 		_ecs.systems.configure();
 
@@ -41,14 +43,14 @@ namespace lamp
 
 			Window::update();
 
-			update(delta_time);
-			draw();
+			this->update(delta_time);
+			this->draw();
 
 			_window.swap();
 		}
 		while (!_window.closing());
 
-		release();
+		this->release();
 
 		Window::Api::release();
 	}
