@@ -19,6 +19,9 @@
 [submodule "external/imgui"]
 	path = external/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "external/entityx"]
+	path = external/entityx
+	url = https://github.com/alecthomas/entityx.git
 [submodule "external/recastnavigation"]
 	path = external/recastnavigation
 	url = https://github.com/recastnavigation/recastnavigation.git

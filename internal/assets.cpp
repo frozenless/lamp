@@ -1,7 +1,6 @@
 #include "assets.inl"
 
 #include "common/file.hpp"
-#include "common/config.hpp"
 
 #include "gl/shader.hpp"
 #include "gl/program.hpp"
@@ -18,7 +17,7 @@ namespace lamp
 
 		shader->create(type);
 
-		shader->set_source({ versions::glsl, source.c_str() });
+		shader->set_source(source.c_str());
 		shader->compile();
 
 		#ifndef NDEBUG

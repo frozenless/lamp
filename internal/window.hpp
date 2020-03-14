@@ -40,6 +40,9 @@ namespace lamp
 		static void init()   noexcept;
 		static void update() noexcept;
 
-		GLFWwindow* ptr;
+		operator GLFWwindow*() const;
+
+	private:
+		GLFWwindow* _ptr;
 	};
 }

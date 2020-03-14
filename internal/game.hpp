@@ -1,6 +1,8 @@
 #pragma once
 
-#include "engine/light.hpp"
+#include <entityx/entityx.h>
+
+#include "engine/components/light.hpp"
 
 #include "physics.hpp"
 #include "window.hpp"
@@ -10,7 +12,7 @@ namespace lamp
 	class Game
 	{
 	public:
-		Game() = default;
+		Game();
 
 		Game(Game&&)      = delete;
 		Game(const Game&) = delete;
@@ -21,11 +23,14 @@ namespace lamp
 		virtual ~Game() = default;
 
 		[[nodiscard]] const Window&  window() const;
-		[[nodiscard]] const Light&   light()  const;
+		[[nodiscard]] const components::Light& light()  const;
 
 		[[nodiscard]] Physics& physics();
 
 		void run(const Window::Config& config);
+
+		void toggle_editor();
+		void toggle_wires();
 
 	protected:
 		virtual void init()    = 0;
@@ -34,9 +39,14 @@ namespace lamp
 		virtual void update(f32 delta_time) = 0;
 		virtual void draw()                 = 0;
 
-		Window _window;
+		bool _show_editor;
+		bool _show_wires;
 
+		entityx::EntityX _ecs;
+
+		components::Light _light;
 		Physics _physics;
-		Light   _light;
+
+		Window _window;
 	};
 }

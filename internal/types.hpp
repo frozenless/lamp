@@ -29,7 +29,6 @@ namespace lamp
 	using rgba = glm::vec4;
 
 	using material_ptr  = std::shared_ptr<Material>;
-	using transform_ptr = std::shared_ptr<Transform>;
 
 	namespace gl
 	{

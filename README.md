@@ -14,6 +14,7 @@ Game engine for simple games created with **C++** and **OpenGL**.
     [#3022](https://github.com/assimp/assimp/pull/3022)**
 - **[imgui](https://github.com/ocornut/imgui)**
 - **[bullet3](https://github.com/bulletphysics/bullet3)**
+- **[entityx](https://github.com/alecthomas/entityx)**
 - **[recastnavigation](https://github.com/recastnavigation/recastnavigation)**
 - **[ozz-animation](https://github.com/guillaumeblanc/ozz-animation)**
 

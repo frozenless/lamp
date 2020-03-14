@@ -13,8 +13,9 @@ namespace lamp
 	{
 		u32 index = 0;
 
-		for (const auto& attribute : _attributes) {
-			glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, _size, (void*)attribute.offset);
+		for (const auto& attribute : _attributes)
+		{
+			glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, _size, reinterpret_cast<void*>(attribute.offset));
 			glEnableVertexAttribArray(index++);
 		}
 	}

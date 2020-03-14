@@ -10,7 +10,7 @@ namespace lamp
 	class Physics
 	{
 	public:
-		Physics() = default;
+		Physics();
 
 		Physics(Physics&&)      = delete;
 		Physics(const Physics&) = delete;
@@ -26,9 +26,15 @@ namespace lamp
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object);
 
+		void toggle_debug();
+
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
+
+		[[nodiscard]] bool debug() const;
 
 	private:
 		std::unique_ptr<btDynamicsWorld> _world;
+
+		bool _show_debug;
 	};
 }

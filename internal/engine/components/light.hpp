@@ -2,7 +2,7 @@
 
 #include "types.hpp"
 
-namespace lamp
+namespace lamp::components
 {
 	struct Light
 	{

@@ -5,6 +5,11 @@
 
 namespace lamp
 {
+	Physics::Physics()
+		: _show_debug(false)
+	{
+	}
+
 	void Physics::init()
 	{
 		auto config = new btDefaultCollisionConfiguration();
@@ -39,11 +44,25 @@ namespace lamp
 	void Physics::update(const f32 delta_time)
 	{
 		_world->stepSimulation(delta_time, 10);
-		_world->debugDrawWorld();
+
+		if (_show_debug)
+		{
+			_world->debugDrawWorld();
+		}
 	}
 
 	void Physics::init_renderer(const gl::mesh_ptr& mesh, const u32 mode)
 	{
 		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
+	}
+
+	void Physics::toggle_debug()
+	{
+		_show_debug = !_show_debug;
+	}
+
+	bool Physics::debug() const
+	{
+		return _show_debug;
 	}
 }

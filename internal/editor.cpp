@@ -5,7 +5,6 @@
 #include <imgui_impl_opengl3.h>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "common/config.hpp"
 #include "engine/material.hpp"
 
 #include "gl/texture.hpp"
@@ -20,7 +19,7 @@ namespace lamp
 		ImGui::StyleColorsDark();
 
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init(versions::glsl);
+		ImGui_ImplOpenGL3_Init("#version 450 core");
 	}
 
 	void Editor::begin()
@@ -46,7 +45,7 @@ namespace lamp
 		ImGui::DestroyContext();
 	}
 
-	void Editor::draw(Light& light)
+	void Editor::draw(components::Light& light)
 	{
 		ImGui::Begin("Light");
 
@@ -65,7 +64,7 @@ namespace lamp
 
 		if (material->texture)
 		{
-			ImGui::Image(reinterpret_cast<void *>(material->texture->id), ImVec2(70.0f, 70.0f));
+			ImGui::Image(reinterpret_cast<void*>(material->texture->id), ImVec2(70.0f, 70.0f));
 		}
 
 		ImGui::End();

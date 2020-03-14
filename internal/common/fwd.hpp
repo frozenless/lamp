@@ -3,7 +3,6 @@
 namespace lamp
 {
 	struct Material;
-	struct Transform;
 
 	namespace gl
 	{

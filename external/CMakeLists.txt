@@ -35,10 +35,13 @@ option(ASSIMP_INSTALL OFF)
 set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_NO_EXPORT ON)
 
+set(ENTITYX_MAX_COMPONENTS 12)
+set(ENTITYX_BUILD_TESTING false)
+set(ENTITYX_DT_TYPE float)
+set(ENTITYX_BUILD_SHARED false)
+
 set(GL_MAJOR_VERSION 4 CACHE STRING "gl major version")
 set(GL_MINOR_VERSION 5 CACHE STRING "gl minor version")
-
-set(GLSL_VERSION "#version ${GL_MAJOR_VERSION}${GL_MINOR_VERSION}0 core" CACHE STRING "glsl version")
 
 set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
 set(GLAD_PROFILE "core")
@@ -49,11 +52,16 @@ endif()
 
 configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.hpp)
 
+set(ASSIMP_BUILD_OBJ_IMPORTER ON)
+set(ASSIMP_NO_EXPORT ON)
+
 add_subdirectory(vulkan-headers)
 add_subdirectory(vulkan-loader)
 
 add_subdirectory(ozz-animation)
 add_subdirectory(recastnavigation)
+
+add_subdirectory(entityx)
 add_subdirectory(bullet3)
 add_subdirectory(assimp)
 add_subdirectory(glfw)

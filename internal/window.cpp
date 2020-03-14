@@ -8,7 +8,7 @@
 namespace lamp
 {
 	Window::Window() noexcept
-		: ptr(nullptr)
+		: _ptr(nullptr)
 	{
 	}
 
@@ -26,20 +26,20 @@ namespace lamp
 
 		GLFWmonitor* monitor = config.fullscreen ? glfwGetPrimaryMonitor() : nullptr;
 
-		ptr = glfwCreateWindow(config.size.x, config.size.y, config.title, monitor, nullptr);
-		assert(ptr != nullptr);
+		_ptr = glfwCreateWindow(config.size.x, config.size.y, config.title, monitor, nullptr);
+		assert(_ptr != nullptr);
 
-		glfwMakeContextCurrent(ptr);
+		glfwMakeContextCurrent(_ptr);
 	}
 
 	bool Window::closing() const noexcept
 	{
-		return glfwWindowShouldClose(ptr) == GLFW_TRUE;
+		return glfwWindowShouldClose(_ptr) == GLFW_TRUE;
 	}
 
 	void Window::swap() const noexcept
 	{
-		glfwSwapBuffers(ptr);
+		glfwSwapBuffers(_ptr);
 	}
 
 	void Window::update() noexcept
@@ -65,12 +65,17 @@ namespace lamp
 
 	void Window::close() const noexcept
 	{
-		glfwSetWindowShouldClose(ptr, GLFW_TRUE);
+		glfwSetWindowShouldClose(_ptr, GLFW_TRUE);
 	}
 
 	void Window::init() noexcept
 	{
 		const bool result = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) != 0;
 		assert(result);
+	}
+
+	Window::operator GLFWwindow*() const
+	{
+		return _ptr;
 	}
 }
