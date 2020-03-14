@@ -34,6 +34,3 @@
 [submodule "external/vulkan-loader"]
 	path = external/vulkan-loader
 	url = https://github.com/KhronosGroup/Vulkan-Loader.git
-[submodule "external/vulkan-validation"]
-	path = external/vulkan-validation
-	url = https://github.com/KhronosGroup/Vulkan-ValidationLayers.git
