@@ -19,6 +19,8 @@ namespace lamp
 
 		_window.create(config);
 
+		glfwSetWindowUserPointer(_window, this);
+
 		lamp::Window::init();
 		lamp::Random::seed();
 
