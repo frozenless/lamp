@@ -24,6 +24,9 @@ namespace lamp
 		lamp::Window::init();
 		lamp::Random::seed();
 
+		lamp::gl::Renderer::init();
+		lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
+
 		init();
 
 		_ecs.systems.configure();
