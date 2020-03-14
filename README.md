@@ -17,6 +17,9 @@ Game engine for simple games created with **C++** and **OpenGL**.
 - **[entityx](https://github.com/alecthomas/entityx)**
 - **[recastnavigation](https://github.com/recastnavigation/recastnavigation)**
 - **[ozz-animation](https://github.com/guillaumeblanc/ozz-animation)**
+- **[vulkan-headers](https://github.com/KhronosGroup/Vulkan-Headers.git)**
+- **[vulkan-loader](https://github.com/KhronosGroup/Vulkan-Loader.git)**
+- **[vulkan-validation](https://github.com/KhronosGroup/Vulkan-ValidationLayers.git)**
 
 ## Games
 
