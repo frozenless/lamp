@@ -28,9 +28,3 @@
 [submodule "external/ozz-animation"]
 	path = external/ozz-animation
 	url = https://github.com/guillaumeblanc/ozz-animation
-[submodule "external/vulkan-headers"]
-	path = external/vulkan-headers
-	url = https://github.com/KhronosGroup/Vulkan-Headers.git
-[submodule "external/vulkan-loader"]
-	path = external/vulkan-loader
-	url = https://github.com/KhronosGroup/Vulkan-Loader.git
