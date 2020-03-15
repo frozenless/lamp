@@ -55,9 +55,6 @@ configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.
 set(ASSIMP_BUILD_OBJ_IMPORTER ON)
 set(ASSIMP_NO_EXPORT ON)
 
-add_subdirectory(vulkan-headers)
-add_subdirectory(vulkan-loader)
-
 add_subdirectory(ozz-animation)
 add_subdirectory(recastnavigation)
 

@@ -51,7 +51,7 @@ PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
 
 target_link_libraries(${PROJECT_NAME}
-PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm vulkan
+PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm
 PRIVATE assimp)
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
