@@ -7,9 +7,8 @@ namespace lamp::components
 	struct Light
 	{
 		rgb color;
-		v3  position;
-
 		f32 ambient;
+		v3  position;
 		f32 diffuse;
 	};
 }

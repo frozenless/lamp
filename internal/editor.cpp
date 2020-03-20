@@ -51,8 +51,8 @@ namespace lamp
 
 		ImGui::InputFloat3("Position", glm::value_ptr(light.position), 3);
 		ImGui::ColorEdit3( "Color",    glm::value_ptr(light.color));
-		ImGui::InputFloat("Diffuse", &light.diffuse, 1);
-		ImGui::InputFloat("Ambient", &light.ambient, 1);
+		ImGui::InputFloat("Ambient", &light.ambient, 0.1f);
+		ImGui::InputFloat("Diffuse", &light.diffuse, 0.1f);
 
 		ImGui::End();
 	}
