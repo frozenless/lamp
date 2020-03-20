@@ -1,5 +1,7 @@
 #ifndef NDEBUG
 
+#include "common/dependencies.hpp"
+
 void* operator new(size_t size)
 {
 	std::cerr << "allocating " << size << " bytes\n";

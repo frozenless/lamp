@@ -1,4 +1,5 @@
 #include "game.hpp"
+
 #include "gl/renderer.hpp"
 
 #include "common/random.inl"
