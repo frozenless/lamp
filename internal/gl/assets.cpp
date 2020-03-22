@@ -1,10 +1,9 @@
 #include "assets.inl"
+#include "shader.hpp"
+#include "program.hpp"
+#include "texture.hpp"
 
 #include "common/file.hpp"
-
-#include "gl/shader.hpp"
-#include "gl/program.hpp"
-#include "gl/texture.hpp"
 
 #include <stb_image.h>
 
