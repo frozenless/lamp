@@ -22,10 +22,11 @@ namespace lamp::debug
         void reportErrorWarning(const char*) final;
         void setDebugMode(int32_t mode)      final;
 
+	    [[nodiscard]]
 	    int32_t getDebugMode() const final;
 
     private:
-        std::vector<f32>      _vertices;
+        std::vector<float>    _vertices;
         std::vector<uint32_t> _indices;
 
 	    gl::mesh_ptr _mesh;

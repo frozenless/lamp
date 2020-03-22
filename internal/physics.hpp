@@ -21,7 +21,7 @@ namespace lamp
 		void init();
 		void init_renderer(const gl::mesh_ptr& mesh, uint32_t mode);
 
-		void update(f32 delta_time);
+		void update(float delta_time);
 
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object);

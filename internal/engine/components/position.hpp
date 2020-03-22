@@ -6,6 +6,6 @@ namespace lamp::components
 {
 	struct position
 	{
-		f32 x, y, z;
+		float x, y, z;
 	};
 }

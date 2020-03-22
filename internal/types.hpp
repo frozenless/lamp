@@ -8,9 +8,6 @@
 
 namespace lamp
 {
-	using f32 = glm::f32;
-	using f64 = glm::f64;
-
 	using iv2 = glm::ivec2;
 	using iv4 = glm::ivec4;
 

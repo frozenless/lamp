@@ -26,18 +26,18 @@ namespace lamp
 		gl::Layout layout;
 
 		if (ai_mesh->HasPositions()) {
-			layout.add<f32>(3, GL_FLOAT);
+			layout.add<float>(3, GL_FLOAT);
 		}
 
 		if (ai_mesh->HasTextureCoords(0)) {
-			layout.add<f32>(2, GL_FLOAT);
+			layout.add<float>(2, GL_FLOAT);
 		}
 
 		if (ai_mesh->HasNormals()) {
-			layout.add<f32>(3, GL_FLOAT);
+			layout.add<float>(3, GL_FLOAT);
 		}
 
-		std::vector<f32>     vertices;
+		std::vector<float>   vertices;
 		std::vector<uint8_t> indices;
 		indices.reserve(ai_mesh->mNumFaces * 3);
 

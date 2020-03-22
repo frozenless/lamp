@@ -52,7 +52,7 @@ namespace lamp
 
 	gl::mesh_ptr Assets::create(const v2& size)
 	{
-		const std::vector<f32> vertices =
+		const std::vector<float> vertices =
 		{
 			size.x,  size.y, 0.0f, 1.0f, 1.0f,
 			size.x, -size.y, 0.0f, 1.0f, 0.0f,
@@ -67,8 +67,8 @@ namespace lamp
 		};
 
 		gl::Layout layout;
-		layout.add<f32>(3, GL_FLOAT);
-		layout.add<f32>(2, GL_FLOAT);
+		layout.add<float>(3, GL_FLOAT);
+		layout.add<float>(2, GL_FLOAT);
 
 		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}

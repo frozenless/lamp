@@ -6,6 +6,6 @@ namespace lamp::components
 {
 	struct scale
 	{
-		f32 x, y, z;
+		float x, y, z;
 	};
 }

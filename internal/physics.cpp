@@ -41,7 +41,7 @@ namespace lamp
 		_world->addCollisionObject(object);
 	}
 
-	void Physics::update(const f32 delta_time)
+	void Physics::update(const float delta_time)
 	{
 		_world->stepSimulation(delta_time, 10);
 

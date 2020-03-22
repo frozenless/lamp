@@ -33,12 +33,11 @@ namespace lamp
 
 		_ecs.systems.configure();
 
-		f64 old_time = glfwGetTime();
-
+		double old_time = glfwGetTime();
 		do
 		{
-			const  f64 new_time   = glfwGetTime();
-			const auto delta_time = static_cast<f32>(new_time - old_time);
+			const double new_time = glfwGetTime();
+			const auto delta_time = static_cast<float>(new_time - old_time);
 			old_time = new_time;
 
 			Window::update();

@@ -4,7 +4,7 @@
 
 namespace lamp
 {
-	Camera::Camera(const v2& size, const f32 fov)
+	Camera::Camera(const v2& size, const float fov)
 		: _view(1.0f)
 		, _size(size)
 		, _fov(fov)
@@ -43,10 +43,10 @@ namespace lamp
 		return _view;
 	}
 
-	Ray Camera::screen_to_world(const v2& position, const m4& inv)
+	Ray Camera::screen_to_world(const v2& position, const m4& inv) const
 	{
-		const f32 x = (position.x / _size.x - 0.5f) * 2.0f;
-		const f32 y = (position.y / _size.y - 0.5f) * 2.0f;
+		const float x = (position.x / _size.x - 0.5f) * 2.0f;
+		const float y = (position.y / _size.y - 0.5f) * 2.0f;
 
 		v4 start = inv * v4(x, y,-1.0f, 1.0f); start /= start.w;
 		v4 end   = inv * v4(x, y, 0.0f, 1.0f);   end /= end.w;

@@ -34,8 +34,8 @@ namespace lamp
 		virtual void init()    = 0;
 		virtual void release() = 0;
 
-		virtual void update(f32 delta_time) = 0;
-		virtual void draw()                 = 0;
+		virtual void update(float) = 0;
+		virtual void draw()        = 0;
 
 		bool _show_editor;
 		bool _show_wires;

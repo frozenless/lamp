@@ -29,7 +29,7 @@ namespace lamp::gl
 		glUniform3fv(location, 1, glm::value_ptr(vec));
 	}
 
-	void Program::uniform(const int32_t location, const f32 value) noexcept
+	void Program::uniform(const int32_t location, const float value) noexcept
 	{
 		assert(location != -1);
 

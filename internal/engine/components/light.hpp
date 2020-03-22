@@ -6,9 +6,9 @@ namespace lamp::components
 {
 	struct light
 	{
-		rgb color;
-		f32 ambient;
-		v3  position;
-		f32 diffuse;
+		rgb   color;
+		float ambient;
+		v3    position;
+		float diffuse;
 	};
 }
