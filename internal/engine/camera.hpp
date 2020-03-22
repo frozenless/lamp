@@ -17,14 +17,14 @@ namespace lamp
 		void set_size(const v2& size);
 		void view(const v3& position);
 
-		const m4& projection() const;
-		const m4& view()       const;
+		const m4& proj() const;
+		const m4& view() const;
 
 		Ray screen_to_world(const v2& position, const m4& inv);
 
 	private:
+		m4 _proj, _view;
 		v2 _size;
-		m4 _projection, _view;
 
 		f32 _fov;
 	};

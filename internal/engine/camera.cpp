@@ -6,19 +6,19 @@ namespace lamp
 {
 	Camera::Camera(const v2& size, const f32 fov)
 		: _view(1.0f)
-		, _fov(fov)
 		, _size(size)
+		, _fov(fov)
 	{
 	}
 
 	void Camera::perspective()
 	{
-		_projection = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
+		_proj = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
 	}
 
 	void Camera::ortho()
 	{
-		_projection = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
+		_proj = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
 	}
 
 	void Camera::look_at(const v3& position, const v3& target)
@@ -33,9 +33,9 @@ namespace lamp
 		_view = glm::translate(m4(1.0f), position);
 	}
 
-	const m4& Camera::projection() const
+	const m4& Camera::proj() const
 	{
-		return _projection;
+		return _proj;
 	}
 
 	const m4& Camera::view() const
