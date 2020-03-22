@@ -1,6 +1,6 @@
 #pragma once
 
-#include "assets.hpp"
+#include "gl/assets.hpp"
 
 #include "gl/mesh.hpp"
 #include "gl/buffer.inl"

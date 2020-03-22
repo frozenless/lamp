@@ -1,6 +1,6 @@
 #pragma once
 
-#include "random.hpp"
+#include "common/random.hpp"
 
 #include <glm/gtc/random.hpp>
 

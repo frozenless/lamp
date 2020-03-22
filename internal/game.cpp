@@ -1,8 +1,7 @@
 #include "game.hpp"
+#include "engine/random.inl"
 
 #include "gl/renderer.hpp"
-
-#include "common/random.inl"
 
 #include <GLFW/glfw3.h>
 
