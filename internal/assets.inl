@@ -9,7 +9,7 @@
 
 namespace lamp
 {
-	template<typename T> gl::buffer_ptr Assets::create(const u32 type, const std::vector<T>& info, const u32 usage) noexcept
+	template<typename T> gl::buffer_ptr Assets::create(const uint32_t type, const std::vector<T>& info, const uint32_t usage) noexcept
 	{
 		auto buffer = std::make_shared<gl::Buffer>(type, usage);
 
@@ -19,7 +19,7 @@ namespace lamp
 		return buffer;
 	}
 
-	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const Layout& layout, const u32 primitive, const u32 type, const u32 usage)
+	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t type, const uint32_t usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
 

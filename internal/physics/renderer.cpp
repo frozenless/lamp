@@ -6,7 +6,7 @@
 
 namespace lamp::debug
 {
-    Renderer::Renderer(gl::mesh_ptr mesh, const u32 mode)
+    Renderer::Renderer(gl::mesh_ptr mesh, const uint32_t mode)
         : _mesh(std::move(mesh))
         , _index(0)
         , _mode(mode)
@@ -45,12 +45,12 @@ namespace lamp::debug
 	    }
     }
 
-	void Renderer::setDebugMode(const int mode)
+	void Renderer::setDebugMode(const int32_t mode)
 	{
     	_mode = mode;
 	}
 
-	int Renderer::getDebugMode() const
+	int32_t Renderer::getDebugMode() const
 	{
 		return _mode;
 	}

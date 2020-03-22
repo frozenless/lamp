@@ -3,8 +3,6 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "common/config.hpp"
-
 namespace lamp
 {
 	Window::Window() noexcept
@@ -54,11 +52,10 @@ namespace lamp
 
 	void Window::Api::init() noexcept
 	{
-		const bool result = glfwInit() == GLFW_TRUE;
-		assert(result);
+		glfwInit();
 
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, versions::gl::major);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, versions::gl::minor);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
@@ -70,8 +67,7 @@ namespace lamp
 
 	void Window::init() noexcept
 	{
-		const bool result = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) != 0;
-		assert(result);
+		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	}
 
 	Window::operator GLFWwindow*() const

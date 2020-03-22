@@ -17,9 +17,9 @@ namespace lamp::gl
 		void attach(ID shader) const noexcept;
 		void detach(ID shader) const noexcept;
 
-		static void uniform(int location, f32 value) noexcept;
-		static void uniform(int location, const m4& mat);
-		static void uniform(int location, const v3& vec);
+		static void uniform(int32_t location, f32 value) noexcept;
+		static void uniform(int32_t location, const m4& mat);
+		static void uniform(int32_t location, const v3& vec);
 
 		#ifndef NDEBUG
 		void status() const;

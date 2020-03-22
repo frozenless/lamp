@@ -4,7 +4,7 @@
 
 namespace lamp::gl
 {
-	Texture::Texture(const u32 target)
+	Texture::Texture(const uint32_t target)
 		: Object(Type::Texture)
 		, _target(target)
 	{
@@ -15,9 +15,9 @@ namespace lamp::gl
 		glBindTexture(_target, id);
 	}
 
-	u32 Texture::_get_format() const noexcept
+	uint32_t Texture::_get_format() const noexcept
 	{
-		u32 format = GL_NONE;
+		uint32_t format = GL_NONE;
 
 		switch (channels)
 		{
@@ -31,12 +31,12 @@ namespace lamp::gl
 
 	void Texture::set_data(const unsigned char* data)
 	{
-		const int format = _get_format();
+		const int32_t format = _get_format();
 		
 		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 	}
 
-	void Texture::set_sampler(const u32 min_filter, const u32 mag_filter) const
+	void Texture::set_sampler(const uint32_t min_filter, const uint32_t mag_filter) const
 	{
 		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, min_filter);
 		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, mag_filter);

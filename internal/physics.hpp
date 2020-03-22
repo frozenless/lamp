@@ -19,7 +19,7 @@ namespace lamp
 		Physics& operator=(const Physics&) = delete;
 
 		void init();
-		void init_renderer(const gl::mesh_ptr& mesh, u32 mode);
+		void init_renderer(const gl::mesh_ptr& mesh, uint32_t mode);
 
 		void update(f32 delta_time);
 

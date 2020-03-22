@@ -20,8 +20,8 @@ namespace lamp
 		{
 			const char* title;
 
-            iv2 size;
-            u8  samples;
+            iv2     size;
+            uint8_t samples;
 
 			bool decorated;
 			bool fullscreen;

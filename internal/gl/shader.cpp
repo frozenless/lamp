@@ -9,7 +9,7 @@ namespace lamp::gl
 	{
 	}
 
-	void Shader::create(const u32 type)
+	void Shader::create(const uint32_t type)
 	{
 		id = glCreateShader(type);
 	}
@@ -34,12 +34,12 @@ namespace lamp::gl
 	#ifndef NDEBUG
 	void Shader::status() const
 	{
-		int success;
+		int32_t success;
 		glGetShaderiv(id, GL_COMPILE_STATUS, &success);
 
 		if (!success)
 		{
-			int length;
+			int32_t length;
 			glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
 
 			std::vector<char> log;

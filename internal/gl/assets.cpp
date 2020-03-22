@@ -9,7 +9,7 @@
 
 namespace lamp
 {
-	gl::shader_ptr Assets::create(const char* path, const u32 type)
+	gl::shader_ptr Assets::create(const char* path, const uint32_t type)
 	{
 		const std::string& source = File::read(path);
 		auto  shader = std::make_shared<gl::Shader>();
@@ -60,13 +60,13 @@ namespace lamp
 		   -size.x,  size.y, 0.0f, 0.0f, 1.0f
 		};
 
-		const std::vector<u8> indices =
+		const std::vector<uint8_t> indices =
 		{
 			0, 3, 1,
 			1, 3, 2
 		};
 
-		Layout layout;
+		gl::Layout layout;
 		layout.add<f32>(3, GL_FLOAT);
 		layout.add<f32>(2, GL_FLOAT);
 

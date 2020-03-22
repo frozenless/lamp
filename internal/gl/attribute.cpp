@@ -2,7 +2,7 @@
 
 namespace lamp::gl
 {
-	Attribute::Attribute(const u32 count, const u32 type, const u32 offset) noexcept
+	attribute::attribute(const uint32_t count, const uint32_t type, const uint32_t offset) noexcept
 		: count(count)
 		, type(type)
 		, offset(offset)

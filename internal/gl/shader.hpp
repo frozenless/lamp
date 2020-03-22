@@ -8,7 +8,7 @@ namespace lamp::gl
 	{
 		Shader();
 
-		void create(u32 type);
+		void create(uint32_t type);
 
 		void compile() const noexcept;
 		void release() const noexcept;

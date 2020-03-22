@@ -35,6 +35,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/gl/texture.cpp
         internal/gl/renderer.cpp
         internal/gl/assets.cpp
+        internal/gl/layout.cpp
 
         internal/profiler.cpp
         internal/engine.cpp
@@ -42,7 +43,6 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/physics.cpp
         internal/importer.cpp
         internal/window.cpp
-        internal/layout.cpp
         internal/game.cpp)
 
 target_compile_definitions(${PROJECT_NAME}
