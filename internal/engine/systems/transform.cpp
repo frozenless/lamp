@@ -8,9 +8,9 @@ namespace lamp::systems
 {
 	void Transform::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{
-		es.each<components::Transform, components::Position, components::Scale>([](entityx::Entity,
-				components::Transform& transform, components::Position& position, components::Scale& scale)
-		{
+		es.each<components::transform, components::position, components::scale>([](entityx::Entity,
+				components::transform& transform, components::position& position, components::scale& scale) {
+
 			transform.world = glm::translate(glm::identity<m4>(), lamp::v3(position.x, position.y, position.z));
 			transform.world = glm::scale(transform.world, lamp::v3(scale.x, scale.y, scale.z));
 		});

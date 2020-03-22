@@ -4,7 +4,7 @@
 
 namespace lamp::components
 {
-	struct Light
+	struct light
 	{
 		rgb color;
 		f32 ambient;

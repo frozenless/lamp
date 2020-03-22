@@ -4,7 +4,7 @@
 
 namespace lamp::components
 {
-	struct RigidBody
+	struct rigidBody
 	{
 		btRigidBody* body;
 	};

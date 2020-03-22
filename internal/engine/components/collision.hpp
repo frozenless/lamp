@@ -4,7 +4,7 @@
 
 namespace lamp::components
 {
-	struct Collision
+	struct collision
 	{
 		btCollisionShape* shape;
 	};

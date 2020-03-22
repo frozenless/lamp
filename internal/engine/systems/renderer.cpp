@@ -15,15 +15,15 @@ namespace lamp::systems
 {
 	void Renderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{
-		es.each<components::Renderer, components::Transform>([](entityx::Entity,
-		        components::Renderer& renderer, components::Transform& transform) {
+		es.each<components::renderer, components::transform>([](entityx::Entity,
+		        components::renderer& renderer, components::transform& transform) {
 
 			Engine::bind(renderer.shader);
 
 			gl::Program::uniform(0, transform.world);
 
-			if (renderer.material)
-			{
+			if (renderer.material) {
+
 				gl::Program::uniform(1, renderer.material->color);
 
 				if (auto texture = renderer.material->texture; texture)
@@ -32,8 +32,8 @@ namespace lamp::systems
 				}
 			}
 
-			if (renderer.mesh)
-			{
+			if (renderer.mesh) {
+
 				Engine::bind(renderer.mesh);
 
 				renderer.mesh->draw();

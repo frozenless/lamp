@@ -60,11 +60,6 @@ namespace lamp
 		return _window;
 	}
 
-	const components::Light& Game::light() const
-	{
-		return _light;
-	}
-
 	Physics& Game::physics()
 	{
 		return _physics;

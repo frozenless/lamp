@@ -12,7 +12,7 @@ namespace lamp
 		static void init(GLFWwindow* window);
 		static void release();
 
-		static void draw(components::Light& light);
+		static void draw(components::light& light);
 		static void draw(const char* title, const material_ptr& material);
 
 		static void begin();

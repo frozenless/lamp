@@ -4,7 +4,7 @@
 
 namespace lamp::components
 {
-	struct Renderer
+	struct renderer
 	{
 		material_ptr material;
 

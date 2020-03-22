@@ -22,10 +22,8 @@ namespace lamp
 
 		virtual ~Game() = default;
 
-		[[nodiscard]] const Window&  window() const;
-		[[nodiscard]] const components::Light& light()  const;
-
-		[[nodiscard]] Physics& physics();
+		[[nodiscard]] const Window& window() const;
+		[[nodiscard]]       Physics& physics();
 
 		void run(const Window::Config& config);
 
@@ -44,7 +42,7 @@ namespace lamp
 
 		entityx::EntityX _ecs;
 
-		components::Light _light;
+		components::light _light;
 		Physics _physics;
 
 		Window _window;
