@@ -22,7 +22,7 @@ namespace lamp::gl
 		static void uniform(int location, const v3& vec);
 
 		#ifndef NDEBUG
-		void status();
+		void status() const;
 		#endif
 	};
 }

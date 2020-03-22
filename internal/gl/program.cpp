@@ -64,7 +64,7 @@ namespace lamp::gl
 	}
 
     #ifndef NDEBUG
-	void Program::status()
+	void Program::status() const
 	{
 		int success;
 		glGetProgramiv(id, GL_LINK_STATUS, &success);

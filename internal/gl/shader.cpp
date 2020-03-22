@@ -26,13 +26,13 @@ namespace lamp::gl
 		glDeleteShader(id);
 	}
 
-	void Shader::set_source(const char* source)
+	void Shader::set_source(const char* source) const
 	{
 		glShaderSource(id, 1, &source, nullptr);
 	}
 
 	#ifndef NDEBUG
-	void Shader::status()
+	void Shader::status() const
 	{
 		int success;
 		glGetShaderiv(id, GL_COMPILE_STATUS, &success);

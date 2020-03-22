@@ -13,10 +13,10 @@ namespace lamp::gl
 		void compile() const noexcept;
 		void release() const noexcept;
 
-		void set_source(const char* source);
+		void set_source(const char* source) const;
 
 		#ifndef NDEBUG
-		void status();
+		void status() const;
 		#endif
 
 		ID id;
