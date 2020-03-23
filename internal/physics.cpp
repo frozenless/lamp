@@ -56,13 +56,8 @@ namespace lamp
 		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
 	}
 
-	void Physics::toggle_debug()
+	void Physics::debug()
 	{
 		_show_debug = !_show_debug;
-	}
-
-	bool Physics::debug() const
-	{
-		return _show_debug;
 	}
 }

@@ -22,13 +22,10 @@ namespace lamp
 
 		virtual ~Game() = default;
 
-		[[nodiscard]] const Window& window() const;
-		[[nodiscard]]       Physics& physics();
+		[[nodiscard]] Physics& physics();
 
 		void run(const Window::Config& config);
-
-		void toggle_editor();
-		void toggle_wires();
+		void input(int32_t key);
 
 	protected:
 		virtual void init()    = 0;
@@ -43,8 +40,8 @@ namespace lamp
 		entityx::EntityX _ecs;
 
 		components::light _light;
-		Physics _physics;
 
-		Window _window;
+		Physics _physics;
+		Window  _window;
 	};
 }

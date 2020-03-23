@@ -26,11 +26,9 @@ namespace lamp
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object);
 
-		void toggle_debug();
-
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
 
-		[[nodiscard]] bool debug() const;
+		void debug();
 
 	private:
 		std::unique_ptr<btDynamicsWorld> _world;

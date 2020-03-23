@@ -1,7 +1,5 @@
 #include "camera.hpp"
 
-#include <glm/gtc/matrix_transform.hpp>
-
 namespace lamp
 {
 	Camera::Camera(const v2& size, const float fov)
@@ -43,8 +41,10 @@ namespace lamp
 		return _view;
 	}
 
-	Ray Camera::screen_to_world(const v2& position, const m4& inv) const
+	Ray Camera::screen_to_world(const v2& position) const
 	{
+		const m4 inv  = glm::inverse(_proj * _view);
+
 		const float x = (position.x / _size.x - 0.5f) * 2.0f;
 		const float y = (position.y / _size.y - 0.5f) * 2.0f;
 

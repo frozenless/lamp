@@ -20,7 +20,7 @@ namespace lamp
 		[[nodiscard]] const m4& proj() const;
 		[[nodiscard]] const m4& view() const;
 
-		[[nodiscard]] Ray screen_to_world(const v2& position, const m4& inv) const;
+		[[nodiscard]] Ray screen_to_world(const v2& position) const;
 
 	private:
 		m4 _proj, _view;

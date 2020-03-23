@@ -54,25 +54,34 @@ namespace lamp
 		Window::Api::release();
 	}
 
-	const Window& Game::window() const
+	void Game::input(const int32_t key)
 	{
-		return _window;
+		switch (key) {
+			case GLFW_KEY_ESCAPE: {
+				_window.close();
+				break;
+			}
+			case GLFW_KEY_E: {
+				_show_editor = !_show_editor;
+				break;
+			}
+			case GLFW_KEY_D: {
+				_physics.debug();
+				break;
+			}
+			case GLFW_KEY_W: {
+				_show_wires = !_show_wires;
+
+				gl::Renderer::set_wire_mode(_show_wires);
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	Physics& Game::physics()
 	{
 		return _physics;
-	}
-
-	void Game::toggle_editor()
-	{
-		_show_editor = !_show_editor;
-	}
-
-	void Game::toggle_wires()
-	{
-		_show_wires = !_show_wires;
-
-		gl::Renderer::set_wire_mode(_show_wires);
 	}
 }
