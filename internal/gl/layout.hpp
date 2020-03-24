@@ -9,7 +9,7 @@ namespace lamp::gl
 	public:
 		Layout();
 
-		template <typename T> void add(uint32_t count, uint32_t type) noexcept;
+		template <typename T> void add(uint32_t count) noexcept;
 			void update() const noexcept;
 
 	private:

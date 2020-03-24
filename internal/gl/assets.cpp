@@ -67,8 +67,8 @@ namespace lamp
 		};
 
 		gl::Layout layout;
-		layout.add<float>(3, GL_FLOAT);
-		layout.add<float>(2, GL_FLOAT);
+		layout.add<float>(3);
+		layout.add<float>(2);
 
 		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}

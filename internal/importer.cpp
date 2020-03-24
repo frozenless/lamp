@@ -26,15 +26,15 @@ namespace lamp
 		gl::Layout layout;
 
 		if (ai_mesh->HasPositions()) {
-			layout.add<float>(3, GL_FLOAT);
+			layout.add<float>(3);
 		}
 
 		if (ai_mesh->HasTextureCoords(0)) {
-			layout.add<float>(2, GL_FLOAT);
+			layout.add<float>(2);
 		}
 
 		if (ai_mesh->HasNormals()) {
-			layout.add<float>(3, GL_FLOAT);
+			layout.add<float>(3);
 		}
 
 		std::vector<float>   vertices;
