@@ -36,8 +36,12 @@ namespace lamp
 		_world->addRigidBody(body);
 	}
 
-	void Physics::add_collision(btCollisionObject* object)
+	void Physics::add_collision(btCollisionObject* object, const uint32_t flag)
 	{
+		if (flag) {
+			object->setCollisionFlags(flag);
+		}
+
 		_world->addCollisionObject(object);
 	}
 

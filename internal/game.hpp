@@ -22,10 +22,11 @@ namespace lamp
 
 		virtual ~Game() = default;
 
-		[[nodiscard]] Physics& physics();
+		virtual void input(int32_t action, int32_t key);
 
 		void run(const Window::Config& config);
-		void input(int32_t key);
+
+		[[nodiscard]] Physics& physics();
 
 	protected:
 		virtual void init()    = 0;

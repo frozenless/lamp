@@ -7,6 +7,11 @@
 
 namespace lamp
 {
+	void keyboard_actions(GLFWwindow* ptr, const int32_t key, int32_t, const int32_t action, int32_t)
+	{
+		static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
+	}
+
 	Game::Game()
 		: _show_wires(false)
 		, _show_editor(false)
@@ -20,6 +25,7 @@ namespace lamp
 		_window.create(config);
 
 		glfwSetWindowUserPointer(_window, this);
+		glfwSetKeyCallback(_window, keyboard_actions);
 
 		lamp::Window::init();
 		lamp::Random::seed();
@@ -54,29 +60,32 @@ namespace lamp
 		Window::Api::release();
 	}
 
-	void Game::input(const int32_t key)
+	void Game::input(const int32_t action, const int32_t key)
 	{
-		switch (key) {
-			case GLFW_KEY_ESCAPE: {
-				_window.close();
-				break;
-			}
-			case GLFW_KEY_E: {
-				_show_editor = !_show_editor;
-				break;
-			}
-			case GLFW_KEY_D: {
-				_physics.debug();
-				break;
-			}
-			case GLFW_KEY_W: {
-				_show_wires = !_show_wires;
+		if (action == GLFW_PRESS) {
 
-				gl::Renderer::set_wire_mode(_show_wires);
-				break;
+			switch (key) {
+				case GLFW_KEY_ESCAPE: {
+					_window.close();
+					break;
+				}
+				case GLFW_KEY_E: {
+					_show_editor = !_show_editor;
+					break;
+				}
+				case GLFW_KEY_D: {
+					_physics.debug();
+					break;
+				}
+				case GLFW_KEY_W: {
+					_show_wires = !_show_wires;
+
+					gl::Renderer::set_wire_mode(_show_wires);
+					break;
+				}
+				default:
+					break;
 			}
-			default:
-				break;
 		}
 	}
 

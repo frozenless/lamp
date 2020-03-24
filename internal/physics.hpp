@@ -24,7 +24,7 @@ namespace lamp
 		void update(float delta_time);
 
 		void add_rigidbody(btRigidBody* body);
-		void add_collision(btCollisionObject* object);
+		void add_collision(btCollisionObject* object, uint32_t flag = 0);
 
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
 
