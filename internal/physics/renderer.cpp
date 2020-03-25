@@ -8,16 +8,16 @@ namespace lamp::debug
 {
     Renderer::Renderer(gl::mesh_ptr mesh, const uint32_t mode)
         : _mesh(std::move(mesh))
+	    , _mode(mode)
         , _index(0)
-        , _mode(mode)
     {
     }
 
     void Renderer::drawLine(const btVector3& a, const btVector3& b, const btVector3& color)
     {
         _vertices.insert(std::end(_vertices), {
-            a.x(), a.y(), a.z(), color.x(), color.y(), color.z(),
-		    b.x(), b.y(), b.z(), color.x(), color.y(), color.z()
+            lamp::v3(a.x(), a.y(), a.z()), lamp::v3(color.x(), color.y(), color.z()),
+            lamp::v3(b.x(), b.y(), b.z()), lamp::v3(color.x(), color.y(), color.z())
         });
 
         _indices.emplace_back(_index++);
@@ -34,8 +34,7 @@ namespace lamp::debug
 
     void Renderer::flushLines()
     {
-    	if (!_vertices.empty() &&
-	        !_indices.empty()) {
+    	if (!_vertices.empty() && !_indices.empty()) {
 
 		    lamp::Engine::bind(_mesh);
 
@@ -56,15 +55,8 @@ namespace lamp::debug
 		return _mode;
 	}
 
-	void Renderer::draw3dText(const btVector3& location, const char*)
-    {
-    }
+    void Renderer::drawContactPoint(const btVector3&, const btVector3&, btScalar, int32_t, const btVector3&) { }
+	void Renderer::draw3dText(const btVector3&, const char*) { }
 
-    void Renderer::drawContactPoint(const btVector3&, const btVector3&, btScalar, int, const btVector3&)
-    {
-    }
-
-    void Renderer::reportErrorWarning(const char*)
-    {
-    }
+	void Renderer::reportErrorWarning(const char*) { }
 }

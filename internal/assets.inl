@@ -19,7 +19,7 @@ namespace lamp
 		return buffer;
 	}
 
-	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t type, const uint32_t usage)
+	template<typename T, typename U> gl::mesh_ptr Assets::create(const std::vector<T>& vertices, const std::vector<U>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage)
 	{
 		auto mesh = std::make_shared<gl::Mesh>();
 
@@ -32,9 +32,21 @@ namespace lamp
 		layout.update();
 
 		mesh->primitive = primitive;
-
 		mesh->count = indices.size();
-		mesh->type  = type;
+
+		static_assert(std::is_integral<U>::value);
+		if constexpr (std::is_same<U, uint32_t>())
+		{
+			mesh->type = GL_UNSIGNED_INT;
+		}
+		else if constexpr (std::is_same<U, uint16_t>())
+		{
+			mesh->type = GL_UNSIGNED_SHORT;
+		}
+		else if constexpr (std::is_same<U, uint8_t>())
+		{
+			mesh->type = GL_UNSIGNED_BYTE;
+		}
 
 		return mesh;
 	}
