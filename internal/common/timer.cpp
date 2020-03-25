@@ -15,6 +15,6 @@ namespace lamp
 	float Timer::elapsed() const
 	{
 		const  auto end = clock::now();
-		return std::chrono::duration<float, std::milli>(end - _start).count();
+		return std::chrono::duration<float, std::milli>(end - _start).count() / 1000.0f;
 	}
 }
