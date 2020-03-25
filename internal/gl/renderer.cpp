@@ -4,7 +4,7 @@
 
 namespace lamp::gl
 {
-	std::map<u32, bool> Renderer::states;
+	std::map<uint32_t, bool> Renderer::states;
 
 	void Renderer::clear()
 	{
@@ -38,7 +38,7 @@ namespace lamp::gl
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void Renderer::set_state(const u32 state, const bool value)
+	void Renderer::set_state(const uint32_t state, const bool value)
 	{
 		if (states[state] != value) {
 			states[state]  = value;

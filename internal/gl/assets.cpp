@@ -1,16 +1,15 @@
 #include "assets.inl"
+#include "shader.hpp"
+#include "program.hpp"
+#include "texture.hpp"
 
 #include "common/file.hpp"
-
-#include "gl/shader.hpp"
-#include "gl/program.hpp"
-#include "gl/texture.hpp"
 
 #include <stb_image.h>
 
 namespace lamp
 {
-	gl::shader_ptr Assets::create(const char* path, const u32 type)
+	gl::shader_ptr Assets::create(const char* path, const uint32_t type)
 	{
 		const std::string& source = File::read(path);
 		auto  shader = std::make_shared<gl::Shader>();
@@ -53,7 +52,7 @@ namespace lamp
 
 	gl::mesh_ptr Assets::create(const v2& size)
 	{
-		const std::vector<f32> vertices =
+		const std::vector<float> vertices =
 		{
 			size.x,  size.y, 0.0f, 1.0f, 1.0f,
 			size.x, -size.y, 0.0f, 1.0f, 0.0f,
@@ -61,15 +60,15 @@ namespace lamp
 		   -size.x,  size.y, 0.0f, 0.0f, 1.0f
 		};
 
-		const std::vector<u8> indices =
+		const std::vector<uint8_t> indices =
 		{
 			0, 3, 1,
 			1, 3, 2
 		};
 
-		Layout layout;
-		layout.add<f32>(3, GL_FLOAT);
-		layout.add<f32>(2, GL_FLOAT);
+		gl::Layout layout;
+		layout.add<float>(3);
+		layout.add<float>(2);
 
 		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
 	}

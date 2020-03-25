@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace lamp
+namespace lamp::gl
 {
 	Layout::Layout()
 		: _size(0)
@@ -11,7 +11,7 @@ namespace lamp
 
 	void Layout::update() const noexcept
 	{
-		u32 index = 0;
+		uint32_t index = 0;
 
 		for (const auto& attribute : _attributes)
 		{

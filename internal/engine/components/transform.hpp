@@ -4,10 +4,8 @@
 
 namespace lamp::components
 {
-	struct Transform
+	struct transform
 	{
-		Transform() : world(1.0f) { }
-
 		m4 world;
 	};
 }

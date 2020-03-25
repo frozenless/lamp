@@ -15,21 +15,21 @@ namespace lamp::gl
 		glUseProgram(id);
 	}
 
-	void Program::uniform(const int location, const m4& mat)
+	void Program::uniform(const int32_t location, const m4& mat)
 	{
 		assert(location != -1);
 
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 	}
 
-	void Program::uniform(const int location, const v3& vec)
+	void Program::uniform(const int32_t location, const v3& vec)
 	{
 		assert(location != -1);
 
 		glUniform3fv(location, 1, glm::value_ptr(vec));
 	}
 
-	void Program::uniform(const int location, const f32 value) noexcept
+	void Program::uniform(const int32_t location, const float value) noexcept
 	{
 		assert(location != -1);
 
@@ -64,14 +64,14 @@ namespace lamp::gl
 	}
 
     #ifndef NDEBUG
-	void Program::status()
+	void Program::status() const
 	{
-		int success;
+		int32_t success;
 		glGetProgramiv(id, GL_LINK_STATUS, &success);
 
 		if (!success)
 		{
-			int length;
+			int32_t length;
 			glGetProgramiv(id, GL_INFO_LOG_LENGTH, &length);
 
 			std::vector<char> log;

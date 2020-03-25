@@ -36,12 +36,16 @@ namespace lamp
 		_world->addRigidBody(body);
 	}
 
-	void Physics::add_collision(btCollisionObject* object)
+	void Physics::add_collision(btCollisionObject* object, const uint32_t flag)
 	{
+		if (flag) {
+			object->setCollisionFlags(flag);
+		}
+
 		_world->addCollisionObject(object);
 	}
 
-	void Physics::update(const f32 delta_time)
+	void Physics::update(const float delta_time)
 	{
 		_world->stepSimulation(delta_time, 10);
 
@@ -51,18 +55,13 @@ namespace lamp
 		}
 	}
 
-	void Physics::init_renderer(const gl::mesh_ptr& mesh, const u32 mode)
+	void Physics::init_renderer(const gl::mesh_ptr& mesh, const uint32_t mode)
 	{
 		_world->setDebugDrawer(new lamp::debug::Renderer(mesh, mode));
 	}
 
-	void Physics::toggle_debug()
+	void Physics::debug()
 	{
 		_show_debug = !_show_debug;
-	}
-
-	bool Physics::debug() const
-	{
-		return _show_debug;
 	}
 }

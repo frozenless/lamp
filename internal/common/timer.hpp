@@ -4,15 +4,18 @@
 
 namespace lamp
 {
+	using clock = std::chrono::high_resolution_clock;
+
 	class Timer
 	{
 	public:
-		void start();
-		void stop();
+		Timer();
 
-		std::ofstream& operator<<(std::ofstream& os);
+		[[nodiscard]]
+		float elapsed() const;
+		void  restart();
 
 	private:
-
+		std::chrono::time_point<clock> _start;
 	};
 }

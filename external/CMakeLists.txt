@@ -40,20 +40,12 @@ set(ENTITYX_BUILD_TESTING false)
 set(ENTITYX_DT_TYPE float)
 set(ENTITYX_BUILD_SHARED false)
 
-set(GL_MAJOR_VERSION 4 CACHE STRING "gl major version")
-set(GL_MINOR_VERSION 5 CACHE STRING "gl minor version")
-
-set(GLAD_API "gl=${GL_MAJOR_VERSION}.${GL_MINOR_VERSION}")
 set(GLAD_PROFILE "core")
+set(GLAD_API "gl=4.5")
 
 if (MSVC)
     set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 endif()
-
-configure_file(config.hpp ${CMAKE_CURRENT_SOURCE_DIR}/../internal/common/config.hpp)
-
-set(ASSIMP_BUILD_OBJ_IMPORTER ON)
-set(ASSIMP_NO_EXPORT ON)
 
 add_subdirectory(ozz-animation)
 add_subdirectory(recastnavigation)

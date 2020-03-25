@@ -1,12 +1,17 @@
 #include "game.hpp"
-#include "gl/renderer.hpp"
+#include "engine/random.inl"
 
-#include "common/random.inl"
+#include "gl/renderer.hpp"
 
 #include <GLFW/glfw3.h>
 
 namespace lamp
 {
+	void keyboard_actions(GLFWwindow* ptr, const int32_t key, int32_t, const int32_t action, int32_t)
+	{
+		static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
+	}
+
 	Game::Game()
 		: _show_wires(false)
 		, _show_editor(false)
@@ -20,6 +25,7 @@ namespace lamp
 		_window.create(config);
 
 		glfwSetWindowUserPointer(_window, this);
+		glfwSetKeyCallback(_window, keyboard_actions);
 
 		lamp::Window::init();
 		lamp::Random::seed();
@@ -33,12 +39,11 @@ namespace lamp
 
 		_ecs.systems.configure();
 
-		f64 old_time = glfwGetTime();
-
+		double old_time = glfwGetTime();
 		do
 		{
-			const  f64 new_time   = glfwGetTime();
-			const auto delta_time = static_cast<f32>(new_time - old_time);
+			const double new_time = glfwGetTime();
+			const auto delta_time = static_cast<float>(new_time - old_time);
 			old_time = new_time;
 
 			Window::update();
@@ -55,30 +60,37 @@ namespace lamp
 		Window::Api::release();
 	}
 
-	const Window& Game::window() const
+	void Game::input(const int32_t action, const int32_t key)
 	{
-		return _window;
-	}
+		if (action == GLFW_PRESS) {
 
-	const components::Light& Game::light() const
-	{
-		return _light;
+			switch (key) {
+				case GLFW_KEY_ESCAPE: {
+					_window.close();
+					break;
+				}
+				case GLFW_KEY_E: {
+					_show_editor = !_show_editor;
+					break;
+				}
+				case GLFW_KEY_D: {
+					_physics.debug();
+					break;
+				}
+				case GLFW_KEY_W: {
+					_show_wires = !_show_wires;
+
+					gl::Renderer::set_wire_mode(_show_wires);
+					break;
+				}
+				default:
+					break;
+			}
+		}
 	}
 
 	Physics& Game::physics()
 	{
 		return _physics;
-	}
-
-	void Game::toggle_editor()
-	{
-		_show_editor = !_show_editor;
-	}
-
-	void Game::toggle_wires()
-	{
-		_show_wires = !_show_wires;
-
-		gl::Renderer::set_wire_mode(_show_wires);
 	}
 }

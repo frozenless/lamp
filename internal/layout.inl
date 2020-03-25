@@ -1,13 +1,22 @@
 #pragma once
 
-#include "layout.hpp"
+#include "gl/layout.hpp"
 
-namespace lamp
+namespace lamp::gl
 {
-	template <typename T> void Layout::add(const u32 count, const u32 type) noexcept
+	template <typename T> void Layout::add(const uint32_t count) noexcept
 	{
-		static_assert(std::is_arithmetic<T>::value);
+		uint32_t type = GL_NONE;
+
+		if constexpr (std::is_same<T, float>())
+		{
+			type = GL_FLOAT;
+		}
+
 		assert(count != 0);
+		assert(type  != GL_NONE);
+
+		static_assert(std::is_arithmetic<T>::value);
 
 		_attributes.emplace_back(count, type, _size);
 		_size += count * sizeof(T);

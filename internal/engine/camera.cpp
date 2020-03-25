@@ -1,24 +1,22 @@
 #include "camera.hpp"
 
-#include <glm/gtc/matrix_transform.hpp>
-
 namespace lamp
 {
-	Camera::Camera(const v2& size, const f32 fov)
+	Camera::Camera(const v2& size, const float fov)
 		: _view(1.0f)
-		, _fov(fov)
 		, _size(size)
+		, _fov(fov)
 	{
 	}
 
 	void Camera::perspective()
 	{
-		_projection = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
+		_proj = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
 	}
 
 	void Camera::ortho()
 	{
-		_projection = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
+		_proj = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
 	}
 
 	void Camera::look_at(const v3& position, const v3& target)
@@ -33,9 +31,9 @@ namespace lamp
 		_view = glm::translate(m4(1.0f), position);
 	}
 
-	const m4& Camera::projection() const
+	const m4& Camera::proj() const
 	{
-		return _projection;
+		return _proj;
 	}
 
 	const m4& Camera::view() const
@@ -43,10 +41,12 @@ namespace lamp
 		return _view;
 	}
 
-	Ray Camera::screen_to_world(const v2& position, const m4& inv)
+	Ray Camera::screen_to_world(const v2& position) const
 	{
-		const f32 x = (position.x / _size.x - 0.5f) * 2.0f;
-		const f32 y = (position.y / _size.y - 0.5f) * 2.0f;
+		const m4 inv  = glm::inverse(_proj * _view);
+
+		const float x = (position.x / _size.x - 0.5f) * 2.0f;
+		const float y = (position.y / _size.y - 0.5f) * 2.0f;
 
 		v4 start = inv * v4(x, y,-1.0f, 1.0f); start /= start.w;
 		v4 end   = inv * v4(x, y, 0.0f, 1.0f);   end /= end.w;

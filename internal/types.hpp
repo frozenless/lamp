@@ -8,13 +8,6 @@
 
 namespace lamp
 {
-	using u8  = glm::u8;
-	using u16 = glm::u16;
-	using u32 = glm::u32;
-
-	using f32 = glm::f32;
-	using f64 = glm::f64;
-
 	using iv2 = glm::ivec2;
 	using iv4 = glm::ivec4;
 
@@ -40,6 +33,6 @@ namespace lamp
 		using program_ptr = std::shared_ptr<Program>;
 		using texture_ptr = std::shared_ptr<Texture>;
 
-		using ID = u32;
+		using ID = uint32_t;
 	}
 }

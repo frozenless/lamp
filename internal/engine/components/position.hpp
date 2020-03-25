@@ -4,8 +4,8 @@
 
 namespace lamp::components
 {
-	struct Position
+	struct position
 	{
-		f32 x, y, z;
+		float x, y, z;
 	};
 }

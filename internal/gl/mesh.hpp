@@ -19,7 +19,7 @@ namespace lamp::gl
 		buffer_ptr vbo;
 		buffer_ptr ibo;
 
-		u32 primitive;
-		u32 type;
+		uint32_t primitive;
+		uint32_t type;
 	};
 }

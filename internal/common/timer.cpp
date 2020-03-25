@@ -2,15 +2,19 @@
 
 namespace lamp
 {
-	void Timer::start()
+	Timer::Timer()
+		: _start(clock::now())
 	{
 	}
 
-	void Timer::stop()
+	void Timer::restart()
 	{
+		_start = clock::now();
 	}
 
-	std::ofstream& Timer::operator<<(std::ofstream& os) {
-		return os;
+	float Timer::elapsed() const
+	{
+		const  auto end = clock::now();
+		return std::chrono::duration<float, std::milli>(end - _start).count();
 	}
 }
