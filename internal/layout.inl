@@ -6,9 +6,9 @@ namespace lamp::gl
 {
 	template <typename T> void Layout::add(const uint32_t count) noexcept
 	{
-		uint32_t type  = GL_NONE;
+		uint32_t type = GL_NONE;
 
-		if (typeid(T) == typeid(float))
+		if constexpr (std::is_same<T, float>())
 		{
 			type = GL_FLOAT;
 		}

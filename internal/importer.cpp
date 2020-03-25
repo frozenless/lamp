@@ -7,8 +7,6 @@
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 
-#include <glad/glad.h>
-
 namespace lamp
 {
 	gl::mesh_ptr Importer::import(const char* path, const bool drop_normals)

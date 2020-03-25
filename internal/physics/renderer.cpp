@@ -34,8 +34,9 @@ namespace lamp::debug
 
     void Renderer::flushLines()
     {
-    	if (!_vertices.empty() && !_indices.empty())
-    	{
+    	if (!_vertices.empty() &&
+	        !_indices.empty()) {
+
 		    lamp::Engine::bind(_mesh);
 
 		    _mesh->vbo->set_data(_vertices);
