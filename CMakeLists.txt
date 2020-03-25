@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Lamp VERSION 0.0.4 LANGUAGES CXX)
+project(Lamp VERSION 0.0.5 LANGUAGES CXX)
 
 add_subdirectory(external)
 add_library(${PROJECT_NAME})
