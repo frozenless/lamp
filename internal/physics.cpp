@@ -45,6 +45,11 @@ namespace lamp
 		_world->addCollisionObject(object);
 	}
 
+	void Physics::add_constraint(btTypedConstraint* constraint)
+	{
+		_world->addConstraint(constraint);
+	}
+
 	void Physics::update(const float delta_time)
 	{
 		_world->stepSimulation(delta_time, 10);

@@ -35,8 +35,8 @@ namespace lamp
 			layout.add<float>(3);
 		}
 
-		std::vector<float>   vertices;
-		std::vector<uint8_t> indices;
+		std::vector<float>    vertices;
+		std::vector<uint32_t> indices;
 		indices.reserve(ai_mesh->mNumFaces * 3);
 
 		for (uint32_t i = 0; i < ai_mesh->mNumVertices; i++)
@@ -78,6 +78,6 @@ namespace lamp
 			}
 		}
 
-		return Assets::create(vertices, indices, layout, GL_TRIANGLES, GL_UNSIGNED_INT, GL_STATIC_DRAW);
+		return Assets::create(vertices, indices, layout, GL_TRIANGLES, GL_STATIC_DRAW);
 	}
 }

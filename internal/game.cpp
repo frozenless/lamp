@@ -7,7 +7,9 @@
 
 namespace lamp
 {
-	void keyboard_actions(GLFWwindow* ptr, const int32_t key, int32_t, const int32_t action, int32_t)
+	Timer Game::timer;
+
+	void keyboard_actions(GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t)
 	{
 		static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
 	}
@@ -39,14 +41,14 @@ namespace lamp
 
 		_ecs.systems.configure();
 
-		double old_time = glfwGetTime();
+		auto old_time = Game::timer.elapsed();
 		do
 		{
-			const double new_time = glfwGetTime();
-			const auto delta_time = static_cast<float>(new_time - old_time);
-			old_time = new_time;
-
 			Window::update();
+
+			const auto new_time   = Game::timer.elapsed();
+			const auto delta_time = new_time - old_time;
+			old_time = new_time;
 
 			this->update(delta_time);
 			this->draw();

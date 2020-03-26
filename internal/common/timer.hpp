@@ -5,6 +5,7 @@
 namespace lamp
 {
 	using clock = std::chrono::high_resolution_clock;
+	using time  = std::chrono::time_point<clock>;
 
 	class Timer
 	{
@@ -16,6 +17,6 @@ namespace lamp
 		void  restart();
 
 	private:
-		std::chrono::time_point<clock> _start;
+		time _start;
 	};
 }

@@ -14,8 +14,8 @@ namespace lamp::debug
         void clearLines() final;
         void flushLines() final;
 
-        void drawLine(const btVector3& a,       const btVector3& b, const btVector3& color)        final;
-        void drawContactPoint(const btVector3&, const btVector3&, btScalar, int, const btVector3&) final;
+        void drawLine(const btVector3& a, const btVector3& b, const btVector3& color) final;
+        void drawContactPoint(const btVector3&, const btVector3&, btScalar, int32_t, const btVector3&) final;
 
         void draw3dText(const btVector3&, const char*) final;
 
@@ -26,7 +26,7 @@ namespace lamp::debug
 	    int32_t getDebugMode() const final;
 
     private:
-        std::vector<float>    _vertices;
+        std::vector<lamp::v3> _vertices;
         std::vector<uint32_t> _indices;
 
 	    gl::mesh_ptr _mesh;

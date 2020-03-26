@@ -70,7 +70,7 @@ namespace lamp
 		layout.add<float>(3);
 		layout.add<float>(2);
 
-		return create(vertices, indices, layout, GL_TRIANGLES,  GL_UNSIGNED_BYTE, GL_STATIC_DRAW);
+		return create(vertices, indices, layout, GL_TRIANGLES, GL_STATIC_DRAW);
 	}
 
 	gl::texture_ptr Assets::create(const char* path, const bool mipmap, const bool flip)

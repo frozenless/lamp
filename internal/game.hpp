@@ -4,6 +4,7 @@
 
 #include "engine/components/light.hpp"
 
+#include "common/timer.hpp"
 #include "physics.hpp"
 #include "window.hpp"
 
@@ -27,6 +28,8 @@ namespace lamp
 		void run(const Window::Config& config);
 
 		[[nodiscard]] Physics& physics();
+
+		static Timer timer;
 
 	protected:
 		virtual void init()    = 0;
