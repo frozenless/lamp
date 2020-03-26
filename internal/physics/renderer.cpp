@@ -2,7 +2,7 @@
 #include "engine.hpp"
 
 #include "gl/mesh.hpp"
-#include "gl/buffer.hpp"
+#include "gl/buffer.inl"
 
 namespace lamp::debug
 {
