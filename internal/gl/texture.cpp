@@ -44,7 +44,7 @@ namespace lamp::gl
 
 	void Texture::create() noexcept
 	{
-		glGenTextures(1, &id);
+		glCreateTextures(_target, 1, &id);
 	}
 
 	void Texture::release() noexcept
