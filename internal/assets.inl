@@ -1,11 +1,8 @@
 #pragma once
 
-#include "gl/assets.hpp"
-
 #include "gl/mesh.hpp"
+#include "gl/assets.hpp"
 #include "gl/buffer.inl"
-
-#include <glad/glad.h>
 
 namespace lamp
 {
