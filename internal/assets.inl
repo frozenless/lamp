@@ -26,9 +26,6 @@ namespace lamp
 		mesh->create();
 		mesh->bind();
 
-		static_assert(std::is_integral<U>::value);
-		static_assert(std::is_arithmetic<T>::value);
-
 		mesh->vbo = Assets::create(GL_ARRAY_BUFFER,         vertices.data(), vertices.size(), usage);
 		mesh->ibo = Assets::create(GL_ELEMENT_ARRAY_BUFFER, indices.data(),  indices.size(),  usage);
 
@@ -37,6 +34,7 @@ namespace lamp
 		mesh->primitive = primitive;
 		mesh->count     = indices.size();
 
+		static_assert(std::is_integral<U>::value);
 		if constexpr (std::is_same<U, uint32_t>())
 		{
 			mesh->type = GL_UNSIGNED_INT;
