@@ -14,8 +14,10 @@ namespace lamp::gl
 
 		void bind() const noexcept final;
 
-		void set_data(const unsigned char* data);
+		void set_data(const uint8_t* data);
 		void set_sampler(uint32_t min_filter, uint32_t mag_filter) const;
+
+		static void activate(uint32_t index = 0);
 
 		int32_t width, height;
 		int32_t channels;

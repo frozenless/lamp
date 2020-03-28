@@ -51,6 +51,9 @@ PUBLIC  IMGUI_IMPL_OPENGL_LOADER_GLAD
 PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
 
+#target_compile_options(${PROJECT_NAME}
+#PUBLIC -Wextra -Wall) #-Werror -fno-exceptions
+
 target_link_libraries(${PROJECT_NAME}
 PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm
 PRIVATE assimp)

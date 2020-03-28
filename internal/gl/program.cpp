@@ -56,6 +56,8 @@ namespace lamp::gl
 		assert(glIsProgram(id));
 
 		glDeleteProgram(id);
+
+		assert(glIsProgram(id) == GL_FALSE);
 	}
 
 	void Program::create() noexcept

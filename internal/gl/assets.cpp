@@ -11,12 +11,12 @@ namespace lamp
 {
 	gl::shader_ptr Assets::create(const char* path, const uint32_t type)
 	{
-		const std::string& source = File::read(path);
-		auto  shader = std::make_shared<gl::Shader>();
+		assert(path != nullptr);
+
+		auto shader = std::make_shared<gl::Shader>();
 
 		shader->create(type);
-
-		shader->set_source(source.c_str());
+		shader->set_source(File::read(path).c_str());
 		shader->compile();
 
 		#ifndef NDEBUG
@@ -75,14 +75,13 @@ namespace lamp
 
 	gl::texture_ptr Assets::create(const char* path, const bool mipmap, const bool flip)
 	{
-		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
+		assert(path != nullptr);
 
+		auto texture = std::make_shared<gl::Texture>(GL_TEXTURE_2D);
 		stbi_set_flip_vertically_on_load(flip);
 
 		unsigned char* data = stbi_load(path, &texture->width,
 		                                      &texture->height, &texture->channels, 0);
-		assert(data != nullptr);
-
 		texture->create();
 		texture->bind();
 

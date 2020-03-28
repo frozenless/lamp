@@ -24,10 +24,14 @@ namespace lamp::gl
 		assert(glIsShader(id));
 
 		glDeleteShader(id);
+
+		assert(glIsShader(id) == GL_FALSE);
 	}
 
 	void Shader::set_source(const char* source) const
 	{
+		assert(source != nullptr);
+
 		glShaderSource(id, 1, &source, nullptr);
 	}
 

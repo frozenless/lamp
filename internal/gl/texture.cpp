@@ -7,6 +7,9 @@ namespace lamp::gl
 	Texture::Texture(const uint32_t target)
 		: Object(Type::Texture)
 		, _target(target)
+		, channels(0)
+		, width(0)
+		, height(0)
 	{
 	}
 
@@ -29,10 +32,13 @@ namespace lamp::gl
 		return format;
 	}
 
-	void Texture::set_data(const unsigned char* data)
+	void Texture::set_data(const uint8_t* data)
 	{
+		assert(data  != nullptr);
+		assert(width != 0 && height != 0);
+
 		const int32_t format = _get_format();
-		
+
 		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 	}
 
@@ -50,5 +56,10 @@ namespace lamp::gl
 	void Texture::release() noexcept
 	{
 		glDeleteTextures(1, &id);
+	}
+
+	void Texture::activate(uint32_t index)
+	{
+		glActiveTexture(GL_TEXTURE0 + index);
 	}
 }
