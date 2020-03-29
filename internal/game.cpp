@@ -31,12 +31,14 @@ namespace lamp
 
 		if (config.context) {
 
-			lamp::Window::init();
+			Window::init();
 
-			lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
-			lamp::gl::Renderer::init();
+			gl::Renderer::set_clear_color(rgb(0.7f));
+			gl::Renderer::init();
 
-		}   lamp::Random::seed();
+		}
+
+		Random::seed();
 
 		this->_physics.init();
 		this->init();
@@ -63,6 +65,8 @@ namespace lamp
 			}
 		}
 		while (!_window.closing());
+
+		gl::Renderer::release();
 
 		this->release();
 

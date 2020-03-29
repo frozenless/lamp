@@ -11,8 +11,8 @@ namespace lamp::systems
 		es.each<components::transform, components::position, components::scale>([](entityx::Entity,
 				components::transform& transform, components::position& position, components::scale& scale) {
 
-			transform.world = glm::translate(glm::identity<m4>(), lamp::v3(position.x, position.y, position.z));
-			transform.world = glm::scale(transform.world, lamp::v3(scale.x, scale.y, scale.z));
+			transform.world = glm::translate(glm::identity<m4>(), v3(position.x, position.y, position.z));
+			transform.world = glm::scale(transform.world,         v3(scale.x, scale.y, scale.z));
 		});
 	}
 }
