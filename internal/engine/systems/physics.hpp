@@ -6,7 +6,7 @@ namespace lamp::systems
 {
 	class Physics : public entityx::System<Physics>
 	{
-	private:
+	public:
 		void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
 	};
 }

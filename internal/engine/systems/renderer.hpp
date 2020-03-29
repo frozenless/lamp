@@ -6,7 +6,7 @@ namespace lamp::systems
 {
 	class Renderer : public entityx::System<Renderer>
 	{
-	private:
+	public:
 		void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
 	};
 }
