@@ -27,6 +27,8 @@ namespace lamp
 
 			bool decorated;
 			bool fullscreen;
+
+			bool context;
 		};
 
 		Window() noexcept;

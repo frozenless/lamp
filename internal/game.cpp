@@ -29,11 +29,14 @@ namespace lamp
 		glfwSetWindowUserPointer(_window, this);
 		glfwSetKeyCallback(_window, keyboard_actions);
 
-		lamp::Window::init();
-		lamp::Random::seed();
+		if (config.context) {
 
-		lamp::gl::Renderer::init();
-		lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
+			lamp::Window::init();
+
+			lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
+			lamp::gl::Renderer::init();
+
+		}   lamp::Random::seed();
 
 		this->_physics.init();
 		this->init();
@@ -54,7 +57,10 @@ namespace lamp
 			this->update(delta_time);
 			this->draw();
 
-			_window.swap();
+			if (config.context)
+			{
+				this->_window.swap();
+			}
 		}
 		while (!_window.closing());
 
