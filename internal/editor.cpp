@@ -1,13 +1,12 @@
 #include "editor.hpp"
+#include "engine/material.hpp"
+
+#include "gl/texture.hpp"
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <glm/gtc/type_ptr.hpp>
-
-#include "engine/material.hpp"
-
-#include "gl/texture.hpp"
 
 namespace lamp
 {
@@ -61,6 +60,7 @@ namespace lamp
 	void Editor::draw(const char* title, const material_ptr& material)
 	{
 		ImGui::Begin(title, nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+
 		ImGui::ColorEdit3("Color",     glm::value_ptr(material->color));
 		ImGui::InputFloat("Shininess", &material->shininess,  1.0f);
 
