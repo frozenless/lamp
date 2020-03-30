@@ -14,13 +14,8 @@ namespace lamp::systems
 {
 	void Renderer::init()
 	{
-		std::array<m4, 1> model_uniforms = { };
-		model_buffer = Assets::create(GL_UNIFORM_BUFFER, model_uniforms.data(), model_uniforms.size(), GL_DYNAMIC_DRAW);
-		model_buffer->bind_base(2);
-
-		std::array<v4, 1> material_uniforms = { };
-		material_buffer = Assets::create(GL_UNIFORM_BUFFER, material_uniforms.data(), material_uniforms.size(), GL_DYNAMIC_DRAW);
-		material_buffer->bind_base(3);
+		model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
+		material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);
 	}
 
 	void Renderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)

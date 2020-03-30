@@ -99,4 +99,14 @@ namespace lamp
 
 		return texture;
 	}
+
+	gl::buffer_ptr Assets::create(const uint32_t type, const uint32_t usage, const uint32_t base_index)
+	{
+		auto buffer = std::make_shared<gl::Buffer>(type, usage);
+
+		buffer->create();
+		buffer->bind_base(base_index);
+
+		return buffer;
+	}
 }
