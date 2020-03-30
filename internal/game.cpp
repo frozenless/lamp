@@ -87,7 +87,9 @@ namespace lamp
 					break;
 				}
 				case GLFW_KEY_D: {
-					_physics.debug();
+					if (_show_editor) {
+						_physics.debug();
+					}
 					break;
 				}
 				case GLFW_KEY_W: {
