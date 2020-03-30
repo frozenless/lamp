@@ -68,5 +68,10 @@ namespace lamp
 	void Physics::debug()
 	{
 		_show_debug = !_show_debug;
+
+		if (!_show_debug)
+		{
+			_world->getDebugDrawer()->clearLines();
+		}
 	}
 }

@@ -29,7 +29,8 @@ namespace lamp::debug
         _vertices.clear();
         _indices.clear();
 
-        _index = 0;
+	    _mesh->count = 0;
+	    _index       = 0;
     }
 
     void Renderer::flushLines()
