@@ -9,8 +9,8 @@ namespace lamp::systems
 {
 	void Physics::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{
-		es.each<components::rigidBody, components::transform>([](entityx::Entity,
-				components::rigidBody& rigid, components::transform& transform) {
+		es.each<components::rigidbody, components::transform>([](entityx::Entity,
+		        components::rigidbody& rigid, components::transform& transform) {
 
 		    if (rigid.body->isActive())
 		    {

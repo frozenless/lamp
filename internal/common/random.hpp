@@ -1,5 +1,7 @@
 #pragma once
 
+#include "types.hpp"
+
 namespace lamp
 {
 	class Random
@@ -9,6 +11,7 @@ namespace lamp
 
 		template<typename T> static T linear(T min, T max);
 
+		static rgb  color();
 		static void seed();
 	};
 }
