@@ -21,7 +21,7 @@ namespace lamp::gl
 
 	void Mesh::create() noexcept
 	{
-		glGenVertexArrays(1, &id);
+		glCreateVertexArrays(1, &id);
 	}
 
 	void Mesh::release() noexcept

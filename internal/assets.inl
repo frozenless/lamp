@@ -1,20 +1,17 @@
 #pragma once
 
-#include "gl/assets.hpp"
-
 #include "gl/mesh.hpp"
+#include "gl/assets.hpp"
 #include "gl/buffer.inl"
-
-#include <glad/glad.h>
 
 namespace lamp
 {
-	template<typename T> gl::buffer_ptr Assets::create(const uint32_t type, const std::vector<T>& info, const uint32_t usage) noexcept
+	template<typename T> gl::buffer_ptr Assets::create(const uint32_t type, const T* data, size_t size, const uint32_t usage) noexcept
 	{
 		auto buffer = std::make_shared<gl::Buffer>(type, usage);
 
 		buffer->create();
-		buffer->set_data(info);
+		buffer->set_data(data, size);
 
 		return buffer;
 	}
@@ -26,13 +23,13 @@ namespace lamp
 		mesh->create();
 		mesh->bind();
 
-		mesh->vbo = Assets::create(GL_ARRAY_BUFFER,         vertices, usage);
-		mesh->ibo = Assets::create(GL_ELEMENT_ARRAY_BUFFER, indices,  usage);
+		mesh->vbo = Assets::create(GL_ARRAY_BUFFER,         vertices.data(), vertices.size(), usage);
+		mesh->ibo = Assets::create(GL_ELEMENT_ARRAY_BUFFER, indices.data(),  indices.size(),  usage);
 
 		layout.update();
 
 		mesh->primitive = primitive;
-		mesh->count = indices.size();
+		mesh->count     = indices.size();
 
 		static_assert(std::is_integral<U>::value);
 		if constexpr (std::is_same<U, uint32_t>())

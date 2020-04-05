@@ -12,6 +12,8 @@ namespace lamp
 		class Api
 		{
 		public:
+			Api() = delete;
+
 			static void init()    noexcept;
 			static void release() noexcept;
 		};
@@ -25,6 +27,8 @@ namespace lamp
 
 			bool decorated;
 			bool fullscreen;
+
+			bool context;
 		};
 
 		Window() noexcept;

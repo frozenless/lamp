@@ -10,5 +10,6 @@ namespace lamp::components
 		float ambient;
 		v3    position;
 		float diffuse;
+		float specular;
 	};
 }

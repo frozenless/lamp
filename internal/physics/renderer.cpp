@@ -16,8 +16,8 @@ namespace lamp::debug
     void Renderer::drawLine(const btVector3& a, const btVector3& b, const btVector3& color)
     {
         _vertices.insert(std::end(_vertices), {
-            lamp::v3(a.x(), a.y(), a.z()), lamp::v3(color.x(), color.y(), color.z()),
-            lamp::v3(b.x(), b.y(), b.z()), lamp::v3(color.x(), color.y(), color.z())
+            v3(a.x(), a.y(), a.z()), v3(color.x(), color.y(), color.z()),
+            v3(b.x(), b.y(), b.z()), v3(color.x(), color.y(), color.z())
         });
 
         _indices.emplace_back(_index++);
@@ -29,14 +29,15 @@ namespace lamp::debug
         _vertices.clear();
         _indices.clear();
 
-        _index = 0;
+	    _mesh->count = 0;
+	    _index       = 0;
     }
 
     void Renderer::flushLines()
     {
     	if (!_vertices.empty() && !_indices.empty()) {
 
-		    lamp::Engine::bind(_mesh);
+		    Engine::bind(_mesh);
 
 		    _mesh->vbo->set_data(_vertices);
 		    _mesh->ibo->set_data(_indices);

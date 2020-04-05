@@ -15,7 +15,6 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/renderer.cpp
         internal/engine/systems/physics.cpp
         internal/engine/systems/transform.cpp
-        internal/engine/material.cpp
         internal/engine/camera.cpp
 
         internal/physics/renderer.cpp
@@ -50,6 +49,9 @@ PUBLIC  IMGUI_IMPL_OPENGL_LOADER_GLAD
         GLFW_INCLUDE_NONE
 PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
+
+#target_compile_options(${PROJECT_NAME}
+#PUBLIC -Wextra -Wall) #-Werror -fno-exceptions
 
 target_link_libraries(${PROJECT_NAME}
 PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm

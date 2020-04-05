@@ -24,22 +24,26 @@ namespace lamp
 	{
 		Window::Api::init();
 
-		_window.create(config);
+		this->_window.create(config);
 
 		glfwSetWindowUserPointer(_window, this);
 		glfwSetKeyCallback(_window, keyboard_actions);
 
-		lamp::Window::init();
-		lamp::Random::seed();
+		if (config.context) {
 
-		lamp::gl::Renderer::init();
-		lamp::gl::Renderer::set_clear_color(lamp::rgb(0.7f));
+			Window::init();
 
-		_physics.init();
+			gl::Renderer::set_clear_color(rgb(0.7f));
+			gl::Renderer::init();
 
+		}
+
+		Random::seed();
+
+		this->_physics.init();
 		this->init();
 
-		_ecs.systems.configure();
+		this->_ecs.systems.configure();
 
 		auto old_time = Game::timer.elapsed();
 		do
@@ -50,12 +54,19 @@ namespace lamp
 			const auto delta_time = new_time - old_time;
 			old_time = new_time;
 
+			this->_physics.update(delta_time);
+
 			this->update(delta_time);
 			this->draw();
 
-			_window.swap();
+			if (config.context)
+			{
+				this->_window.swap();
+			}
 		}
 		while (!_window.closing());
+
+		gl::Renderer::release();
 
 		this->release();
 
@@ -76,7 +87,9 @@ namespace lamp
 					break;
 				}
 				case GLFW_KEY_D: {
-					_physics.debug();
+					if (_show_editor) {
+						_physics.debug();
+					}
 					break;
 				}
 				case GLFW_KEY_W: {

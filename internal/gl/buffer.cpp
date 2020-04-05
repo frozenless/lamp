@@ -23,7 +23,7 @@ namespace lamp::gl
 
 	void Buffer::create() noexcept
 	{
-		glGenBuffers(1, &id);
+		glCreateBuffers(1, &id);
 	}
 
 	void Buffer::release() noexcept

@@ -26,7 +26,7 @@ namespace lamp::debug
 	    int32_t getDebugMode() const final;
 
     private:
-        std::vector<lamp::v3> _vertices;
+        std::vector<v3>       _vertices;
         std::vector<uint32_t> _indices;
 
 	    gl::mesh_ptr _mesh;
