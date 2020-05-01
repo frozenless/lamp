@@ -2,14 +2,14 @@
 
 namespace lamp::gl
 {
-	Buffer::Buffer(const u32 target, const u32 usage)
+	Buffer::Buffer(const uint32_t target, const uint32_t usage)
 		: Object(Type::Buffer)
 		, _target(target)
 		, _usage(usage)
 	{
 	}
 
-	void Buffer::bind_base(const u32 index) const
+	void Buffer::bind(const uint32_t index) const noexcept
 	{
 		assert(_target == GL_UNIFORM_BUFFER);
 
@@ -23,7 +23,7 @@ namespace lamp::gl
 
 	void Buffer::create() noexcept
 	{
-		glGenBuffers(1, &id);
+		glCreateBuffers(1, &id);
 	}
 
 	void Buffer::release() noexcept

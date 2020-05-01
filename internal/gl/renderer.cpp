@@ -4,7 +4,7 @@
 
 namespace lamp::gl
 {
-	std::map<u32, bool> Renderer::states;
+	std::map<uint32_t, bool> Renderer::states;
 
 	void Renderer::clear()
 	{
@@ -17,17 +17,17 @@ namespace lamp::gl
 		glEnable(GL_DEPTH_TEST);
 	}
 
-	void Renderer::set_clear_color(const rgb& color)
+	void Renderer::clear(const math::rgb& rgb)
 	{
-		glClearColor(color.r, color.g, color.b, 1.0f);
+		glClearColor(rgb.r, rgb.g, rgb.b, 1.0f);
 	}
 
-	void Renderer::set_viewport(const iv4& size)
+	void Renderer::viewport(const iv4& size)
 	{
 		glViewport(size.x, size.y, size.z, size.w);
 	}
 
-	void Renderer::set_wire_mode(const bool value)
+	void Renderer::wire_mode(const bool value)
 	{
 		glPolygonMode(GL_FRONT_AND_BACK, value ? GL_LINE : GL_FILL);
 	}
@@ -38,12 +38,17 @@ namespace lamp::gl
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void Renderer::set_state(const u32 state, const bool value)
+	void Renderer::state(const uint32_t state, const bool value)
 	{
 		if (states[state] != value) {
 			states[state]  = value;
 
 			value ? glEnable(state) : glDisable(state);
 		}
+	}
+
+	void Renderer::release()
+	{
+		glUseProgram(0);
 	}
 }

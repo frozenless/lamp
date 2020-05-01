@@ -1,12 +1,18 @@
 #pragma once
 
+#include "types.hpp"
+#include "math/rgb.hpp"
+
 namespace lamp
 {
 	class Random
 	{
 	public:
-		template<typename T> static T linear(const T min, const T max);
+		Random() = delete;
 
-		static void seed();
+		template<typename T> static T linear(T min, T max);
+
+		static math::rgb color();
+		static void      seed();
 	};
 }

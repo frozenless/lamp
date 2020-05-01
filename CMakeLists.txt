@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Lamp VERSION 0.0.4 LANGUAGES CXX)
+project(Lamp VERSION 0.0.5 LANGUAGES CXX)
 
 add_subdirectory(external)
 add_library(${PROJECT_NAME})
@@ -11,17 +11,22 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         external/imgui/imgui_widgets.cpp
         external/imgui/imgui_draw.cpp
         external/imgui/imgui.cpp
-        internal/ecs/systems/mesh_renderer.cpp
-        internal/ecs/systems/physics.cpp
-        internal/ecs/systems/transform.cpp
-        internal/engine/material.cpp
+
+        internal/engine/systems/renderer.cpp
+        internal/engine/systems/physics.cpp
+        internal/engine/systems/transform.cpp
         internal/engine/camera.cpp
+
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
         internal/physics/ray.cpp
+
         internal/common/random.cpp
         internal/common/file.cpp
         internal/common/timer.cpp
+
+        internal/math/rgb.cpp
+
         internal/gl/object.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp
@@ -30,13 +35,15 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/gl/attribute.cpp
         internal/gl/texture.cpp
         internal/gl/renderer.cpp
+        internal/gl/assets.cpp
+        internal/gl/layout.cpp
+
+        internal/profiler.cpp
         internal/engine.cpp
         internal/editor.cpp
         internal/physics.cpp
         internal/importer.cpp
         internal/window.cpp
-        internal/assets.cpp
-        internal/layout.cpp
         internal/game.cpp)
 
 target_compile_definitions(${PROJECT_NAME}
@@ -44,6 +51,9 @@ PUBLIC  IMGUI_IMPL_OPENGL_LOADER_GLAD
         GLFW_INCLUDE_NONE
 PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
+
+#target_compile_options(${PROJECT_NAME}
+#PUBLIC -Wextra -Wall) #-Werror -fno-exceptions
 
 target_link_libraries(${PROJECT_NAME}
 PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm

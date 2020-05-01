@@ -4,8 +4,9 @@
 
 namespace lamp::gl
 {
-	struct Object
+	class Object
 	{
+	public:
 		enum class Type
 		{
 			Shader,

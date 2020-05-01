@@ -4,9 +4,12 @@
 
 namespace lamp::gl
 {
-	Texture::Texture(const u32 target)
+	Texture::Texture(const uint32_t target)
 		: Object(Type::Texture)
 		, _target(target)
+		, channels(0)
+		, width(0)
+		, height(0)
 	{
 	}
 
@@ -15,9 +18,9 @@ namespace lamp::gl
 		glBindTexture(_target, id);
 	}
 
-	u32 Texture::_get_format() const noexcept
+	uint32_t Texture::_format() const noexcept
 	{
-		u32 format = GL_NONE;
+		uint32_t format = GL_NONE;
 
 		switch (channels)
 		{
@@ -29,14 +32,17 @@ namespace lamp::gl
 		return format;
 	}
 
-	void Texture::set_data(const unsigned char* data)
+	void Texture::data(const uint8_t* data)
 	{
-		const int format = _get_format();
-		
+		assert(data  != nullptr);
+		assert(width != 0 && height != 0);
+
+		const int32_t format = _format();
+
 		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 	}
 
-	void Texture::set_sampler(const u32 min_filter, const u32 mag_filter) const
+	void Texture::sampler(const uint32_t min_filter, const uint32_t mag_filter) const
 	{
 		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, min_filter);
 		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, mag_filter);
@@ -44,11 +50,16 @@ namespace lamp::gl
 
 	void Texture::create() noexcept
 	{
-		glGenTextures(1, &id);
+		glCreateTextures(_target, 1, &id);
 	}
 
 	void Texture::release() noexcept
 	{
 		glDeleteTextures(1, &id);
+	}
+
+	void Texture::activate(uint32_t index)
+	{
+		glActiveTexture(GL_TEXTURE0 + index);
 	}
 }

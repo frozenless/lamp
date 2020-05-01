@@ -2,9 +2,9 @@
 
 #include "types.hpp"
 
-namespace lamp::ecs::components
+namespace lamp::components
 {
-	struct MeshRenderer
+	struct renderer
 	{
 		material_ptr material;
 

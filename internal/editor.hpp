@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/light.hpp"
+#include "engine/components/light.hpp"
 
 struct GLFWwindow;
 
@@ -12,8 +12,8 @@ namespace lamp
 		static void init(GLFWwindow* window);
 		static void release();
 
-		static void draw(Light& light);
-		static void draw(const char* title, const material_ptr& material);
+		static void draw(components::light& light);
+		static void draw(const material_ptr& material);
 
 		static void begin();
 		static void end();

@@ -4,9 +4,12 @@
 
 namespace lamp::gl
 {
-	struct Mesh : public Object
+	class Mesh : public Object
 	{
-		Mesh();
+	public:
+		explicit Mesh(uint32_t primitive);
+
+		~Mesh() = default;
 
 		void create()  noexcept final;
 		void release() noexcept final;
@@ -14,12 +17,15 @@ namespace lamp::gl
 		void bind() const noexcept final;
 		void draw() const noexcept;
 
+		template <typename U> constexpr void type();
+
 		std::size_t count;
 
 		buffer_ptr vbo;
 		buffer_ptr ibo;
 
-		u32 primitive;
-		u32 type;
+	private:
+        uint32_t _primitive;
+		uint32_t _type;
 	};
 }

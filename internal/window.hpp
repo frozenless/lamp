@@ -12,6 +12,8 @@ namespace lamp
 		class Api
 		{
 		public:
+			Api() = delete;
+
 			static void init()    noexcept;
 			static void release() noexcept;
 		};
@@ -20,14 +22,18 @@ namespace lamp
 		{
 			const char* title;
 
-            iv2 size;
-            u8  samples;
+            iv2     size;
+            uint8_t samples;
 
 			bool decorated;
 			bool fullscreen;
+
+			bool context;
 		};
 
 		Window() noexcept;
+
+		explicit operator GLFWwindow*() const;
 
 		void create(const Config& config) noexcept;
 
@@ -39,8 +45,6 @@ namespace lamp
 
 		static void init()   noexcept;
 		static void update() noexcept;
-
-		operator GLFWwindow*() const;
 
 	private:
 		GLFWwindow* _ptr;

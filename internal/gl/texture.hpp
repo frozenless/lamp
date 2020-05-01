@@ -7,22 +7,24 @@ namespace lamp::gl
 	class Texture : public Object
 	{
 	public:
-		explicit Texture(u32 target);
+		explicit Texture(uint32_t target);
 
 		void create()  noexcept final;
 		void release() noexcept final;
 
 		void bind() const noexcept final;
 
-		void set_data(const unsigned char* data);
-		void set_sampler(u32 min_filter, u32 mag_filter) const;
+		void data(const uint8_t* data);
+		void sampler(uint32_t min_filter, uint32_t mag_filter) const;
 
-		int width, height;
-		int channels;
+		static void activate(uint32_t index = 0);
+
+		int32_t width, height;
+		int32_t channels;
 
 	private:
 		[[nodiscard]]
-		u32 _get_format() const noexcept;
-		u32 _target;
+		uint32_t _format() const noexcept;
+		uint32_t _target;
 	};
 }

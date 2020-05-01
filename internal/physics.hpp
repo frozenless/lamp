@@ -19,18 +19,17 @@ namespace lamp
 		Physics& operator=(const Physics&) = delete;
 
 		void init();
-		void init_renderer(const gl::mesh_ptr& mesh, u32 mode);
-
-		void update(f32 delta_time);
-
+		void init_renderer(const gl::mesh_ptr& mesh, uint32_t mode);
+		
 		void add_rigidbody(btRigidBody* body);
-		void add_collision(btCollisionObject* object);
+		void add_collision(btCollisionObject* object, uint32_t flag = 0);
 
-		void toggle_debug();
+		void add_constraint(btTypedConstraint* constraint, bool disable_link);
 
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
 
-		[[nodiscard]] bool debug() const;
+		void update(float delta_time);
+		void debug();
 
 	private:
 		std::unique_ptr<btDynamicsWorld> _world;

@@ -1,14 +1,13 @@
-#pragma once
-
 #include "types.hpp"
+#include "math/rgb.hpp"
 
 namespace lamp
 {
 	struct Material
 	{
-		explicit Material(const rgb& color = rgb(1.0f));
+		math::rgb color;
+		float shininess = 32.0f;
 
-		gl::texture_ptr texture;
-		rgb color;
+		gl::texture_ptr diffuse;
 	};
 }

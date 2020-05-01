@@ -4,12 +4,12 @@
 
 namespace lamp::gl
 {
-	struct Attribute
+	struct attribute
 	{
-		Attribute(u32 count, u32 type, u32 offset) noexcept;
+		attribute(uint32_t count, uint32_t type, uint32_t offset) noexcept;
 
-		u32 count;
-		u32 type;
-		u32 offset;
+		uint32_t count;
+		uint32_t type;
+		uint32_t offset;
 	};
 }

@@ -2,8 +2,9 @@
 
 #include <entityx/entityx.h>
 
-#include "engine/light.hpp"
+#include "engine/components/light.hpp"
 
+#include "common/timer.hpp"
 #include "physics.hpp"
 #include "window.hpp"
 
@@ -22,31 +23,29 @@ namespace lamp
 
 		virtual ~Game() = default;
 
-		[[nodiscard]] const Window&  window() const;
-		[[nodiscard]] const Light&   light()  const;
-
-		[[nodiscard]] Physics& physics();
+		virtual void input(int32_t action, int32_t key);
 
 		void run(const Window::Config& config);
 
-		void toggle_editor();
-		void toggle_wires();
+		[[nodiscard]] Physics& physics();
+
+		static Timer timer;
 
 	protected:
 		virtual void init()    = 0;
 		virtual void release() = 0;
 
-		virtual void update(f32 delta_time) = 0;
-		virtual void draw()                 = 0;
+		virtual void update(float) = 0;
+		virtual void draw()        = 0;
 
 		bool _show_editor;
 		bool _show_wires;
 
 		entityx::EntityX _ecs;
 
-		Physics _physics;
-		Light   _light;
+		components::light _light;
 
-		Window _window;
+		Physics _physics;
+		Window  _window;
 	};
 }
