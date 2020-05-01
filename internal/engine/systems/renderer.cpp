@@ -14,8 +14,8 @@ namespace lamp::systems
 {
 	void Renderer::init()
 	{
-		model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
-		material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);
+        _model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
+        _material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);
 	}
 
 	void Renderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
@@ -27,8 +27,10 @@ namespace lamp::systems
 
 			if (auto material = renderer.material; material) {
 
-				std::array<v4, 1> uniforms = { v4(material->color, material->shininess) };
-				material_buffer->set_data(uniforms);
+				const math::rgb& color = material->color;
+				const std::array<float, 4> uniforms = { color.r, color.g, color.b, material->shininess };
+
+				_material_buffer->data(uniforms);
 
 				if (auto diffuse = material->diffuse; diffuse)
 				{
@@ -40,8 +42,8 @@ namespace lamp::systems
 
 				Engine::bind(renderer.mesh);
 
-				std::array<m4, 1> uniforms = { transform.world };
-				model_buffer->set_data(uniforms);
+				const std::array<m4, 1> uniforms = { transform.world };
+				_model_buffer->data(uniforms);
 
 				renderer.mesh->draw();
 			}

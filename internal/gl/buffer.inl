@@ -4,20 +4,22 @@
 
 namespace lamp::gl
 {
-	template <typename T> void Buffer::set_data(const std::vector<T>& buffer) const
+	template <typename T> void Buffer::data(const std::vector<T>& buffer) const noexcept
 	{
-		set_data<T>(buffer.data(), buffer.size());
+		this->data<T>({ buffer.data(), buffer.size() });
 	}
 
-	template <typename T, std::size_t S> void Buffer::set_data(const std::array<T, S>& buffer) const
+	template <typename T, std::size_t S> void Buffer::data(const std::array<T, S>& buffer) const noexcept
 	{
-		set_data<T>(buffer.data(), buffer.size());
+		this->data<T>({ buffer.data(), buffer.size() });
 	}
 
-	template <typename T> void Buffer::set_data(const T* buffer, const size_t size) const
+	template <typename T> void Buffer::data(const std::pair<const T*, size_t>& buffer) const noexcept
 	{
-		bind();
+		this->bind();
 
-		glBufferData(_target, sizeof(T) * size, buffer, _usage);
+		if (buffer.second != 0) {
+            glBufferData(_target, sizeof(T) * buffer.second, buffer.first, _usage);
+        }
 	}
 }

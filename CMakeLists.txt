@@ -25,6 +25,8 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/common/file.cpp
         internal/common/timer.cpp
 
+        internal/math/rgb.cpp
+
         internal/gl/object.cpp
         internal/gl/mesh.cpp
         internal/gl/buffer.cpp

@@ -7,8 +7,10 @@ namespace lamp
 		srand(static_cast<uint32_t>(time(0)));
 	}
 
-	rgb Random::color()
+	math::rgb Random::color()
 	{
-		return Random::linear(glm::zero<v3>(), glm::one<v3>());
+		const auto color = Random::linear(glm::zero<v3>(), glm::one<v3>());
+
+		return math::rgb(color.r, color.g, color.b);
 	}
 }

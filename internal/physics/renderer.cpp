@@ -37,10 +37,10 @@ namespace lamp::debug
     {
     	if (!_vertices.empty() && !_indices.empty()) {
 
-		    Engine::bind(_mesh);
+		    _mesh->bind();
 
-		    _mesh->vbo->set_data(_vertices);
-		    _mesh->ibo->set_data(_indices);
+		    _mesh->vbo->data(_vertices);
+		    _mesh->ibo->data(_indices);
 
 		    _mesh->count = _indices.size();
 	    }
@@ -56,7 +56,7 @@ namespace lamp::debug
 		return _mode;
 	}
 
-    void Renderer::drawContactPoint(const btVector3&, const btVector3&, btScalar, int32_t, const btVector3&) { }
+    void Renderer::drawContactPoint(const btVector3&, const btVector3&, const btScalar, const int32_t, const btVector3&) { }
 	void Renderer::draw3dText(const btVector3&, const char*) { }
 
 	void Renderer::reportErrorWarning(const char*) { }

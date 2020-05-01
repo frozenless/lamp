@@ -1,5 +1,3 @@
-#pragma once
-
 #include "physics/ray.hpp"
 
 namespace lamp
@@ -14,7 +12,7 @@ namespace lamp
 		void perspective();
 		void ortho();
 
-		void set_size(const v2& size);
+		void size(const v2& size);
 		void view(const v3& position);
 
 		[[nodiscard]] const m4& proj() const;

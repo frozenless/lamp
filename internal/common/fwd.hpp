@@ -6,12 +6,12 @@ namespace lamp
 
 	namespace gl
 	{
-		struct Object;
+		class Object;
 
-		struct Mesh;
-		struct Shader;
-		struct Program;
+		class Shader;
+		class Program;
 
+        class Mesh;
 		class Texture;
 		class Buffer;
 	}

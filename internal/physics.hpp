@@ -24,7 +24,7 @@ namespace lamp
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object, uint32_t flag = 0);
 
-		void add_constraint(btTypedConstraint* constraint);
+		void add_constraint(btTypedConstraint* constraint, bool disable_link);
 
 		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
 

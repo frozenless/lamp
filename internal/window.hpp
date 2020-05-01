@@ -33,6 +33,8 @@ namespace lamp
 
 		Window() noexcept;
 
+		explicit operator GLFWwindow*() const;
+
 		void create(const Config& config) noexcept;
 
 		void close() const noexcept;
@@ -43,8 +45,6 @@ namespace lamp
 
 		static void init()   noexcept;
 		static void update() noexcept;
-
-		operator GLFWwindow*() const;
 
 	private:
 		GLFWwindow* _ptr;

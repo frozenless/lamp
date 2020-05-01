@@ -54,7 +54,7 @@ namespace lamp
 		return Ray(start, glm::normalize(end - start));
 	}
 
-	void Camera::set_size(const v2& size)
+	void Camera::size(const v2& size)
 	{
 		_size = size;
 	}

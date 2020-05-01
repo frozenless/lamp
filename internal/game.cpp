@@ -9,11 +9,6 @@ namespace lamp
 {
 	Timer Game::timer;
 
-	void keyboard_actions(GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t)
-	{
-		static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
-	}
-
 	Game::Game()
 		: _show_wires(false)
 		, _show_editor(false)
@@ -26,16 +21,21 @@ namespace lamp
 
 		this->_window.create(config);
 
-		glfwSetWindowUserPointer(_window, this);
-		glfwSetKeyCallback(_window, keyboard_actions);
+		glfwSetWindowUserPointer(static_cast<GLFWwindow*>(_window), this);
+		glfwSetKeyCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) {
+			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
+		});
+
+		glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t button, const int32_t  action, const int32_t) {
+			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, button);
+		});
 
 		if (config.context) {
 
 			Window::init();
 
-			gl::Renderer::set_clear_color(rgb(0.7f));
 			gl::Renderer::init();
-
+			gl::Renderer::clear(math::rgb(0.7f));
 		}
 
 		Random::seed();
@@ -95,7 +95,7 @@ namespace lamp
 				case GLFW_KEY_W: {
 					_show_wires = !_show_wires;
 
-					gl::Renderer::set_wire_mode(_show_wires);
+					gl::Renderer::wire_mode(_show_wires);
 					break;
 				}
 				default:

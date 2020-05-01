@@ -4,8 +4,9 @@
 
 namespace lamp::gl
 {
-	struct Program : public Object
+	class Program : public Object
 	{
+	public:
 		Program();
 
 		void create()  noexcept final;

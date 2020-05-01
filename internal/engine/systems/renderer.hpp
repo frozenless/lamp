@@ -14,7 +14,7 @@ namespace lamp::systems
 		void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
 
 	private:
-		gl::buffer_ptr material_buffer;
-		gl::buffer_ptr model_buffer;
+		gl::buffer_ptr _material_buffer;
+		gl::buffer_ptr _model_buffer;
 	};
 }

@@ -4,19 +4,16 @@
 
 namespace lamp::gl
 {
-	Layout::Layout()
-		: _size(0)
-	{
-	}
-
-	void Layout::update() const noexcept
+	void Layout::bind() const noexcept
 	{
 		uint32_t index = 0;
 
 		for (const auto& attribute : _attributes)
 		{
 			glVertexAttribPointer(index, attribute.count, attribute.type, GL_FALSE, _size, reinterpret_cast<void*>(attribute.offset));
-			glEnableVertexAttribArray(index++);
+			glEnableVertexAttribArray(index);
+
+			++index;
 		}
 	}
 }

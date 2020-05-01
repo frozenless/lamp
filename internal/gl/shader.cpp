@@ -28,7 +28,7 @@ namespace lamp::gl
 		assert(glIsShader(id) == GL_FALSE);
 	}
 
-	void Shader::set_source(const char* source) const
+	void Shader::source(const char* source) const
 	{
 		assert(source != nullptr);
 

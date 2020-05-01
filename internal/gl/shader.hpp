@@ -4,8 +4,9 @@
 
 namespace lamp::gl
 {
-	struct Shader
+	class Shader
 	{
+	public:
 		Shader();
 
 		void create(uint32_t type);
@@ -13,7 +14,7 @@ namespace lamp::gl
 		void compile() const noexcept;
 		void release() const noexcept;
 
-		void set_source(const char* source) const;
+		void source(const char* source) const;
 
 		#ifndef NDEBUG
 		void status() const;

@@ -9,7 +9,7 @@ namespace lamp::gl
 	{
 	}
 
-	void Buffer::bind_base(const uint32_t index) const
+	void Buffer::bind(const uint32_t index) const noexcept
 	{
 		assert(_target == GL_UNIFORM_BUFFER);
 

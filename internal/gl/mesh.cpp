@@ -4,8 +4,11 @@
 
 namespace lamp::gl
 {
-	Mesh::Mesh()
+	Mesh::Mesh(const uint32_t primitive)
 		: Object(Type::Mesh)
+        , _primitive(primitive)
+        , _type(GL_NONE)
+		, count(0)
 	{
 	}
 
@@ -16,7 +19,7 @@ namespace lamp::gl
 
 	void Mesh::draw() const noexcept
 	{
-		glDrawElements(primitive, count, type, nullptr);
+		glDrawElements(_primitive, count, _type, nullptr);
 	}
 
 	void Mesh::create() noexcept

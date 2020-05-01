@@ -8,15 +8,6 @@ option(BUILD_OPENGL3_DEMOS OFF)
 option(USE_GRAPHICAL_BENCHMARK OFF)
 option(INSTALL_LIBS OFF)
 
-option(ozz_build_fbx OFF)
-option(ozz_build_tools OFF)
-option(ozz_build_samples OFF)
-option(ozz_build_howtos OFF)
-
-option(RECASTNAVIGATION_DEMO OFF)
-option(RECASTNAVIGATION_TESTS OFF)
-option(RECASTNAVIGATION_EXAMPLES OFF)
-
 option(ENTITYX_BUILD_TESTING OFF)
 
 option(GLFW_BUILD_EXAMPLES OFF)
@@ -46,9 +37,6 @@ set(GLAD_API "gl=4.5")
 if (MSVC)
     set(USE_MSVC_RUNTIME_LIBRARY_DLL ON)
 endif()
-
-add_subdirectory(ozz-animation)
-add_subdirectory(recastnavigation)
 
 add_subdirectory(entityx)
 add_subdirectory(bullet3)

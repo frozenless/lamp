@@ -45,9 +45,9 @@ namespace lamp
 		_world->addCollisionObject(object);
 	}
 
-	void Physics::add_constraint(btTypedConstraint* constraint)
+	void Physics::add_constraint(btTypedConstraint* constraint, const bool disable_link)
 	{
-		_world->addConstraint(constraint);
+		_world->addConstraint(constraint, disable_link);
 	}
 
 	void Physics::update(const float delta_time)

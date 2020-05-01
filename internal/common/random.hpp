@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.hpp"
+#include "math/rgb.hpp"
 
 namespace lamp
 {
@@ -11,7 +12,7 @@ namespace lamp
 
 		template<typename T> static T linear(T min, T max);
 
-		static rgb  color();
-		static void seed();
+		static math::rgb color();
+		static void      seed();
 	};
 }

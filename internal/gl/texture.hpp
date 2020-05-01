@@ -14,8 +14,8 @@ namespace lamp::gl
 
 		void bind() const noexcept final;
 
-		void set_data(const uint8_t* data);
-		void set_sampler(uint32_t min_filter, uint32_t mag_filter) const;
+		void data(const uint8_t* data);
+		void sampler(uint32_t min_filter, uint32_t mag_filter) const;
 
 		static void activate(uint32_t index = 0);
 
@@ -24,7 +24,7 @@ namespace lamp::gl
 
 	private:
 		[[nodiscard]]
-		uint32_t _get_format() const noexcept;
+		uint32_t _format() const noexcept;
 		uint32_t _target;
 	};
 }

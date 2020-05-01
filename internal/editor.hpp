@@ -13,7 +13,7 @@ namespace lamp
 		static void release();
 
 		static void draw(components::light& light);
-		static void draw(const char* title, const material_ptr& material);
+		static void draw(const material_ptr& material);
 
 		static void begin();
 		static void end();

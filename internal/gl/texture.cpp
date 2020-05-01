@@ -18,7 +18,7 @@ namespace lamp::gl
 		glBindTexture(_target, id);
 	}
 
-	uint32_t Texture::_get_format() const noexcept
+	uint32_t Texture::_format() const noexcept
 	{
 		uint32_t format = GL_NONE;
 
@@ -32,17 +32,17 @@ namespace lamp::gl
 		return format;
 	}
 
-	void Texture::set_data(const uint8_t* data)
+	void Texture::data(const uint8_t* data)
 	{
 		assert(data  != nullptr);
 		assert(width != 0 && height != 0);
 
-		const int32_t format = _get_format();
+		const int32_t format = _format();
 
 		glTexImage2D(_target, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 	}
 
-	void Texture::set_sampler(const uint32_t min_filter, const uint32_t mag_filter) const
+	void Texture::sampler(const uint32_t min_filter, const uint32_t mag_filter) const
 	{
 		glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, min_filter);
 		glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, mag_filter);
