@@ -9,6 +9,7 @@ namespace lamp
 		auto buffer = std::make_shared<gl::Buffer>(type, usage);
 
 		buffer->create();
+        buffer->bind();
 		buffer->data(data);
 
 		return buffer;

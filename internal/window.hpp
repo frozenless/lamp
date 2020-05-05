@@ -27,11 +27,8 @@ namespace lamp
 
 			bool decorated;
 			bool fullscreen;
-
 			bool context;
 		};
-
-		Window() noexcept;
 
 		explicit operator GLFWwindow*() const;
 
@@ -47,6 +44,6 @@ namespace lamp
 		static void update() noexcept;
 
 	private:
-		GLFWwindow* _ptr;
+		GLFWwindow* _ptr = nullptr;
 	};
 }

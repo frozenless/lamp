@@ -5,11 +5,6 @@
 
 namespace lamp
 {
-	Window::Window() noexcept
-		: _ptr(nullptr)
-	{
-	}
-
 	void Window::create(const Config& config) noexcept
 	{
 		if (config.samples != 0)
@@ -22,7 +17,7 @@ namespace lamp
 			glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 		}
 
-		GLFWmonitor* monitor = config.fullscreen ? glfwGetPrimaryMonitor() : nullptr;
+		auto monitor = config.fullscreen ? glfwGetPrimaryMonitor() : nullptr;
 
 		_ptr = glfwCreateWindow(config.size.x, config.size.y, config.title, monitor, nullptr);
 		assert(_ptr != nullptr);

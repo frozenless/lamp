@@ -3,7 +3,7 @@
 namespace lamp
 {
 	Camera::Camera(const v2& size, const float fov)
-		: _view(1.0f)
+		: _view(glm::identity<m4>())
 		, _size(size)
 		, _fov(fov)
 	{
@@ -11,7 +11,9 @@ namespace lamp
 
 	void Camera::perspective()
 	{
-		_proj = glm::perspective(glm::radians(_fov), _size.x / _size.y, 0.1f, 100.0f);
+        const float aspect = _size.x / _size.y;
+
+		_proj = glm::perspective(glm::radians(_fov), aspect, 0.1f, 100.0f);
 	}
 
 	void Camera::ortho()
@@ -28,7 +30,7 @@ namespace lamp
 
 	void Camera::view(const v3& position)
 	{
-		_view = glm::translate(m4(1.0f), position);
+		_view = glm::translate(glm::identity<m4>(), position);
 	}
 
 	const m4& Camera::proj() const
@@ -45,8 +47,8 @@ namespace lamp
 	{
 		const m4 inv  = glm::inverse(_proj * _view);
 
-		const float x = (position.x / _size.x - 0.5f) * 2.0f;
-		const float y = (position.y / _size.y - 0.5f) * 2.0f;
+		const float x =  (position.x / _size.x - 0.5f) * 2.0f;
+		const float y = -(position.y / _size.y - 0.5f) * 2.0f;
 
 		v4 start = inv * v4(x, y,-1.0f, 1.0f); start /= start.w;
 		v4 end   = inv * v4(x, y, 0.0f, 1.0f);   end /= end.w;
