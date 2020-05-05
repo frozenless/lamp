@@ -18,8 +18,9 @@ namespace lamp::gl
 	{
 		this->bind();
 
-		if (buffer.second != 0) {
-            glBufferData(_target, sizeof(T) * buffer.second, buffer.first, _usage);
+		if (buffer.second != 0)
+		{
+            glNamedBufferData(id, sizeof(T) * buffer.second, buffer.first, _usage);
         }
 	}
 }
