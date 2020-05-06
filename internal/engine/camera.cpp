@@ -30,7 +30,7 @@ namespace lamp
 
 	void Camera::view(const v3& position)
 	{
-		_view = glm::translate(glm::identity<m4>(), position);
+		_view = glm::inverse(glm::translate(glm::identity<m4>(), position));
 	}
 
 	const m4& Camera::proj() const
