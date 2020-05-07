@@ -13,6 +13,8 @@ namespace lamp
 	class Game
 	{
 	public:
+	    Game() = default;
+
 		Game(Game&&)      = delete;
 		Game(const Game&) = delete;
 
