@@ -9,12 +9,6 @@ namespace lamp
 {
 	Timer Game::timer;
 
-	Game::Game()
-		: _show_wires(false)
-		, _show_editor(false)
-	{
-	}
-
 	void Game::run(const Window::Config& config)
 	{
 		Window::Api::init();
@@ -50,13 +44,18 @@ namespace lamp
 		{
 			Window::update();
 
-			const auto new_time   = Game::timer.elapsed();
-			const auto delta_time = new_time - old_time;
-			old_time = new_time;
+            const auto new_time   = Game::timer.elapsed();
+            const auto delta_time = new_time - old_time;
 
-			this->_physics.update(delta_time);
+            old_time = new_time;
 
-			this->update(delta_time);
+			if (_running)
+			{
+                this->_physics.update(delta_time);
+
+                this->update(delta_time);
+            }
+
 			this->draw();
 
 			if (config.context)
@@ -97,6 +96,11 @@ namespace lamp
 
 					gl::Renderer::wire_mode(_show_wires);
 					break;
+				}
+				case GLFW_KEY_P: {
+				    _running = !_running;
+
+                    break;
 				}
 				default:
 					break;

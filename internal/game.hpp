@@ -13,8 +13,6 @@ namespace lamp
 	class Game
 	{
 	public:
-		Game();
-
 		Game(Game&&)      = delete;
 		Game(const Game&) = delete;
 
@@ -38,12 +36,12 @@ namespace lamp
 		virtual void update(float) = 0;
 		virtual void draw()        = 0;
 
-		bool _show_editor;
-		bool _show_wires;
-
-		entityx::EntityX _ecs;
+		bool _show_editor = false;
+		bool _show_wires  = false;
+		bool _running     = true;
 
 		components::light _light;
+        entityx::EntityX  _ecs;
 
 		Physics _physics;
 		Window  _window;
