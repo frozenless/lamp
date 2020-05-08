@@ -106,9 +106,9 @@ namespace lamp
 					break;
 				}
 				case GLFW_KEY_W: {
-					_show_wires = !_show_wires;
+                    _wire_mode = !_wire_mode;
 
-					gl::Renderer::wire_mode(_show_wires);
+					gl::Renderer::wire_mode(_wire_mode);
 					break;
 				}
 				case GLFW_KEY_P: {
@@ -116,7 +116,7 @@ namespace lamp
                     break;
 				}
 				default:
-					break;
+				    break;
 			}
 		}
 	}

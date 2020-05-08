@@ -37,10 +37,8 @@ namespace lamp
     private:
         void init_callbacks() noexcept;
 
-        bool _show_editor = false;
-        bool _show_wires  = false;
-
-        bool _running = true;
+        bool _wire_mode = false;
+        bool _running   = true;
 
 	protected:
 		virtual void init()    = 0;
@@ -48,6 +46,8 @@ namespace lamp
 
 		virtual void update(float) = 0;
 		virtual void draw()        = 0;
+
+        bool _show_editor = false;
 
 		components::light _light;
         entityx::EntityX  _ecs;
