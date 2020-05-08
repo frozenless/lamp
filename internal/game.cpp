@@ -67,11 +67,9 @@ namespace lamp
 		Window::Api::release();
 	}
 
-    void Game::init_callbacks()
+    void Game::init_callbacks() noexcept
     {
 	    auto window = static_cast<GLFWwindow*>(_window);
-
-        glfwSetWindowUserPointer(window, this);
 
         glfwSetKeyCallback(window, [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) noexcept {
             static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
@@ -84,6 +82,8 @@ namespace lamp
         glfwSetCursorPosCallback(window, [](GLFWwindow* ptr, const double x, const double y) noexcept {
             static_cast<Game*>(glfwGetWindowUserPointer(ptr))->mouse({ x, y });
         });
+
+        glfwSetWindowUserPointer(window, this);
     }
 
 	void Game::input(const int32_t action, const int32_t key)

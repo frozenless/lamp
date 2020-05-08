@@ -34,8 +34,13 @@ namespace lamp
 
 		static Timer timer;
 
-	private:
-        void init_callbacks();
+    private:
+        void init_callbacks() noexcept;
+
+        bool _show_editor = false;
+        bool _show_wires  = false;
+
+        bool _running = true;
 
 	protected:
 		virtual void init()    = 0;
@@ -43,10 +48,6 @@ namespace lamp
 
 		virtual void update(float) = 0;
 		virtual void draw()        = 0;
-
-		bool _show_editor = false;
-		bool _show_wires  = false;
-		bool _running     = true;
 
 		components::light _light;
         entityx::EntityX  _ecs;
