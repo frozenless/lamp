@@ -34,6 +34,9 @@ namespace lamp
 
 		static Timer timer;
 
+	private:
+        void init_callbacks();
+
 	protected:
 		virtual void init()    = 0;
 		virtual void release() = 0;

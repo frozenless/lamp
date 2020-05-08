@@ -15,18 +15,7 @@ namespace lamp
 
 		this->_window.create(config, size);
 
-		glfwSetWindowUserPointer(static_cast<GLFWwindow*>(_window), this);
-		glfwSetKeyCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) noexcept {
-			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
-		});
-
-		glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t button, const int32_t action, const int32_t) noexcept {
-			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, button);
-		});
-
-        glfwSetCursorPosCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const double x, const double y) noexcept {
-            static_cast<Game *>(glfwGetWindowUserPointer(ptr))->mouse({x, y});
-        });
+		this->init_callbacks();
 
 		if (config.context) {
 
@@ -77,6 +66,25 @@ namespace lamp
 
 		Window::Api::release();
 	}
+
+    void Game::init_callbacks()
+    {
+	    auto window = static_cast<GLFWwindow*>(_window);
+
+        glfwSetWindowUserPointer(window, this);
+
+        glfwSetKeyCallback(window, [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) noexcept {
+            static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
+        });
+
+        glfwSetMouseButtonCallback(window, [](GLFWwindow* ptr, const int32_t button, const int32_t action, const int32_t) noexcept {
+            static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, button);
+        });
+
+        glfwSetCursorPosCallback(window, [](GLFWwindow* ptr, const double x, const double y) noexcept {
+            static_cast<Game*>(glfwGetWindowUserPointer(ptr))->mouse({ x, y });
+        });
+    }
 
 	void Game::input(const int32_t action, const int32_t key)
 	{
