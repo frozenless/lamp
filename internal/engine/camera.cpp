@@ -16,6 +16,12 @@ namespace lamp
 	{
 	}
 
+    void Camera::init(const v2 &size, float fov)
+    {
+        _size = size;
+        _fov  = fov;
+    }
+
 	void Camera::update()
 	{
         if (_type == Type::Perspective)

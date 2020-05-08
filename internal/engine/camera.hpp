@@ -14,6 +14,8 @@ namespace lamp
 	    Camera();
 		Camera(Type type, const v2& size, float fov);
 
+        void init(const v2& size, float fov = 60.0f);
+
 		void look(const v3& position, const v3& target);
 		void update();
 

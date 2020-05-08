@@ -38,7 +38,7 @@ namespace lamp
 
 		Random::seed();
 
-        this->_camera.size(size);
+        this->_camera.init(size);
 		this->_physics.init();
 
 		this->init();
