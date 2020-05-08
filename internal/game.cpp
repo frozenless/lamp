@@ -9,20 +9,24 @@ namespace lamp
 {
 	Timer Game::timer;
 
-	void Game::run(const Window::Config& config)
+	void Game::run(const Window::Config& config, const iv2& size)
 	{
 		Window::Api::init();
 
-		this->_window.create(config);
+		this->_window.create(config, size);
 
 		glfwSetWindowUserPointer(static_cast<GLFWwindow*>(_window), this);
-		glfwSetKeyCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) {
+		glfwSetKeyCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) noexcept {
 			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
 		});
 
-		glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t button, const int32_t  action, const int32_t) {
+		glfwSetMouseButtonCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const int32_t button, const int32_t action, const int32_t) noexcept {
 			static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, button);
 		});
+
+        glfwSetCursorPosCallback(static_cast<GLFWwindow*>(_window), [](GLFWwindow* ptr, const double x, const double y) noexcept {
+            static_cast<Game *>(glfwGetWindowUserPointer(ptr))->mouse({x, y});
+        });
 
 		if (config.context) {
 
@@ -34,7 +38,9 @@ namespace lamp
 
 		Random::seed();
 
+        this->_camera.size(size);
 		this->_physics.init();
+
 		this->init();
 
 		this->_ecs.systems.configure();
@@ -99,7 +105,6 @@ namespace lamp
 				}
 				case GLFW_KEY_P: {
 				    _running = !_running;
-
                     break;
 				}
 				default:
@@ -108,8 +113,18 @@ namespace lamp
 		}
 	}
 
+    void Game::mouse(const v2& position)
+    {
+        _mouse = position;
+    }
+
 	Physics& Game::physics()
 	{
 		return _physics;
 	}
+
+    Camera& Game::camera()
+    {
+        return _camera;
+    }
 }

@@ -2,26 +2,35 @@
 
 namespace lamp
 {
-	Camera::Camera(const v2& size, const float fov)
+    Camera::Camera()
+        : _view(glm::identity<m4>())
+        , _type(Type::Perspective)
+    {
+    }
+
+	Camera::Camera(const Type type, const v2& size, const float fov)
 		: _view(glm::identity<m4>())
 		, _size(size)
+		, _type(type)
 		, _fov(fov)
 	{
 	}
 
-	void Camera::perspective()
+	void Camera::update()
 	{
-        const float aspect = _size.x / _size.y;
+        if (_type == Type::Perspective)
+        {
+            const float aspect = _size.x / _size.y;
 
-		_proj = glm::perspective(glm::radians(_fov), aspect, 0.1f, 100.0f);
+            _proj = glm::perspective(glm::radians(_fov), aspect, 0.1f, 100.0f);
+        }
+	    else if (_type == Type::Orthographic)
+	    {
+            _proj = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
+        }
 	}
 
-	void Camera::ortho()
-	{
-		_proj = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
-	}
-
-	void Camera::look_at(const v3& position, const v3& target)
+	void Camera::look(const v3& position, const v3& target)
 	{
 		constexpr v3 up(0.0f, 1.0f, 0.0f);
 
@@ -43,7 +52,7 @@ namespace lamp
 		return _view;
 	}
 
-	Ray Camera::screen_to_world(const v2& position) const
+	Ray Camera::to_world(const v2& position) const
 	{
 		const m4 inv  = glm::inverse(_proj * _view);
 
@@ -60,4 +69,9 @@ namespace lamp
 	{
 		_size = size;
 	}
+
+    void Camera::fov(const float value)
+    {
+        _fov = value;
+    }
 }

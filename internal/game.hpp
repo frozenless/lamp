@@ -3,6 +3,7 @@
 #include <entityx/entityx.h>
 
 #include "engine/components/light.hpp"
+#include "engine/camera.hpp"
 
 #include "common/timer.hpp"
 #include "physics.hpp"
@@ -25,9 +26,11 @@ namespace lamp
 
 		virtual void input(int32_t action, int32_t key);
 
-		void run(const Window::Config& config);
+		void run(const Window::Config& config, const iv2& size);
+        void mouse(const v2& position);
 
 		[[nodiscard]] Physics& physics();
+		[[nodiscard]] Camera&  camera();
 
 		static Timer timer;
 
@@ -47,5 +50,8 @@ namespace lamp
 
 		Physics _physics;
 		Window  _window;
+
+        Camera _camera;
+        v2     _mouse;
 	};
 }
