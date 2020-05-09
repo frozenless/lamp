@@ -35,6 +35,7 @@ namespace lamp
 		static Timer timer;
 
     private:
+        void init_debug()     noexcept;
         void init_callbacks() noexcept;
 
         bool _wire_mode = false;

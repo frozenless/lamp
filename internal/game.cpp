@@ -1,5 +1,10 @@
 #include "game.hpp"
+#include "assets.inl"
+
 #include "engine/random.inl"
+
+#include "engine/components/transform.hpp"
+#include "engine/components/renderer.hpp"
 
 #include "gl/renderer.hpp"
 
@@ -30,6 +35,7 @@ namespace lamp
         this->_camera.init(size);
 		this->_physics.init();
 
+		this->init_debug();
 		this->init();
 
 		this->_ecs.systems.configure();
@@ -66,6 +72,27 @@ namespace lamp
 
 		Window::Api::release();
 	}
+
+    void Game::init_debug() noexcept
+    {
+        gl::Layout layout;
+        layout.add<float>(3);
+        layout.add<float>(3);
+
+        auto vertex   = Assets::create("shaders/glsl/debug.vert", GL_VERTEX_SHADER);
+        auto fragment = Assets::create("shaders/glsl/debug.frag", GL_FRAGMENT_SHADER);
+
+        auto debug    = _ecs.entities.create();
+        auto renderer = debug.assign<components::renderer>();
+
+        debug.assign<components::transform>()->world = glm::identity<m4>();
+
+        renderer->mesh     = Assets::create(layout, GL_LINES, GL_DYNAMIC_DRAW);
+        renderer->shader   = Assets::create(vertex, fragment);
+        renderer->material = nullptr;
+
+        _physics.init_renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe);
+    }
 
     void Game::init_callbacks() noexcept
     {
