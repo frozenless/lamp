@@ -1,15 +1,9 @@
 #include "physics.hpp"
 
 #include "physics/renderer.hpp"
-#include "physics/utils.hpp"
 
 namespace lamp
 {
-	Physics::Physics()
-		: _show_debug(false)
-	{
-	}
-
 	void Physics::init()
 	{
 		auto config = new btDefaultCollisionConfiguration();
@@ -18,16 +12,19 @@ namespace lamp
 				new btCollisionDispatcher(config), new btDbvtBroadphase(),
 				new btSequentialImpulseConstraintSolver(), config);
 
-		_world->setGravity(btVector3(0, -9.8f, 0));
+		_world->setGravity({ 0, -9.8f, 0 });
 	}
 
-	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray)
+	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray, float distance)
 	{
-		const v3 end = ray.origin + ray.direction * 100.0f;
+		const v3 end = ray.origin +
+		               ray.direction * distance;
 
-		btCollisionWorld::ClosestRayResultCallback hit(utils::from(ray.origin), utils::from(end));
-		_world->rayTest(utils::from(ray.origin), utils::from(end), hit);
+		btCollisionWorld::ClosestRayResultCallback hit({ ray.origin.x, ray.origin.y, ray.origin.z },
+		                                               { end.x, end.y, end.z });
 
+		_world->rayTest({ ray.origin.x, ray.origin.y, ray.origin.z },
+		                { end.x, end.y, end.z }, hit);
 		return hit;
 	}
 
@@ -38,7 +35,8 @@ namespace lamp
 
 	void Physics::add_collision(btCollisionObject* object, const uint32_t flag)
 	{
-		if (flag) {
+		if (flag)
+		{
 			object->setCollisionFlags(flag);
 		}
 
@@ -50,9 +48,9 @@ namespace lamp
 		_world->addConstraint(constraint, disable_link);
 	}
 
-	void Physics::update(const float delta_time)
+	void Physics::update(const float delta_time, int32_t steps)
 	{
-		_world->stepSimulation(delta_time, 10);
+		_world->stepSimulation(delta_time, steps);
 
 		if (_show_debug)
 		{

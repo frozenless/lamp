@@ -16,8 +16,8 @@ namespace lamp::debug
     void Renderer::drawLine(const btVector3& a, const btVector3& b, const btVector3& color)
     {
         _vertices.insert(std::end(_vertices), {
-            v3(a.x(), a.y(), a.z()), v3(color.x(), color.y(), color.z()),
-            v3(b.x(), b.y(), b.z()), v3(color.x(), color.y(), color.z())
+            { a.x(), a.y(), a.z() }, { color.x(), color.y(), color.z() },
+            { b.x(), b.y(), b.z() }, { color.x(), color.y(), color.z() }
         });
 
         _indices.emplace_back(_index++);

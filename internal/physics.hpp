@@ -3,14 +3,13 @@
 #include "physics/ray.hpp"
 
 #include <btBulletDynamicsCommon.h>
-#include <BulletCollision/NarrowPhaseCollision/btRaycastCallback.h>
 
 namespace lamp
 {
 	class Physics
 	{
 	public:
-		Physics();
+	    Physics() = default;
 
 		Physics(Physics&&)      = delete;
 		Physics(const Physics&) = delete;
@@ -26,14 +25,14 @@ namespace lamp
 
 		void add_constraint(btTypedConstraint* constraint, bool disable_link);
 
-		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray);
+		btCollisionWorld::ClosestRayResultCallback ray(const Ray& ray, float distance = 100.0f);
 
-		void update(float delta_time);
+		void update(float delta_time, int32_t steps = 10);
 		void debug();
 
 	private:
 		std::unique_ptr<btDynamicsWorld> _world;
 
-		bool _show_debug;
+		bool _show_debug = false;
 	};
 }

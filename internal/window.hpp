@@ -21,21 +21,14 @@ namespace lamp
 		struct Config
 		{
 			const char* title;
-
-            iv2     size;
             uint8_t samples;
 
 			bool decorated;
 			bool fullscreen;
-
 			bool context;
 		};
 
-		Window() noexcept;
-
-		explicit operator GLFWwindow*() const;
-
-		void create(const Config& config) noexcept;
+		void create(const Config& config, const iv2& size) noexcept;
 
 		void close() const noexcept;
 		void swap()  const noexcept;
@@ -46,7 +39,9 @@ namespace lamp
 		static void init()   noexcept;
 		static void update() noexcept;
 
+        explicit operator GLFWwindow*() const;
+
 	private:
-		GLFWwindow* _ptr;
+		GLFWwindow* _ptr = nullptr;
 	};
 }

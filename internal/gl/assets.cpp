@@ -84,7 +84,6 @@ namespace lamp
                                     &texture->height, &texture->channels, 0);
 		texture->create();
 		texture->bind();
-
 		texture->data(data);
 
 		stbi_image_free(data);

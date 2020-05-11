@@ -11,6 +11,6 @@ namespace lamp
 	{
 		const auto color = Random::linear(glm::zero<v3>(), glm::one<v3>());
 
-		return math::rgb(color.r, color.g, color.b);
+		return { color.r, color.g, color.b };
 	}
 }
