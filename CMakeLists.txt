@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(Lamp VERSION 0.0.5 LANGUAGES CXX)
+project(Lamp VERSION 0.0.6 LANGUAGES CXX)
 
 add_subdirectory(external)
 add_library(${PROJECT_NAME})
@@ -47,24 +47,25 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/game.cpp)
 
 target_compile_definitions(${PROJECT_NAME}
-PUBLIC  IMGUI_DISABLE_OBSOLETE_FUNCTIONS
+PRIVATE IMGUI_DISABLE_OBSOLETE_FUNCTIONS
         IMGUI_IMPL_OPENGL_LOADER_GLAD
+        STB_IMAGE_IMPLEMENTATION
         GLFW_INCLUDE_NONE
-PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
 
 #target_compile_options(${PROJECT_NAME}
 #PUBLIC -Wextra -Wall) #-Werror -fno-exceptions
 
 target_link_libraries(${PROJECT_NAME}
-PUBLIC  entityx BulletDynamics BulletCollision LinearMath glfw glad glm
-PRIVATE assimp)
+PUBLIC  BulletDynamics BulletCollision entityx glfw glad glm
+PRIVATE LinearMath assimp)
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_compile_features(${PROJECT_NAME}
+PUBLIC cxx_std_17)
 
 target_include_directories(${PROJECT_NAME}
-PRIVATE external/stb
+PRIVATE external/imgui/examples
+        external/stb
 PUBLIC  external/bullet3/src
-        external/imgui/examples
         external/imgui
         internal)
