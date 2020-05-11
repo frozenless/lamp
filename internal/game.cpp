@@ -20,7 +20,7 @@ namespace lamp
 
 		this->_window.create(config, size);
 
-		this->init_callbacks();
+		init_callbacks();
 
 		if (config.context) {
 
@@ -32,11 +32,11 @@ namespace lamp
 
 		Random::seed();
 
-        this->_camera.init(size);
-		this->_physics.init();
+        _camera.init(size);
+		_physics.init();
 
-		this->init_debug();
-		this->init();
+		init_debug();
+		init();
 
 		this->_ecs.systems.configure();
 
@@ -54,14 +54,14 @@ namespace lamp
 			{
                 this->_physics.update(delta_time);
 
-                this->update(delta_time);
+                update(delta_time);
             }
 
 			this->draw();
 
 			if (config.context)
 			{
-				this->_window.swap();
+                this->_window.swap();
 			}
 		}
 		while (!_window.closing());
