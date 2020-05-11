@@ -51,7 +51,7 @@ namespace lamp
 	{
 		ImGui::Begin("Light", nullptr, panel_flag);
 
-		ImGui::InputFloat3("Position", glm::value_ptr(light.position), 3);
+		ImGui::InputFloat3("Position", glm::value_ptr(light.position));
 
 		ImGui::ColorEdit3("Color",    static_cast<float*>(light.color), color_flag);
 		ImGui::InputFloat("Ambient",  &light.ambient,  0.1f);

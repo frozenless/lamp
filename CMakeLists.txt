@@ -47,7 +47,8 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/game.cpp)
 
 target_compile_definitions(${PROJECT_NAME}
-PUBLIC  IMGUI_IMPL_OPENGL_LOADER_GLAD
+PUBLIC  IMGUI_DISABLE_OBSOLETE_FUNCTIONS
+        IMGUI_IMPL_OPENGL_LOADER_GLAD
         GLFW_INCLUDE_NONE
 PRIVATE STB_IMAGE_IMPLEMENTATION
         B3_NO_PROFILE)
