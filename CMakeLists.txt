@@ -53,9 +53,6 @@ PRIVATE IMGUI_DISABLE_OBSOLETE_FUNCTIONS
         GLFW_INCLUDE_NONE
         B3_NO_PROFILE)
 
-#target_compile_options(${PROJECT_NAME}
-#PUBLIC -Wextra -Wall) #-Werror -fno-exceptions
-
 target_link_libraries(${PROJECT_NAME}
 PUBLIC  BulletDynamics BulletCollision entityx glfw glad glm
 PRIVATE LinearMath assimp)
