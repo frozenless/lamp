@@ -11,7 +11,7 @@
 
 namespace lamp::systems
 {
-	void Renderer::init()
+    void Renderer::configure(entityx::EventManager&)
 	{
         _model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
         _material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);

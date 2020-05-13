@@ -36,6 +36,9 @@ namespace lamp
 		v2 _size;
 
         float _fov = 60.0f;
-        Type  _type;
+        float _near;
+        float _far;
+
+        Type _type;
     };
 }

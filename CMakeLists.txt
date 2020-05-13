@@ -15,6 +15,8 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/renderer.cpp
         internal/engine/systems/physics.cpp
         internal/engine/systems/transform.cpp
+        internal/engine/systems/camera.cpp
+
         internal/engine/camera.cpp
         internal/engine/mesh.cpp
 
