@@ -1,5 +1,4 @@
 #include "physics.hpp"
-
 #include "physics/renderer.hpp"
 
 namespace lamp
@@ -58,7 +57,7 @@ namespace lamp
 		}
 	}
 
-	void Physics::init_renderer(const mesh_ptr& mesh, const uint32_t mode)
+	void Physics::init_renderer(const std::shared_ptr<Mesh>& mesh, const uint32_t mode)
 	{
 		_world->setDebugDrawer(new debug::Renderer(mesh, mode));
 	}

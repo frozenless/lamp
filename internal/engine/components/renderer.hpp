@@ -1,6 +1,7 @@
 #pragma once
 
-#include "types.hpp"
+#include "engine/material.hpp"
+#include "engine/mesh.hpp"
 
 namespace lamp::components
 {
@@ -8,7 +9,7 @@ namespace lamp::components
 	{
         gl::program_ptr shader;
 
-		material_ptr material;
-        mesh_ptr     mesh;
+		std::shared_ptr<Material> material;
+        std::shared_ptr<Mesh>     mesh;
 	};
 }

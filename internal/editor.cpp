@@ -61,7 +61,7 @@ namespace lamp
 		ImGui::End();
 	}
 
-	void Editor::draw(const material_ptr& material)
+	void Editor::draw(const std::shared_ptr<Material>& material)
 	{
 		ImGui::Begin("Material", nullptr, panel_flag);
 

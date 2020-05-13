@@ -17,8 +17,8 @@ namespace lamp
 		return buffer;
 	}
 
-    template<typename T, typename U> mesh_ptr Assets::create(const std::pair<const T*, size_t>& vertices,
-                                  const std::pair<const U*, size_t>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
+    template<typename T, typename U> std::shared_ptr<Mesh> Assets::create(const std::pair<const T*, size_t>& vertices,
+                                               const std::pair<const U*, size_t>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
 
         auto  mesh  = std::make_shared<Mesh>(primitive);
         mesh->count = indices.second;
@@ -36,15 +36,14 @@ namespace lamp
         return mesh;
     }
 
-    template<typename T, std::size_t S, typename U, std::size_t V> mesh_ptr Assets::create(const std::array<T, S>& vertices,
-                                                              const std::array<U, V>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
-
+    template<typename T, std::size_t S, typename U, std::size_t V> std::shared_ptr<Mesh> Assets::create(const std::array<T, S>& vertices,
+                                                                           const std::array<U, V>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
         return create(std::make_pair(vertices.data(), vertices.size()),
                       std::make_pair(indices.data(),  indices.size()), layout, primitive, usage);
     }
 
-	template<typename T, typename U> mesh_ptr Assets::create(const std::vector<T>& vertices,
-	                              const std::vector<U>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
+	template<typename T, typename U> std::shared_ptr<Mesh> Assets::create(const std::vector<T>& vertices,
+	                                           const std::vector<U>& indices, const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
 
         return create(std::make_pair(vertices.data(), vertices.size()),
                       std::make_pair(indices.data(),  indices.size()), layout, primitive, usage);

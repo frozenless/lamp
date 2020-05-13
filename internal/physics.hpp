@@ -1,6 +1,7 @@
 #pragma once
 
 #include "physics/ray.hpp"
+#include "engine/mesh.hpp"
 
 #include <btBulletDynamicsCommon.h>
 
@@ -18,7 +19,7 @@ namespace lamp
 		Physics& operator=(const Physics&) = delete;
 
 		void init();
-		void init_renderer(const mesh_ptr& mesh, uint32_t mode);
+		void init_renderer(const std::shared_ptr<Mesh>& mesh, uint32_t mode);
 		
 		void add_rigidbody(btRigidBody* body);
 		void add_collision(btCollisionObject* object, uint32_t flag = 0);

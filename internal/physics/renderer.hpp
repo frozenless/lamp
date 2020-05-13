@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.hpp"
+#include "engine/mesh.hpp"
 
 #include <LinearMath/btIDebugDraw.h>
 
@@ -9,7 +9,7 @@ namespace lamp::debug
     class Renderer : public btIDebugDraw
     {
     public:
-        Renderer(mesh_ptr mesh, uint32_t mode);
+        Renderer(std::shared_ptr<Mesh> mesh, uint32_t mode);
 
         void clearLines() final;
         void flushLines() final;
@@ -29,7 +29,7 @@ namespace lamp::debug
         std::vector<v3>       _vertices;
         std::vector<uint32_t> _indices;
 
-	    mesh_ptr _mesh;
+        std::shared_ptr<Mesh> _mesh;
 
 	    int32_t _index;
 	    int32_t _mode;

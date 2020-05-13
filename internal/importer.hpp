@@ -1,12 +1,12 @@
 #pragma once
 
-#include "types.hpp"
+#include "engine/mesh.hpp"
 
 namespace lamp
 {
 	class Importer
 	{
 	public:
-		static mesh_ptr import(const char* path, bool drop_normals = false);
+		static std::shared_ptr<Mesh> import(const char* path, bool drop_normals = false);
 	};
 }

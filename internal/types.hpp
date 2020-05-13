@@ -18,11 +18,6 @@ namespace lamp
 	using m4   = glm::mat4;
 	using quat = glm::quat;
 
-	using rgba = glm::vec4;
-
-	using material_ptr = std::shared_ptr<Material>;
-    using mesh_ptr     = std::shared_ptr<Mesh>;
-
 	namespace gl
 	{
 	    namespace vertex

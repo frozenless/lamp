@@ -1,23 +1,17 @@
 #pragma once
 
-namespace lamp
+namespace lamp::gl
 {
-	struct Material;
-    struct Mesh;
+    namespace vertex
+    {
+        class Array;
+    }
 
-	namespace gl
-	{
-	    namespace vertex
-        {
-	        class Array;
-        }
+    class Object;
 
-		class Object;
+    class Shader;
+    class Program;
 
-		class Shader;
-		class Program;
-
-		class Texture;
-		class Buffer;
-	}
+    class Texture;
+    class Buffer;
 }

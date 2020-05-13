@@ -5,8 +5,6 @@
 #include "engine/components/renderer.hpp"
 #include "engine/components/transform.hpp"
 
-#include "engine/material.hpp"
-
 #include "gl/program.hpp"
 #include "gl/texture.hpp"
 

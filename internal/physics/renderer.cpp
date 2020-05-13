@@ -6,7 +6,7 @@
 
 namespace lamp::debug
 {
-    Renderer::Renderer(mesh_ptr mesh, const uint32_t mode)
+    Renderer::Renderer(std::shared_ptr<Mesh> mesh, const uint32_t mode)
         : _mesh(std::move(mesh))
 	    , _mode(mode)
         , _index(0)
