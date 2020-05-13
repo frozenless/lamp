@@ -15,7 +15,7 @@ namespace lamp
 		_world->setGravity({ 0, -9.8f, 0 });
 	}
 
-	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray, float distance)
+	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray, const float distance)
 	{
 		const v3 end = ray.origin +
 		               ray.direction * distance;
@@ -48,7 +48,7 @@ namespace lamp
 		_world->addConstraint(constraint, disable_link);
 	}
 
-	void Physics::update(const float delta_time, int32_t steps)
+	void Physics::update(const float delta_time, const int32_t steps)
 	{
 		_world->stepSimulation(delta_time, steps);
 
@@ -58,7 +58,7 @@ namespace lamp
 		}
 	}
 
-	void Physics::init_renderer(const gl::mesh_ptr& mesh, const uint32_t mode)
+	void Physics::init_renderer(const mesh_ptr& mesh, const uint32_t mode)
 	{
 		_world->setDebugDrawer(new debug::Renderer(mesh, mode));
 	}

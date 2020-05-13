@@ -9,8 +9,10 @@
 
 namespace lamp
 {
-	gl::mesh_ptr Importer::import(const char* path, const bool drop_normals)
+	mesh_ptr Importer::import(const char* path, const bool drop_normals)
 	{
+	    assert(path != nullptr);
+
 		Assimp::Importer importer;
 		uint32_t flag = aiProcess_Triangulate | aiProcess_JoinIdenticalVertices;
 

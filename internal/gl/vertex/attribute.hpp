@@ -2,7 +2,7 @@
 
 #include "types.hpp"
 
-namespace lamp::gl
+namespace lamp::gl::vertex
 {
 	struct attribute
 	{

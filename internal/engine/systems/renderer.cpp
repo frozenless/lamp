@@ -40,7 +40,7 @@ namespace lamp::systems
 
 			if (renderer.mesh) {
 
-				Engine::bind(renderer.mesh);
+				Engine::bind(renderer.mesh->vao);
 
 				const std::array<m4, 1> uniforms = { transform.world };
 				_model_buffer->data(uniforms);

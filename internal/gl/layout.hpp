@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gl/attribute.hpp"
+#include "vertex/attribute.hpp"
 
 namespace lamp::gl
 {
@@ -11,7 +11,7 @@ namespace lamp::gl
 			void bind() const noexcept;
 
 	private:
-		std::vector<attribute> _attributes;
+		std::vector<vertex::attribute> _attributes;
 
 		uint32_t _size = 0;
 	};

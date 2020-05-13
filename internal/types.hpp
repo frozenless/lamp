@@ -21,12 +21,18 @@ namespace lamp
 	using rgba = glm::vec4;
 
 	using material_ptr = std::shared_ptr<Material>;
+    using mesh_ptr     = std::shared_ptr<Mesh>;
 
 	namespace gl
 	{
+	    namespace vertex
+        {
+	        using array_ptr = std::shared_ptr<Array>;
+        }
+
 		using object_ptr = std::shared_ptr<Object>;
 		using buffer_ptr = std::shared_ptr<Buffer>;
-		using mesh_ptr   = std::shared_ptr<Mesh>;
+
 		using shader_ptr = std::shared_ptr<Shader>;
 
 		using program_ptr = std::shared_ptr<Program>;

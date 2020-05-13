@@ -2,7 +2,7 @@
 
 #include "mesh.hpp"
 
-namespace lamp::gl
+namespace lamp
 {
     template<typename U> constexpr void Mesh::type()
     {

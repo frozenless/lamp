@@ -1,4 +1,4 @@
-#include "engine/random.inl"
+#include "random.hpp"
 
 namespace lamp
 {

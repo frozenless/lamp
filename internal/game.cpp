@@ -1,7 +1,7 @@
 #include "game.hpp"
 #include "assets.inl"
 
-#include "engine/random.inl"
+#include "common/random.hpp"
 
 #include "engine/components/transform.hpp"
 #include "engine/components/renderer.hpp"

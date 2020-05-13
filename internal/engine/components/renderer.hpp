@@ -6,9 +6,9 @@ namespace lamp::components
 {
 	struct renderer
 	{
-		material_ptr material;
+        gl::program_ptr shader;
 
-		gl::program_ptr shader;
-		gl::mesh_ptr    mesh;
+		material_ptr material;
+        mesh_ptr     mesh;
 	};
 }

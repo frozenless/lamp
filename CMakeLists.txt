@@ -16,6 +16,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/physics.cpp
         internal/engine/systems/transform.cpp
         internal/engine/camera.cpp
+        internal/engine/mesh.cpp
 
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
@@ -27,12 +28,12 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
 
         internal/math/rgb.cpp
 
+        internal/gl/vertex/attribute.cpp
+        internal/gl/vertex/array.cpp
         internal/gl/object.cpp
-        internal/gl/mesh.cpp
         internal/gl/buffer.cpp
         internal/gl/shader.cpp
         internal/gl/program.cpp
-        internal/gl/attribute.cpp
         internal/gl/texture.cpp
         internal/gl/renderer.cpp
         internal/gl/assets.cpp

@@ -12,7 +12,7 @@ namespace lamp::gl
 			Shader,
 			Texture,
 			Buffer,
-			Mesh
+            VertexArray
 		};
 
 		explicit Object(Type type);
