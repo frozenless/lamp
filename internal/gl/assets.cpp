@@ -50,7 +50,7 @@ namespace lamp
 		return program;
 	}
 
-	gl::mesh_ptr Assets::create(const v2& size)
+	mesh_ptr Assets::create(const v2& size)
 	{
         const std::array<v2, 8> vertices =
         {
@@ -112,7 +112,7 @@ namespace lamp
 		return buffer;
 	}
 
-    gl::mesh_ptr Assets::create(const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
+    mesh_ptr Assets::create(const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
 
         return create<std::any, uint32_t>(std::make_pair(nullptr, 0),
                                           std::make_pair(nullptr, 0), layout, primitive, usage);
