@@ -1,6 +1,5 @@
 #include "gl/assets.hpp"
 #include "gl/buffer.inl"
-#include "gl/vertex/array.hpp"
 
 #include "engine/mesh.inl"
 

@@ -39,7 +39,6 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/gl/assets.cpp
         internal/gl/layout.cpp
 
-        internal/profiler.cpp
         internal/engine.cpp
         internal/editor.cpp
         internal/physics.cpp

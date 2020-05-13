@@ -1,8 +1,8 @@
 #pragma once
 
-#include <entityx/entityx.h>
-
 #include "types.hpp"
+
+#include <entityx/entityx.h>
 
 namespace lamp::systems
 {

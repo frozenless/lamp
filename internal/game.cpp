@@ -6,6 +6,7 @@
 #include "engine/components/transform.hpp"
 #include "engine/components/renderer.hpp"
 
+#include "physics/renderer.hpp"
 #include "gl/renderer.hpp"
 
 #include <GLFW/glfw3.h>
@@ -91,7 +92,7 @@ namespace lamp
         renderer->shader   = Assets::create(vertex, fragment);
         renderer->material = nullptr;
 
-        _physics.init_renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe);
+        _physics.renderer(new debug::Renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe));
     }
 
     void Game::init_callbacks() noexcept

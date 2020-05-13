@@ -1,6 +1,5 @@
 #pragma once
 
-#include "gl/object.hpp"
 #include "gl/vertex/array.hpp"
 
 namespace lamp

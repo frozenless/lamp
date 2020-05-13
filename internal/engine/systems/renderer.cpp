@@ -1,12 +1,13 @@
 #include "renderer.hpp"
-#include "engine.hpp"
-#include "assets.inl"
 
 #include "engine/components/renderer.hpp"
 #include "engine/components/transform.hpp"
 
 #include "gl/program.hpp"
 #include "gl/texture.hpp"
+
+#include "assets.inl"
+#include "engine.hpp"
 
 namespace lamp::systems
 {

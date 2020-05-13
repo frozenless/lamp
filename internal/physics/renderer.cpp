@@ -1,7 +1,5 @@
 #include "renderer.hpp"
-#include "engine.hpp"
 
-#include "engine/mesh.hpp"
 #include "gl/buffer.inl"
 
 namespace lamp::debug

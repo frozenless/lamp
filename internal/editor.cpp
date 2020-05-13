@@ -1,11 +1,11 @@
 #include "editor.hpp"
-#include "engine/material.hpp"
 
 #include "gl/texture.hpp"
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
+
 #include <glm/gtc/type_ptr.hpp>
 
 namespace lamp

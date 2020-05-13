@@ -1,5 +1,4 @@
 #include "layout.hpp"
-#include "types.hpp"
 
 #include "engine/mesh.hpp"
 

@@ -30,7 +30,7 @@ namespace lamp
 
             _proj = glm::perspective(glm::radians(_fov), aspect, 0.1f, 100.0f);
         }
-	    else if (_type == Type::Orthographic)
+        else if (_type == Type::Orthographic)
 	    {
             _proj = glm::ortho(0.0f, _size.x, 0.0f, _size.y, 1.0f, -1.0f);
         }
@@ -60,7 +60,7 @@ namespace lamp
 
 	Ray Camera::to_world(const v2& position) const
 	{
-		const m4 inv  = glm::inverse(_proj * _view);
+		const m4 inv = glm::inverse(_proj * _view);
 
 		const float x =  (position.x / _size.x - 0.5f) * 2.0f;
 		const float y = -(position.y / _size.y - 0.5f) * 2.0f;
