@@ -4,8 +4,4 @@
 
 namespace lamp::events
 {
-    struct Light
-    {
-        entityx::Entity entity;
-    };
 }

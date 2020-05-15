@@ -17,6 +17,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/transform.cpp
         internal/engine/systems/camera.cpp
         internal/engine/systems/light.cpp
+        internal/engine/systems/editor.cpp
 
         internal/engine/editor.cpp
         internal/engine/camera.cpp

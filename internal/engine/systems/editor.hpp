@@ -2,17 +2,19 @@
 
 #include <entityx/entityx.h>
 
-#include "engine/events/light.hpp"
+#include "engine/events/input.hpp"
 
 namespace lamp::systems
 {
-    class Light : public entityx::System<Light>
-    {
+    class Editor : public entityx::System<Editor>,
+                   public entityx::Receiver<Editor> {
     public:
         void configure(entityx::EventManager& events) final;
         void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
 
+        void receive(const events::Input& event);
+
     private:
-        gl::buffer_ptr _light_buffer;
+        bool _show_editor = false;
     };
 }

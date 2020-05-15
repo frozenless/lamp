@@ -1,7 +1,7 @@
 #pragma once
 
-#include "engine/components/light.hpp"
 #include "engine/material.hpp"
+#include "engine/components/light.hpp"
 
 #include <entityx/entityx.h>
 

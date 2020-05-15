@@ -5,8 +5,6 @@ namespace lamp::systems
 {
     void Light::configure(entityx::EventManager& events)
     {
-        events.subscribe<events::Light>(*this);
-
         _light_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 1);
     }
 
@@ -19,12 +17,5 @@ namespace lamp::systems
 
             _light_buffer->data(uniforms);
         });
-    }
-
-    void Light::receive(const events::Light& event)
-    {
-        /*const std::array<lamp::components::light, 1> uniforms = { event.light };
-
-        _light_buffer->data(uniforms);*/
     }
 }
