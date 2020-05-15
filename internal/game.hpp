@@ -38,8 +38,7 @@ namespace lamp
         void init_debug()     noexcept;
         void init_callbacks() noexcept;
 
-        bool _wire_mode = false;
-        bool _running   = true;
+        bool _running = true;
 
 	protected:
 		virtual void init()    = 0;

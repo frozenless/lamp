@@ -133,12 +133,6 @@ namespace lamp
 					}
 					break;
 				}
-				case GLFW_KEY_W: {
-                    _wire_mode = !_wire_mode;
-
-					gl::Renderer::wire_mode(_wire_mode);
-					break;
-				}
 				case GLFW_KEY_P: {
 				    _running = !_running;
                     break;

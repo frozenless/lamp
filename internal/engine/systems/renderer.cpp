@@ -9,10 +9,16 @@
 #include "assets.inl"
 #include "engine.hpp"
 
+#include "gl/renderer.hpp"
+
+#include <GLFW/glfw3.h>
+
 namespace lamp::systems
 {
-    void Renderer::configure(entityx::EventManager&)
+    void Renderer::configure(entityx::EventManager& events)
 	{
+        events.subscribe<events::Input>(*this);
+
         _model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
         _material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);
 	}
@@ -48,4 +54,14 @@ namespace lamp::systems
 			}
 		});
 	}
+
+    void Renderer::receive(const events::Input& event)
+    {
+        if (event.action == GLFW_PRESS && event.key == GLFW_KEY_W)
+        {
+            gl::Renderer::wire_mode(_wire_mode);
+
+            _wire_mode = !_wire_mode;
+        }
+    }
 }
