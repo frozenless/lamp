@@ -13,7 +13,7 @@ namespace lamp::systems
     void Light::update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt)
     {
         es.each<components::light>([this](entityx::Entity,
-                                          components::light& light) {
+                components::light& light) {
 
             const std::array<lamp::components::light, 1> uniforms = { light };
 
