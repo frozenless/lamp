@@ -3,9 +3,11 @@
 #include "engine/components/light.hpp"
 #include "engine/material.hpp"
 
+#include <entityx/entityx.h>
+
 struct GLFWwindow;
 
-namespace lamp
+namespace lamp::ui
 {
 	class Editor
 	{
@@ -13,8 +15,8 @@ namespace lamp
 		static void init(GLFWwindow* window);
 		static void release();
 
+        static void draw(entityx::ComponentHandle<components::light> light);
         static void draw(const std::shared_ptr<Material>& material);
-        static void draw(components::light& light);
 
 		static void begin();
 		static void end();

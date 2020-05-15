@@ -8,7 +8,7 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace lamp
+namespace lamp::ui
 {
     constexpr int32_t panel_flag = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoNav;
     constexpr int32_t color_flag = ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_NoTooltip;
@@ -47,16 +47,16 @@ namespace lamp
 		ImGui::DestroyContext();
 	}
 
-	void Editor::draw(components::light& light)
+	void Editor::draw(entityx::ComponentHandle<components::light> light)
 	{
 		ImGui::Begin("Light", nullptr, panel_flag);
 
-		ImGui::InputFloat3("Position", glm::value_ptr(light.position));
+		ImGui::InputFloat3("Position", glm::value_ptr(light->position));
 
-		ImGui::ColorEdit3("Color",    static_cast<float*>(light.color), color_flag);
-		ImGui::InputFloat("Ambient",  &light.ambient,  0.1f);
-		ImGui::InputFloat("Diffuse",  &light.diffuse,  0.1f);
-		ImGui::InputFloat("Specular", &light.specular, 0.1f);
+		ImGui::ColorEdit3("Color",    static_cast<float*>(light->color), color_flag);
+		ImGui::InputFloat("Ambient",  &light->ambient,  0.1f);
+		ImGui::InputFloat("Diffuse",  &light->diffuse,  0.1f);
+		ImGui::InputFloat("Specular", &light->specular, 0.1f);
 
 		ImGui::End();
 	}

@@ -18,6 +18,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/camera.cpp
         internal/engine/systems/light.cpp
 
+        internal/engine/editor.cpp
         internal/engine/camera.cpp
         internal/engine/mesh.cpp
 
@@ -43,7 +44,6 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/gl/layout.cpp
 
         internal/engine.cpp
-        internal/editor.cpp
         internal/physics.cpp
         internal/importer.cpp
         internal/window.cpp
