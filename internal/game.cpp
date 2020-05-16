@@ -6,6 +6,8 @@
 #include "engine/components/transform.hpp"
 #include "engine/components/renderer.hpp"
 
+#include "engine/events/input.hpp"
+
 #include "physics/renderer.hpp"
 #include "gl/renderer.hpp"
 
@@ -13,66 +15,63 @@
 
 namespace lamp
 {
-	Timer Game::timer;
+    Timer Game::timer;
 
-	void Game::run(const Window::Config& config, const iv2& size)
-	{
-		Window::Api::init();
+    void Game::run(const Window::Config& config, const iv2& size)
+    {
+        Window::Api::init();
 
-		this->_window.create(config, size);
+        this->_window.create(config, size);
 
-		init_callbacks();
+        init_callbacks();
 
-		if (config.context) {
+        if (config.context) {
 
-			Window::init();
+            Window::init();
 
-			gl::Renderer::init();
-			gl::Renderer::clear(math::rgb(0.7f));
-		}
+            gl::Renderer::init();
+            gl::Renderer::clear(math::rgb(0.7f));
+        }
 
-		Random::seed();
+        Random::seed();
 
-        _camera.init(size);
-		_physics.init();
+        physics.init();
 
-		init_debug();
-		init();
+        init_debug();
+        init();
 
-		this->_ecs.systems.configure();
-
-		auto old_time = Game::timer.elapsed();
-		do
-		{
-			Window::update();
+        auto old_time = Game::timer.elapsed();
+        do
+        {
+            Window::update();
 
             const auto new_time   = Game::timer.elapsed();
             const auto delta_time = new_time - old_time;
 
             old_time = new_time;
 
-			if (_running)
-			{
-                this->_physics.update(delta_time);
+            if (_running)
+            {
+                physics.update(delta_time);
 
                 update(delta_time);
             }
 
-			this->draw();
+            this->draw();
 
-			if (config.context)
-			{
+            if (config.context)
+            {
                 this->_window.swap();
-			}
-		}
-		while (!_window.closing());
+            }
+        }
+        while (!_window.closing());
 
-		gl::Renderer::release();
+        gl::Renderer::release();
 
-		this->release();
+        this->release();
 
-		Window::Api::release();
-	}
+        Window::Api::release();
+    }
 
     void Game::init_debug() noexcept
     {
@@ -83,7 +82,7 @@ namespace lamp
         auto vertex   = Assets::create("shaders/glsl/debug.vert", GL_VERTEX_SHADER);
         auto fragment = Assets::create("shaders/glsl/debug.frag", GL_FRAGMENT_SHADER);
 
-        auto debug    = _ecs.entities.create();
+        auto debug    = ecs.entities.create();
         auto renderer = debug.assign<components::renderer>();
 
         debug.assign<components::transform>()->world = glm::identity<m4>();
@@ -92,12 +91,12 @@ namespace lamp
         renderer->shader   = Assets::create(vertex, fragment);
         renderer->material = nullptr;
 
-        _physics.renderer(new debug::Renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe));
+        physics.renderer(new debug::Renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe));
     }
 
     void Game::init_callbacks() noexcept
     {
-	    auto window = static_cast<GLFWwindow*>(_window);
+        auto window = static_cast<GLFWwindow*>(_window);
 
         glfwSetKeyCallback(window, [](GLFWwindow* ptr, const int32_t key, const int32_t, const int32_t action, const int32_t) noexcept {
             static_cast<Game*>(glfwGetWindowUserPointer(ptr))->input(action, key);
@@ -114,47 +113,35 @@ namespace lamp
         glfwSetWindowUserPointer(window, this);
     }
 
-	void Game::input(const int32_t action, const int32_t key)
-	{
-		if (action == GLFW_PRESS) {
+    void Game::input(const int32_t action, const int32_t key)
+    {
+        lamp::events::Input event { action, key };
 
-			switch (key) {
-				case GLFW_KEY_ESCAPE: {
-					_window.close();
-					break;
-				}
-				case GLFW_KEY_E: {
-					_show_editor = !_show_editor;
-					break;
-				}
-				case GLFW_KEY_D: {
-					if (_show_editor) {
-						_physics.debug();
-					}
-					break;
-				}
-				case GLFW_KEY_P: {
-				    _running = !_running;
+        ecs.events.emit(event);
+
+        if (action == GLFW_PRESS) {
+
+            switch (key) {
+                case GLFW_KEY_ESCAPE: {
+                    _window.close();
                     break;
-				}
-				default:
-				    break;
-			}
-		}
-	}
+                }
+                case GLFW_KEY_D: {
+                    physics.debug();
+                    break;
+                }
+                case GLFW_KEY_P: {
+                    _running = !_running;
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
 
     void Game::mouse(const v2& position)
     {
         _mouse = position;
-    }
-
-	Physics& Game::physics()
-	{
-		return _physics;
-	}
-
-    Camera& Game::camera()
-    {
-        return _camera;
     }
 }

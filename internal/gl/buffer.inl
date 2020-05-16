@@ -22,7 +22,7 @@ namespace lamp::gl
         }
 	}
 
-    template <typename T> void Buffer::sub_data(const std::pair<const T *, size_t> &buffer, const int32_t offset)
+    template <typename T> void Buffer::sub_data(const std::pair<const T*, size_t>& buffer, const int32_t offset)
     {
         if (buffer.second != 0)
         {

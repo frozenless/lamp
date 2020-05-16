@@ -11,28 +11,28 @@
 
 namespace lamp
 {
-	class Game
-	{
-	public:
-	    Game() = default;
+    class Game
+    {
+    public:
+        Game() = default;
 
-		Game(Game&&)      = delete;
-		Game(const Game&) = delete;
+        Game(Game&&)      = delete;
+        Game(const Game&) = delete;
 
-		Game& operator=(Game&&)      = delete;
-		Game& operator=(const Game&) = delete;
+        Game& operator=(Game&&)      = delete;
+        Game& operator=(const Game&) = delete;
 
-		virtual ~Game() = default;
+        virtual ~Game() = default;
 
-		virtual void input(int32_t action, int32_t key);
+        virtual void input(int32_t action, int32_t key);
 
-		void run(const Window::Config& config, const iv2& size);
+        void run(const Window::Config& config, const iv2& size);
         void mouse(const v2& position);
 
-		[[nodiscard]] Physics& physics();
-		[[nodiscard]] Camera&  camera();
+        entityx::EntityX ecs;
+        static   Timer timer;
 
-		static Timer timer;
+        Physics physics;
 
     private:
         void init_debug()     noexcept;
@@ -40,22 +40,14 @@ namespace lamp
 
         bool _running = true;
 
-	protected:
-		virtual void init()    = 0;
-		virtual void release() = 0;
+    protected:
+        virtual void init()    = 0;
+        virtual void release() = 0;
 
-		virtual void update(float) = 0;
-		virtual void draw()        = 0;
+        virtual void update(float) = 0;
+        virtual void draw()        = 0;
 
-        bool _show_editor = false;
-
-		components::light _light;
-        entityx::EntityX  _ecs;
-
-		Physics _physics;
-		Window  _window;
-
-        Camera _camera;
+        Window _window;
         v2     _mouse;
-	};
+    };
 }
