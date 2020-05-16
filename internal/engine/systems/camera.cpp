@@ -27,10 +27,10 @@ namespace lamp::systems
             {
                 m4 projection = glm::perspective(glm::radians(camera.fov), 1280.0f / 768.0f, camera.near, camera.far);
 
-                const std::array<lamp::m4, 2> uniforms = { transform.world, projection  };
+                const std::array<m4, 2> uniforms = { transform.world, projection  };
                 _camera_buffer->data(std::make_pair(uniforms.data(), uniforms.size()));
 
-                const std::array<lamp::v3, 1> u_camera_position = { v3(position.x, position.y, position.z) };
+                const std::array<v3, 1> u_camera_position = { v3(position.x, position.y, position.z) };
                 _camera_position_buffer->data(u_camera_position);
             }
         });
@@ -52,7 +52,7 @@ namespace lamp::systems
             projection = glm::ortho(0.0f, event.width, 0.0f, event.height, 1.0f, -1.0f);
         }
 
-        const std::array<lamp::m4, 1> uniforms = { projection };
+        const std::array<m4, 1> uniforms = { projection };
         _camera_buffer->sub_data(std::make_pair(uniforms.data(), uniforms.size()), 1);*/
     }
 }

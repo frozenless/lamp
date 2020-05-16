@@ -37,6 +37,7 @@ namespace lamp
     private:
         void init_debug()     noexcept;
         void init_callbacks() noexcept;
+        void init_systems()   noexcept;
 
         bool _running = true;
 

@@ -3,10 +3,14 @@
 
 #include "common/random.hpp"
 
+#include "engine/systems/camera.hpp"
+#include "engine/systems/renderer.hpp"
+#include "engine/systems/physics.hpp"
+#include "engine/systems/light.hpp"
+#include "engine/systems/editor.hpp"
+
 #include "engine/components/transform.hpp"
 #include "engine/components/renderer.hpp"
-
-#include "engine/events/input.hpp"
 
 #include "physics/renderer.hpp"
 #include "gl/renderer.hpp"
@@ -33,12 +37,14 @@ namespace lamp
             gl::Renderer::clear(math::rgb(0.7f));
         }
 
-        Random::seed();
-
         physics.init();
 
-        init_debug();
+        Random::seed();
+
         init();
+
+        init_debug();
+        init_systems();
 
         auto old_time = Game::timer.elapsed();
         do
@@ -113,9 +119,21 @@ namespace lamp
         glfwSetWindowUserPointer(window, this);
     }
 
+
+    void Game::init_systems() noexcept
+    {
+        ecs.systems.add<systems::Camera>();
+        ecs.systems.add<systems::Light>();
+        ecs.systems.add<systems::Physics>();
+        ecs.systems.add<systems::Renderer>();
+        ecs.systems.add<systems::Editor>();
+
+        ecs.systems.configure();
+    }
+
     void Game::input(const int32_t action, const int32_t key)
     {
-        lamp::events::Input event { action, key };
+        events::Input event { action, key };
 
         ecs.events.emit(event);
 
