@@ -11,6 +11,7 @@
 
 #include "engine/components/transform.hpp"
 #include "engine/components/renderer.hpp"
+#include "engine/components/camera.hpp"
 
 #include "physics/renderer.hpp"
 #include "gl/renderer.hpp"
@@ -114,6 +115,21 @@ namespace lamp
 
         glfwSetCursorPosCallback(window, [](GLFWwindow* ptr, const double x, const double y) noexcept {
             static_cast<Game*>(glfwGetWindowUserPointer(ptr))->mouse({ x, y });
+        });
+
+        glfwSetScrollCallback(window, [](GLFWwindow* ptr, const double, const double offset) noexcept {
+
+            auto game = static_cast<Game*>(glfwGetWindowUserPointer(ptr));
+
+            auto entities = game->ecs.entities.entities_with_components<components::camera>();
+            auto entity   = std::find_if(entities.begin(), entities.begin(), [](entityx::Entity e) {
+                return e.component<components::camera>()->main;
+            });
+
+            auto camera = (*entity).component<components::camera>();
+
+            camera->fov -= static_cast<float>(offset * 2.0f);
+            camera->fov  = glm::clamp(camera->fov, 1.0f, 60.0f);
         });
 
         glfwSetWindowUserPointer(window, this);
