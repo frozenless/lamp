@@ -16,7 +16,7 @@ namespace lamp
 
         m4 projection = glm::perspective(glm::radians(camera->fov), aspect, camera->near, camera->far);
 
-        const m4 inv = glm::inverse(projection * glm::inverse(transform->world));
+        const m4 inv = glm::inverse(projection * transform->world);
 
         const float x =  (position.x / size.x - 0.5f) * 2.0f;
         const float y = -(position.y / size.y - 0.5f) * 2.0f;
