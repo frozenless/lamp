@@ -1,25 +1,29 @@
 #include "camera.hpp"
 
+#include "engine/components/camera.hpp"
+#include "engine/components/transform.hpp"
+
 namespace lamp
 {
-    /*
-	void Camera::look(const v3& position, const v3& target)
-	{
-		constexpr v3 up(0.0f, 1.0f, 0.0f);
+    Ray Camera::to_world(entityx::Entity entity, const v2& position)
+    {
+        v2 size = { 1280.0f, 768.0f };
 
-		_view = glm::lookAt(position, target, up);
-	}
+        float aspect = 1280.0f / 768.0f;
 
-	Ray Camera::to_world(const v2& position) const
-	{
-		const m4 inv = glm::inverse(_proj * _view);
+        auto transform = entity.component<components::transform>();
+        auto camera    = entity.component<components::camera>();
 
-		const float x =  (position.x / size.x - 0.5f) * 2.0f;
-		const float y = -(position.y / size.y - 0.5f) * 2.0f;
+        m4 projection = glm::perspective(glm::radians(camera->fov), aspect, camera->near, camera->far);
 
-		v4 start = inv * v4(x, y,-1.0f, 1.0f); start /= start.w;
-		v4 end   = inv * v4(x, y, 0.0f, 1.0f);   end /= end.w;
+        const m4 inv = glm::inverse(projection * glm::inverse(transform->world));
 
-		return Ray(start, glm::normalize(end - start));
-	}*/
+        const float x =  (position.x / size.x - 0.5f) * 2.0f;
+        const float y = -(position.y / size.y - 0.5f) * 2.0f;
+
+        v4 start = inv * v4(x, y,-1.0f, 1.0f); start /= start.w;
+        v4 end   = inv * v4(x, y, 0.0f, 1.0f);   end /= end.w;
+
+        return Ray(start, glm::normalize(end - start));
+    }
 }

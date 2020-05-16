@@ -18,7 +18,7 @@ namespace lamp::systems
     void Camera::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
     {
         es.each<components::camera, components::transform, components::position>([this](entityx::Entity,
-                                                                                        components::camera& camera, components::transform& transform, components::position& position) {
+                components::camera& camera, components::transform& transform, components::position& position) {
 
             transform.world = glm::translate(glm::identity<m4>(), { position.x, position.y, position.z });
             transform.world = glm::inverse(transform.world);
