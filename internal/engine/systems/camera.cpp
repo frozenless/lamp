@@ -4,6 +4,7 @@
 #include "engine/components/camera.hpp"
 #include "engine/components/transform.hpp"
 #include "engine/components/position.hpp"
+#include "engine/components/viewport.hpp"
 
 namespace lamp::systems
 {
@@ -17,15 +18,16 @@ namespace lamp::systems
 
     void Camera::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
     {
-        es.each<components::camera, components::transform, components::position>([this](entityx::Entity,
-                components::camera& camera, components::transform& transform, components::position& position) {
+        es.each<components::camera, components::viewport, components::transform, components::position>([this](entityx::Entity,
+                components::camera& camera, components::viewport& viewport, components::transform& transform, components::position& position) {
 
             transform.world = glm::translate(glm::identity<m4>(), { position.x, position.y, position.z });
             transform.world = glm::inverse(transform.world);
 
             if (camera.main)
             {
-                m4 projection = glm::perspective(glm::radians(camera.fov), 1280.0f / 768.0f, camera.near, camera.far);
+                float aspect  = viewport.width / viewport.height;
+                m4 projection = glm::perspective(glm::radians(camera.fov), aspect, camera.near, camera.far);
 
                 const std::array<m4, 2> uniforms = { transform.world, projection  };
                 _camera_buffer->data(std::make_pair(uniforms.data(), uniforms.size()));
