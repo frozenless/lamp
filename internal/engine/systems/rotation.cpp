@@ -7,11 +7,7 @@
 
 namespace lamp::systems
 {
-    void Rotation::configure(entityx::EventManager &events)
-    {
-    }
-
-    void Rotation::update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt)
+    void Rotation::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
     {
         es.each<components::rotation, components::position>([](entityx::Entity,
                 components::rotation& rotation, components::position& position) {
