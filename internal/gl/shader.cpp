@@ -5,51 +5,54 @@
 namespace lamp::gl
 {
 	Shader::Shader()
-		: id(0)
+		: _id(0)
 	{
 	}
 
 	void Shader::create(const uint32_t type)
 	{
-		id = glCreateShader(type);
+        _id = glCreateShader(type);
 	}
 
 	void Shader::compile() const noexcept
 	{
-		glCompileShader(id);
+		glCompileShader(_id);
 	}
 
 	void Shader::release() const noexcept
 	{
-		assert(glIsShader(id));
+		assert(glIsShader(_id));
 
-		glDeleteShader(id);
-
-		assert(glIsShader(id) == GL_FALSE);
+		glDeleteShader(_id);
 	}
 
 	void Shader::source(const char* source) const
 	{
 		assert(source != nullptr);
 
-		glShaderSource(id, 1, &source, nullptr);
+		glShaderSource(_id, 1, &source, nullptr);
 	}
 
-	#ifndef NDEBUG
+    Id Shader::id() const
+    {
+        return _id;
+    }
+
+    #ifndef NDEBUG
 	void Shader::status() const
 	{
 		int32_t success;
-		glGetShaderiv(id, GL_COMPILE_STATUS, &success);
+		glGetShaderiv(_id, GL_COMPILE_STATUS, &success);
 
 		if (!success)
 		{
 			int32_t length;
-			glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+			glGetShaderiv(_id, GL_INFO_LOG_LENGTH, &length);
 
 			std::vector<char> log;
 			log.reserve(length);
 
-			glGetShaderInfoLog(id, length, nullptr, log.data());
+			glGetShaderInfoLog(_id, length, nullptr, log.data());
 
 			std::cout << "shader compilation failed\n" << log.data() << std::endl;
 		}

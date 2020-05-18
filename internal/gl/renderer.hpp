@@ -17,7 +17,6 @@ namespace lamp::gl
 		static void state(uint32_t state, bool value);
 		static void wire_mode(bool value);
 
-		static void release();
 		static void clear();
 
 	private:

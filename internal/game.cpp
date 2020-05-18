@@ -73,9 +73,7 @@ namespace lamp
         }
         while (!_window.closing());
 
-        gl::Renderer::release();
-
-        this->release();
+        release();
 
         Window::Api::release();
     }

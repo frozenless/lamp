@@ -18,7 +18,7 @@ namespace lamp::gl
 	{
 		if (buffer.second != 0)
 		{
-            glNamedBufferData(id, sizeof(T) * buffer.second, buffer.first, _usage);
+            glNamedBufferData(_id, sizeof(T) * buffer.second, buffer.first, _usage);
         }
 	}
 
@@ -28,7 +28,7 @@ namespace lamp::gl
         {
             constexpr int32_t size = sizeof(T);
 
-            glNamedBufferSubData(id, size * offset, size * buffer.second, buffer.first);
+            glNamedBufferSubData(_id, size * offset, size * buffer.second, buffer.first);
         }
     }
 }

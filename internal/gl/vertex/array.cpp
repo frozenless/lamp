@@ -11,16 +11,16 @@ namespace lamp::gl::vertex
 
     void Array::create() noexcept
     {
-        glCreateVertexArrays(1, &id);
+        glCreateVertexArrays(1, &_id);
     }
 
     void Array::release() noexcept
     {
-        glDeleteVertexArrays(1, &id);
+        glDeleteVertexArrays(1, &_id);
     }
 
     void Array::bind() const noexcept
     {
-        glBindVertexArray(id);
+        glBindVertexArray(_id);
     }
 }

@@ -33,6 +33,6 @@ namespace lamp
 		using program_ptr = std::shared_ptr<Program>;
 		using texture_ptr = std::shared_ptr<Texture>;
 
-		using ID = uint32_t;
+		using Id = uint32_t;
 	}
 }

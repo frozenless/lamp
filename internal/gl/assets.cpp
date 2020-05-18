@@ -32,8 +32,8 @@ namespace lamp
 
 		program->create();
 
-		program->attach(vertex->id);
-		program->attach(fragment->id);
+		program->attach(vertex->id());
+		program->attach(fragment->id());
 
 		program->link();
 
@@ -41,8 +41,8 @@ namespace lamp
 		program->status();
 		#endif
 
-		program->detach(vertex->id);
-		program->detach(fragment->id);
+		program->detach(vertex->id());
+		program->detach(fragment->id());
 
 		vertex->release();
 		fragment->release();

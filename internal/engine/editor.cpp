@@ -74,7 +74,7 @@ namespace lamp::ui
 
         if (material->diffuse)
         {
-            ImGui::Image(reinterpret_cast<void*>(material->diffuse->id), ImVec2(70.0f, 70.0f));
+            ImGui::Image(reinterpret_cast<void*>(material->diffuse->id()), ImVec2(70.0f, 70.0f));
         }
 
         ImGui::End();

@@ -15,8 +15,8 @@ namespace lamp::gl
 		void bind() const noexcept final;
 		void link() const noexcept;
 
-		void attach(ID shader) const noexcept;
-		void detach(ID shader) const noexcept;
+		void attach(Id shader) const noexcept;
+		void detach(Id shader) const noexcept;
 
 		#ifndef NDEBUG
 		void status() const;

@@ -11,53 +11,51 @@ namespace lamp::gl
 
 	void Program::bind() const noexcept
 	{
-		glUseProgram(id);
+		glUseProgram(_id);
 	}
 
-	void Program::attach(const ID shader) const noexcept
+	void Program::attach(const Id shader) const noexcept
 	{
-		glAttachShader(id, shader);
+		glAttachShader(_id, shader);
 	}
 
-	void Program::detach(const ID shader) const noexcept
+	void Program::detach(const Id shader) const noexcept
 	{
-		glDetachShader(id, shader);
+		glDetachShader(_id, shader);
 	}
 
 	void Program::link() const noexcept
 	{
-		glLinkProgram(id);
+		glLinkProgram(_id);
 	}
 
 	void Program::release() noexcept
 	{
-		assert(glIsProgram(id));
+		assert(glIsProgram(_id));
 
-		glDeleteProgram(id);
-
-		assert(glIsProgram(id) == GL_FALSE);
+		glDeleteProgram(_id);
 	}
 
 	void Program::create() noexcept
 	{
-		id = glCreateProgram();
+        _id = glCreateProgram();
 	}
 
     #ifndef NDEBUG
 	void Program::status() const
 	{
 		int32_t success;
-		glGetProgramiv(id, GL_LINK_STATUS, &success);
+		glGetProgramiv(_id, GL_LINK_STATUS, &success);
 
 		if (!success)
 		{
 			int32_t length;
-			glGetProgramiv(id, GL_INFO_LOG_LENGTH, &length);
+			glGetProgramiv(_id, GL_INFO_LOG_LENGTH, &length);
 
 			std::vector<char> log;
 			log.reserve(length);
 
-			glGetProgramInfoLog(id, length, nullptr, log.data());
+			glGetProgramInfoLog(_id, length, nullptr, log.data());
 
 			std::cout << "program linking failed\n" << log.data() << std::endl;
 		}

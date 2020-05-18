@@ -15,7 +15,7 @@ namespace lamp::gl
 
 	void Texture::bind() const noexcept
 	{
-		glBindTexture(_target, id);
+		glBindTexture(_target, _id);
 	}
 
 	uint32_t Texture::_format() const noexcept
@@ -50,12 +50,12 @@ namespace lamp::gl
 
 	void Texture::create() noexcept
 	{
-		glCreateTextures(_target, 1, &id);
+		glCreateTextures(_target, 1, &_id);
 	}
 
 	void Texture::release() noexcept
 	{
-		glDeleteTextures(1, &id);
+		glDeleteTextures(1, &_id);
 	}
 
 	void Texture::activate(uint32_t index)

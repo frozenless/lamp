@@ -46,9 +46,4 @@ namespace lamp::gl
 			value ? glEnable(state) : glDisable(state);
 		}
 	}
-
-	void Renderer::release()
-	{
-		glUseProgram(0);
-	}
 }

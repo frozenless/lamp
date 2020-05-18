@@ -22,7 +22,11 @@ namespace lamp::gl
 
 		virtual void bind() const noexcept = 0;
 
-		Type type;
-		ID   id;
+        [[nodiscard]] Type type() const;
+        [[nodiscard]] Id   id() const;
+
+    protected:
+        Type _type;
+		Id   _id;
 	};
 }
