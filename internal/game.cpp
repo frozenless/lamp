@@ -122,7 +122,7 @@ namespace lamp
             auto game = static_cast<Game*>(glfwGetWindowUserPointer(ptr));
 
             auto entities = game->ecs.entities.entities_with_components<components::camera>();
-            auto entity   = std::find_if(entities.begin(), entities.begin(), [](entityx::Entity e) {
+            auto entity   = std::find_if(entities.begin(), entities.end(), [](entityx::Entity e) {
                 return e.component<components::camera>()->main;
             });
 
