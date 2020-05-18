@@ -13,10 +13,9 @@ namespace lamp
 		_world->setGravity({ 0, -9.8f, 0 });
 	}
 
-	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray, const float distance)
+	btCollisionWorld::ClosestRayResultCallback Physics::ray(const physics::Ray& ray, const float distance)
 	{
-		const v3 end = ray.origin +
-		               ray.direction * distance;
+		const v3 end = ray.origin + ray.direction * distance;
 
 		btCollisionWorld::ClosestRayResultCallback hit({ ray.origin.x, ray.origin.y, ray.origin.z },
 		                                               { end.x, end.y, end.z });

@@ -2,7 +2,7 @@
 
 #include "gl/buffer.inl"
 
-namespace lamp::debug
+namespace lamp::physics
 {
     Renderer::Renderer(std::shared_ptr<Mesh> mesh, const uint32_t mode)
         : _mesh(std::move(mesh))

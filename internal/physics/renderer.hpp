@@ -4,7 +4,7 @@
 
 #include <LinearMath/btIDebugDraw.h>
 
-namespace lamp::debug
+namespace lamp::physics
 {
     class Renderer : public btIDebugDraw
     {

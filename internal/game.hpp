@@ -1,13 +1,11 @@
 #pragma once
 
-#include <entityx/entityx.h>
-
-#include "engine/components/light.hpp"
-#include "engine/camera.hpp"
-
-#include "common/timer.hpp"
 #include "physics.hpp"
 #include "window.hpp"
+
+#include "common/timer.hpp"
+
+#include <entityx/entityx.h>
 
 namespace lamp
 {

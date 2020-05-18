@@ -21,18 +21,14 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/rotation.cpp
 
         internal/engine/editor.cpp
-        internal/engine/camera.cpp
         internal/engine/mesh.cpp
 
         internal/physics/renderer.cpp
         internal/physics/utils.cpp
-        internal/physics/ray.cpp
 
         internal/common/random.cpp
         internal/common/file.cpp
         internal/common/timer.cpp
-
-        internal/math/rgb.cpp
 
         internal/gl/vertex/attribute.cpp
         internal/gl/vertex/array.cpp

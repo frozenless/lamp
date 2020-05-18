@@ -35,7 +35,7 @@ namespace lamp
             Window::init();
 
             gl::Renderer::init();
-            gl::Renderer::clear(math::rgb(0.7f));
+            gl::Renderer::clear({ 0.7f, 0.7f, 0.7f });
         }
 
         physics.init();
@@ -98,7 +98,7 @@ namespace lamp
         renderer->shader   = Assets::create(vertex, fragment);
         renderer->material = nullptr;
 
-        physics.renderer(new debug::Renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe));
+        physics.renderer(new physics::Renderer(renderer->mesh, btIDebugDraw::DBG_DrawWireframe));
     }
 
     void Game::init_callbacks() noexcept
