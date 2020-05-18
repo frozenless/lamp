@@ -26,12 +26,12 @@ namespace lamp
 		return hit;
 	}
 
-	void Physics::add_rigidbody(btRigidBody* body)
+	void Physics::add(btRigidBody* body)
 	{
 		_world->addRigidBody(body);
 	}
 
-	void Physics::add_collision(btCollisionObject* object, const uint32_t flag)
+	void Physics::add(btCollisionObject* object, const uint32_t flag)
 	{
 		if (flag)
 		{
@@ -41,7 +41,7 @@ namespace lamp
 		_world->addCollisionObject(object);
 	}
 
-	void Physics::add_constraint(btTypedConstraint* constraint, const bool disable_link)
+	void Physics::add(btTypedConstraint* constraint, const bool disable_link)
 	{
 		_world->addConstraint(constraint, disable_link);
 	}
