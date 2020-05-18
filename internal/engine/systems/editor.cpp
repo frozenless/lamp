@@ -27,6 +27,10 @@ namespace lamp::systems
                     ui::Editor::draw(entity.component<components::renderer>()->material);
                 }
 
+                if (entity.has_component<components::position>()) {
+                    ui::Editor::draw(entity.component<components::position>());
+                }
+
                 if (entity.has_component<components::light>()) {
                     ui::Editor::draw(entity.component<components::light>());
                 }

@@ -15,7 +15,6 @@ namespace lamp::systems
         void receive(const events::CameraAspect& event);
 
     private:
-        gl::buffer_ptr _camera_position_buffer;
         gl::buffer_ptr _camera_buffer;
     };
 }

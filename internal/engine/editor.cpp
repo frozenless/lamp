@@ -51,12 +51,19 @@ namespace lamp::ui
     {
         ImGui::Begin("Light", nullptr, panel_flag);
 
-        ImGui::InputFloat3("Position", glm::value_ptr(light->position));
-
         ImGui::ColorEdit3("Color",    static_cast<float*>(light->color), color_flag);
         ImGui::InputFloat("Ambient",  &light->ambient,  0.1f);
         ImGui::InputFloat("Diffuse",  &light->diffuse,  0.1f);
         ImGui::InputFloat("Specular", &light->specular, 0.1f);
+
+        ImGui::End();
+    }
+
+    void Editor::draw(entityx::ComponentHandle<components::position> position)
+    {
+        ImGui::Begin("Position", nullptr, panel_flag);
+
+        ImGui::InputFloat3("Position", static_cast<float*>(*position));
 
         ImGui::End();
     }

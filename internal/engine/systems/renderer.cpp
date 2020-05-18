@@ -9,6 +9,8 @@
 #include "assets.inl"
 #include "engine.hpp"
 
+#include "engine/uniforms/material.hpp"
+
 #include "gl/renderer.hpp"
 
 #include <GLFW/glfw3.h>
@@ -32,8 +34,19 @@ namespace lamp::systems
 
 			if (auto material = renderer.material; material) {
 
-				const math::rgb& color = material->color;
-				const std::array<float, 4> uniforms = { color.r, color.g, color.b, material->shininess };
+                const math::rgb& color = material->color;
+
+			    uniforms::material u_material =
+                {
+                    {
+                        color.r,
+                        color.g,
+                        color.b
+                    },
+                    material->shininess
+                };
+
+				const std::array<uniforms::material, 1> uniforms = { u_material };
 
 				_material_buffer->data(uniforms);
 

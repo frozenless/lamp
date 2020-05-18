@@ -6,14 +6,15 @@
 #include "engine/components/position.hpp"
 #include "engine/components/viewport.hpp"
 
+#include "engine/uniforms/camera.hpp"
+
 namespace lamp::systems
 {
     void Camera::configure(entityx::EventManager& events)
     {
         events.subscribe<events::CameraAspect>(*this);
 
-        _camera_buffer          = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 0);
-        _camera_position_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 4);
+        _camera_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 0);
     }
 
     void Camera::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
@@ -26,14 +27,22 @@ namespace lamp::systems
 
             if (camera.main)
             {
-                float aspect  = viewport.width / viewport.height;
+                const float aspect = viewport.width / viewport.height;
                 m4 projection = glm::perspective(glm::radians(camera.fov), aspect, camera.near, camera.far);
 
-                const std::array<m4, 2> uniforms = { transform.world, projection  };
-                _camera_buffer->data(std::make_pair(uniforms.data(), uniforms.size()));
+                uniforms::camera u_camera =
+                {
+                    transform.world,
+                    projection,
+                    {
+                        position.x,
+                        position.y,
+                        position.z
+                    }
+                };
 
-                const std::array<v3, 1> u_camera_position = { v3(position.x, position.y, position.z) };
-                _camera_position_buffer->data(u_camera_position);
+                const std::array<uniforms::camera, 1> uniforms = { u_camera };
+                _camera_buffer->data(std::make_pair(uniforms.data(), uniforms.size()));
             }
         });
     }
