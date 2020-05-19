@@ -14,11 +14,11 @@ namespace lamp::systems
         events.subscribe<events::Input>(*this);
     }
 
-    void Editor::update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta)
+    void Editor::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
     {
         if (!_show_editor) return;
 
-        es.each<components::selectable>([this](entityx::Entity entity,
+        es.each<components::selectable>([](entityx::Entity entity,
                 components::selectable& selectable) {
 
             if (selectable.selected) {

@@ -1,16 +1,14 @@
 #include "renderer.hpp"
+#include "engine.hpp"
+#include "assets.inl"
 
 #include "engine/components/renderer.hpp"
 #include "engine/components/transform.hpp"
 
-#include "gl/program.hpp"
-#include "gl/texture.hpp"
-
-#include "assets.inl"
-#include "engine.hpp"
-
 #include "engine/uniforms/material.hpp"
 
+#include "gl/program.hpp"
+#include "gl/texture.hpp"
 #include "gl/renderer.hpp"
 
 #include <GLFW/glfw3.h>
@@ -47,7 +45,6 @@ namespace lamp::systems
                 };
 
 				const std::array<uniforms::material, 1> uniforms = { u_material };
-
 				_material_buffer->data(uniforms);
 
 				if (auto diffuse = material->diffuse; diffuse)

@@ -1,9 +1,8 @@
 #include "rotation.hpp"
+#include "game.hpp"
 
 #include "engine/components/position.hpp"
 #include "engine/components/rotation.hpp"
-
-#include "game.hpp"
 
 namespace lamp::systems
 {

@@ -59,7 +59,7 @@ PUBLIC  BulletDynamics BulletCollision entityx glfw glad glm
 PRIVATE LinearMath assimp)
 
 target_compile_features(${PROJECT_NAME}
-PUBLIC cxx_std_17)
+PUBLIC cxx_std_20)
 
 target_include_directories(${PROJECT_NAME}
 PRIVATE external/imgui/examples

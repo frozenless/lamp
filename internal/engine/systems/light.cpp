@@ -6,12 +6,12 @@
 
 namespace lamp::systems
 {
-    void Light::configure(entityx::EventManager& events)
+    void Light::configure(entityx::EventManager&)
     {
         _light_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 1);
     }
 
-    void Light::update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt)
+    void Light::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
     {
         es.each<components::light, components::position>([this](entityx::Entity,
                 components::light& light, components::position& position) {
