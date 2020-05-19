@@ -1,9 +1,9 @@
 #pragma once
 
+#include "common/timer.hpp"
+
 #include "physics.hpp"
 #include "window.hpp"
-
-#include "common/timer.hpp"
 
 #include <entityx/entityx.h>
 

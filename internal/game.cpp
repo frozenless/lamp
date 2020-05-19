@@ -38,14 +38,14 @@ namespace lamp
             gl::Renderer::clear({ 0.7f, 0.7f, 0.7f });
         }
 
-        physics.init();
-
         Random::seed();
 
-        init();
+        physics.init();
 
-        init_debug();
         init_systems();
+        init_debug();
+
+        init();
 
         auto old_time = Game::timer.elapsed();
         do

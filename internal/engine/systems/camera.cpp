@@ -30,10 +30,10 @@ namespace lamp::systems
                 const float aspect = viewport.width / viewport.height;
                 m4 projection = glm::perspective(glm::radians(camera.fov), aspect, camera.near, camera.far);
 
-                uniforms::camera u_camera =
+                const uniforms::camera u_camera =
                 {
-                    transform.world,
                     projection,
+                    transform.world,
                     {
                         position.x,
                         position.y,
@@ -42,15 +42,17 @@ namespace lamp::systems
                 };
 
                 const std::array<uniforms::camera, 1> uniforms = { u_camera };
-                _camera_buffer->data(std::make_pair(uniforms.data(), uniforms.size()));
+                _camera_buffer->data(uniforms);
             }
         });
     }
 
     void Camera::receive(const events::CameraAspect& event)
     {
-        /*auto camera = event.entity.component<components::camera>();
         m4 projection;
+
+        auto entity = event.entity;
+        auto camera = entity.component<components::camera>();
 
         if (camera->type == components::camera::Type::Perspective)
         {
@@ -64,6 +66,6 @@ namespace lamp::systems
         }
 
         const std::array<m4, 1> uniforms = { projection };
-        _camera_buffer->sub_data(std::make_pair(uniforms.data(), uniforms.size()), 1);*/
+        _camera_buffer->sub_data(std::make_pair(uniforms.data(), uniforms.size()), 0);
     }
 }

@@ -12,18 +12,18 @@ namespace lamp::systems
 		es.each<components::rigidbody, components::transform>([](entityx::Entity,
 		        components::rigidbody& rigid, components::transform& transform) {
 
-		    if (btTransform t; rigid.body->isActive())
+		    if (btTransform bt; rigid.body->isActive())
 		    {
 		    	if (auto motion = rigid.body->getMotionState(); motion)
 		    	{
-				    motion->getWorldTransform(t);
+				    motion->getWorldTransform(bt);
 			    }
 		    	else
 	            {
-                    t = rigid.body->getWorldTransform();
+                    bt = rigid.body->getWorldTransform();
 		    	}
 
-                t.getOpenGLMatrix(glm::value_ptr(transform.world));
+                bt.getOpenGLMatrix(glm::value_ptr(transform.world));
 		    }
 	    });
 	}

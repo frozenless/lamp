@@ -6,8 +6,8 @@ namespace lamp::uniforms
 {
     struct camera
     {
-        m4 view;
         m4 proj;
+        m4 view;
 
         v3 position;
     };

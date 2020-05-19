@@ -33,8 +33,7 @@ namespace lamp::systems
 			if (auto material = renderer.material; material) {
 
                 const math::rgb& color = material->color;
-
-			    uniforms::material u_material =
+			    const uniforms::material u_material =
                 {
                     {
                         color.r,

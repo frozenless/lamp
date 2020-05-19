@@ -8,7 +8,7 @@ namespace lamp::events
 {
     struct CameraAspect
     {
-        const entityx::Entity entity;
+        entityx::Entity entity;
 
         float width;
         float height;
