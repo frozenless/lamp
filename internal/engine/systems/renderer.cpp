@@ -25,6 +25,8 @@ namespace lamp::systems
 
 	void Renderer::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
 	{
+        gl::Renderer::clear();
+
 		es.each<components::renderer, components::transform>([this](entityx::Entity,
 		        components::renderer& renderer, components::transform& transform) {
 

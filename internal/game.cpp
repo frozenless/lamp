@@ -61,10 +61,12 @@ namespace lamp
             {
                 physics.update(delta_time);
 
+                update_systems(delta_time);
                 update(delta_time);
             }
 
-            this->draw();
+            draw_systems();
+            draw();
 
             if (config.context)
             {
@@ -138,11 +140,25 @@ namespace lamp
     {
         ecs.systems.add<systems::Camera>();
         ecs.systems.add<systems::Light>();
+
         ecs.systems.add<systems::Physics>();
         ecs.systems.add<systems::Renderer>();
         ecs.systems.add<systems::Editor>();
 
         ecs.systems.configure();
+    }
+
+    void Game::update_systems(float delta_time)
+    {
+        ecs.systems.update<systems::Physics>(delta_time);
+
+        ecs.systems.update<systems::Camera>(delta_time);
+        ecs.systems.update<systems::Light>(delta_time);
+    }
+
+    void Game::draw_systems()
+    {
+        ecs.systems.update<systems::Renderer>(0);
     }
 
     void Game::input(const int32_t action, const int32_t key)

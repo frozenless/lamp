@@ -37,6 +37,9 @@ namespace lamp
         void init_callbacks() noexcept;
         void init_systems()   noexcept;
 
+        void update_systems(float delta_time);
+        void draw_systems();
+
         bool _running = true;
 
     protected:
