@@ -20,6 +20,7 @@ PRIVATE external/imgui/examples/imgui_impl_opengl3.cpp
         internal/engine/systems/editor.cpp
         internal/engine/systems/rotation.cpp
 
+        internal/engine/primitives.cpp
         internal/engine/editor.cpp
         internal/engine/mesh.cpp
 
