@@ -16,8 +16,8 @@ namespace lamp
 
         renderer->mesh     = Importer::import("models/plane.obj");
         renderer->material = std::make_shared<Material>();
-        renderer->material->color     = color;
         renderer->material->shininess = 128.0f;
+        renderer->material->color     = color;
 
         auto world = glm::translate(glm::identity<m4>(), position);
         plane.assign<components::transform>()->world = glm::rotate(world, glm::radians(angle), axes);
