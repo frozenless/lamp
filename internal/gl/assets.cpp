@@ -32,8 +32,8 @@ namespace lamp
 
 		program->create();
 
-		program->attach(vertex->id);
-		program->attach(fragment->id);
+		program->attach(vertex->id());
+		program->attach(fragment->id());
 
 		program->link();
 
@@ -41,8 +41,8 @@ namespace lamp
 		program->status();
 		#endif
 
-		program->detach(vertex->id);
-		program->detach(fragment->id);
+		program->detach(vertex->id());
+		program->detach(fragment->id());
 
 		vertex->release();
 		fragment->release();
@@ -50,7 +50,7 @@ namespace lamp
 		return program;
 	}
 
-	gl::mesh_ptr Assets::create(const v2& size)
+    std::shared_ptr<Mesh> Assets::create(const v2& size)
 	{
         const std::array<v2, 8> vertices =
         {
@@ -112,7 +112,7 @@ namespace lamp
 		return buffer;
 	}
 
-    gl::mesh_ptr Assets::create(const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
+    std::shared_ptr<Mesh> Assets::create(const gl::Layout& layout, const uint32_t primitive, const uint32_t usage) {
 
         return create<std::any, uint32_t>(std::make_pair(nullptr, 0),
                                           std::make_pair(nullptr, 0), layout, primitive, usage);

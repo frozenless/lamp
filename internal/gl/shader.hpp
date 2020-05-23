@@ -16,10 +16,13 @@ namespace lamp::gl
 
 		void source(const char* source) const;
 
+		[[nodiscard]] Id id() const;
+
 		#ifndef NDEBUG
 		void status() const;
 		#endif
 
-		ID id;
+	private:
+		Id _id;
 	};
 }

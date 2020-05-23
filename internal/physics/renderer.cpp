@@ -1,12 +1,10 @@
 #include "renderer.hpp"
-#include "engine.hpp"
 
-#include "gl/mesh.hpp"
 #include "gl/buffer.inl"
 
-namespace lamp::debug
+namespace lamp::physics
 {
-    Renderer::Renderer(gl::mesh_ptr mesh, const uint32_t mode)
+    Renderer::Renderer(std::shared_ptr<Mesh> mesh, const uint32_t mode)
         : _mesh(std::move(mesh))
 	    , _mode(mode)
         , _index(0)
@@ -37,7 +35,7 @@ namespace lamp::debug
     {
     	if (!_vertices.empty() && !_indices.empty()) {
 
-		    _mesh->bind();
+		    _mesh->vao->bind();
 
 		    _mesh->vbo->data(_vertices);
 		    _mesh->ibo->data(_indices);
@@ -55,9 +53,4 @@ namespace lamp::debug
 	{
 		return _mode;
 	}
-
-    void Renderer::drawContactPoint(const btVector3&, const btVector3&, const btScalar, const int32_t, const btVector3&) { }
-	void Renderer::draw3dText(const btVector3&, const char*) { }
-
-	void Renderer::reportErrorWarning(const char*) { }
 }

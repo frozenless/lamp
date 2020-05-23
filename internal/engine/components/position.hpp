@@ -1,11 +1,16 @@
 #pragma once
 
-#include "types.hpp"
-
 namespace lamp::components
 {
 	struct position
 	{
-		float x, y, z;
+        explicit operator float*()
+        {
+            return &x;
+        }
+
+		float x = 0.0f;
+		float y = 0.0f;
+		float z = 0.0f;
 	};
 }

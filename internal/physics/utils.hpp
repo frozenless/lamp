@@ -1,10 +1,12 @@
 #pragma once
 
-#include "types.hpp"
+#include "ray.hpp"
 
+#include <entityx/entityx.h>
 #include <LinearMath/btTransform.h>
 
-namespace lamp::utils
+namespace lamp::physics
 {
-	btTransform from(const v3& position, const quat& orientation);
+    Ray to_world(entityx::Entity entity, const v2& position);
+    btTransform from(const v3& position, const quat& orientation);
 }

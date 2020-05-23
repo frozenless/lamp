@@ -4,11 +4,13 @@ namespace lamp::math
 {
 	struct rgb
 	{
-		rgb(float r, float g, float b);
+		explicit operator float*()
+		{
+		    return &r;
+		}
 
-		explicit rgb(float value = 1.0f);
-		explicit operator float*();
-
-		float r, g, b;
+		float r = 1.0f;
+		float g = 1.0f;
+		float b = 1.0f;
 	};
 }

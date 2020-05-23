@@ -1,7 +1,5 @@
 #include "physics.hpp"
 
-#include "physics/renderer.hpp"
-
 namespace lamp
 {
 	void Physics::init()
@@ -15,10 +13,9 @@ namespace lamp
 		_world->setGravity({ 0, -9.8f, 0 });
 	}
 
-	btCollisionWorld::ClosestRayResultCallback Physics::ray(const Ray& ray, float distance)
+	btCollisionWorld::ClosestRayResultCallback Physics::ray(const physics::Ray& ray, const float distance)
 	{
-		const v3 end = ray.origin +
-		               ray.direction * distance;
+		const v3 end = ray.origin + ray.direction * distance;
 
 		btCollisionWorld::ClosestRayResultCallback hit({ ray.origin.x, ray.origin.y, ray.origin.z },
 		                                               { end.x, end.y, end.z });
@@ -28,12 +25,12 @@ namespace lamp
 		return hit;
 	}
 
-	void Physics::add_rigidbody(btRigidBody* body)
+	void Physics::add(btRigidBody* body)
 	{
 		_world->addRigidBody(body);
 	}
 
-	void Physics::add_collision(btCollisionObject* object, const uint32_t flag)
+	void Physics::add(btCollisionObject* object, const uint32_t flag)
 	{
 		if (flag)
 		{
@@ -43,12 +40,12 @@ namespace lamp
 		_world->addCollisionObject(object);
 	}
 
-	void Physics::add_constraint(btTypedConstraint* constraint, const bool disable_link)
+	void Physics::add(btTypedConstraint* constraint, const bool disable_link)
 	{
 		_world->addConstraint(constraint, disable_link);
 	}
 
-	void Physics::update(const float delta_time, int32_t steps)
+	void Physics::update(const float delta_time, const int32_t steps)
 	{
 		_world->stepSimulation(delta_time, steps);
 
@@ -58,9 +55,9 @@ namespace lamp
 		}
 	}
 
-	void Physics::init_renderer(const gl::mesh_ptr& mesh, const uint32_t mode)
+	void Physics::renderer(btIDebugDraw* renderer)
 	{
-		_world->setDebugDrawer(new debug::Renderer(mesh, mode));
+		_world->setDebugDrawer(renderer);
 	}
 
 	void Physics::debug()

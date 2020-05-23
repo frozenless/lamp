@@ -1,14 +1,15 @@
 #pragma once
 
-#include "types.hpp"
+#include "engine/material.hpp"
+#include "engine/mesh.hpp"
 
 namespace lamp::components
 {
 	struct renderer
 	{
-		material_ptr material;
+        gl::program_ptr shader;
 
-		gl::program_ptr shader;
-		gl::mesh_ptr    mesh;
+		std::shared_ptr<Material> material;
+        std::shared_ptr<Mesh>     mesh;
 	};
 }

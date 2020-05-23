@@ -10,7 +10,7 @@ namespace lamp
 		static void bind(const gl::object_ptr& object);
 
 	private:
-		static std::map<gl::Object::Type, gl::ID> bindings;
+		static std::map<gl::Object::Type, gl::Id> bindings;
 	};
 }
 

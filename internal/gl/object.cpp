@@ -3,8 +3,17 @@
 namespace lamp::gl
 {
 	Object::Object(const Type type)
-		: type(type)
-		, id(0)
+		: _type(type)
+		, _id(0)
 	{
 	}
+
+    Id Object::id() const
+    {
+        return _id;
+    }
+
+    Object::Type Object::type() const {
+        return _type;
+    }
 }

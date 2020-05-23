@@ -9,12 +9,15 @@
 
 namespace lamp
 {
-	gl::mesh_ptr Importer::import(const char* path, const bool drop_normals)
+    std::shared_ptr<Mesh> Importer::import(const char* path, const bool drop_normals)
 	{
+	    assert(path != nullptr);
+
 		Assimp::Importer importer;
 		uint32_t flag = aiProcess_Triangulate | aiProcess_JoinIdenticalVertices;
 
-		if (drop_normals) {
+		if (drop_normals)
+		{
 			flag |= aiProcess_DropNormals;
 		}
 

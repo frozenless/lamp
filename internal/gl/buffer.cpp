@@ -13,21 +13,21 @@ namespace lamp::gl
 	{
 		assert(_target == GL_UNIFORM_BUFFER);
 
-		glBindBufferBase(_target, index, id);
+		glBindBufferBase(_target, index, _id);
 	}
 
 	void Buffer::bind() const noexcept
 	{
-		glBindBuffer(_target, id);
+		glBindBuffer(_target, _id);
 	}
 
 	void Buffer::create() noexcept
 	{
-		glCreateBuffers(1, &id);
+		glCreateBuffers(1, &_id);
 	}
 
 	void Buffer::release() noexcept
 	{
-		glDeleteBuffers(1, &id);
+		glDeleteBuffers(1, &_id);
 	}
 }
