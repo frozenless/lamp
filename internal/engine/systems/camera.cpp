@@ -27,8 +27,8 @@ namespace lamp::systems
 
             if (camera.main)
             {
-                const float aspect = viewport.width / viewport.height;
-                m4 projection = glm::perspective(glm::radians(camera.fov), aspect, camera.near, camera.far);
+                const float aspect  = viewport.width / viewport.height;
+                const m4 projection = glm::perspective(glm::radians(camera.fov), aspect, camera.near, camera.far);
 
                 const uniforms::camera u_camera =
                 {
