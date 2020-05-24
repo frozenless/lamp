@@ -20,7 +20,7 @@
 
 namespace lamp
 {
-    Timer Game::timer;
+    Timer Game::time;
 
     void Game::run(const Window::Config& config, const iv2& size)
     {
@@ -47,12 +47,12 @@ namespace lamp
 
         init();
 
-        auto old_time = Game::timer.elapsed();
+        auto old_time = Game::time.elapsed();
         do
         {
             Window::update();
 
-            const auto new_time   = Game::timer.elapsed();
+            const auto new_time   = Game::time.elapsed();
             const auto delta_time = new_time - old_time;
 
             old_time = new_time;

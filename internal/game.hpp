@@ -28,7 +28,7 @@ namespace lamp
         void mouse(const v2& position);
 
         entityx::EntityX ecs;
-        static   Timer timer;
+        static   Timer time;
 
         Physics physics;
 

@@ -13,7 +13,7 @@ namespace lamp::systems
 
             if (rotation.type == components::rotation::Type::Around) {
 
-                const float value = Game::timer.elapsed() * rotation.speed;
+                const float value = Game::time.elapsed() * rotation.speed;
 
                 position.x = rotation.radius * std::cosf(value);
                 position.z = rotation.radius * std::sinf(value);
