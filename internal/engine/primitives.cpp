@@ -11,20 +11,20 @@
 
 namespace lamp
 {
-    entityx::Entity Primitives::create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, const v3& axes, const float angle)
+    entityx::Entity Primitives::create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, const float scale, const v3& axes, const float angle)
     {
         const std::array<v3, 8> vertices
         {
-            v3(-1, 0, 1), v3( 0, 1, 0),
-            v3(1, 0, 1),  v3(0, 1, 0),
-            v3(1, 0, 1),  v3(0, 1, 0),
-            v3(1, 0, 1),  v3(0, 1, 0)
+            v3(-scale, 0,  scale), v3(0, 1, 0),
+            v3( scale, 0,  scale), v3(0, 1, 0),
+            v3( scale, 0, -scale), v3(0, 1, 0),
+            v3(-scale, 0, -scale), v3(0, 1, 0)
         };
 
         const std::array<uint32_t, 6> indices
         {
-            0, 1, 2,
-            0, 3, 2
+            1, 3, 0,
+            1, 2, 3
         };
 
         gl::Layout layout;
