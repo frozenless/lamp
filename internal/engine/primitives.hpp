@@ -11,6 +11,6 @@ namespace lamp
     class Primitives
     {
     public:
-        static entityx::Entity create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, const v3& axes, float angle);
+        static entityx::Entity create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, float scale, const v3& axes, float angle);
     };
 }

@@ -12,7 +12,7 @@ namespace lamp::systems
         void configure(entityx::EventManager& events) final;
         void update(entityx::EntityManager& es, entityx::EventManager& ev, entityx::TimeDelta dt) final;
 
-        void receive(const events::Input& event);
+        void receive(const events::input& event);
 
     private:
         bool _show_editor = false;

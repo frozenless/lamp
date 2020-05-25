@@ -5,16 +5,36 @@
 #include "components/selectable.hpp"
 
 #include "physics/utils.hpp"
-#include "importer.hpp"
+
+#include "assets.inl"
+#include "layout.inl"
 
 namespace lamp
 {
-    entityx::Entity Primitives::create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, const v3& axes, const float angle)
+    entityx::Entity Primitives::create_plane(Physics& physics, entityx::EntityManager& entities, const math::rgb& color, const v3& position, const v3& normal, const float scale, const v3& axes, const float angle)
     {
+        const std::array<v3, 8> vertices
+        {
+            v3(-scale, 0,  scale), v3(0, 1, 0),
+            v3( scale, 0,  scale), v3(0, 1, 0),
+            v3( scale, 0, -scale), v3(0, 1, 0),
+            v3(-scale, 0, -scale), v3(0, 1, 0)
+        };
+
+        const std::array<uint32_t, 6> indices
+        {
+            1, 3, 0,
+            1, 2, 3
+        };
+
+        gl::Layout layout;
+        layout.add<float>(3);
+        layout.add<float>(3);
+
         auto plane    = entities.create();
         auto renderer = plane.assign<components::renderer>();
 
-        renderer->mesh     = Importer::import("models/plane.obj");
+        renderer->mesh     = Assets::create(vertices, indices, layout, GL_TRIANGLES, GL_STATIC_DRAW);
         renderer->material = std::make_shared<Material>();
         renderer->material->shininess = 128.0f;
         renderer->material->color     = color;

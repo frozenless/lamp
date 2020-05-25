@@ -10,6 +10,7 @@ namespace lamp::components
         };
 
         Type  type = Type::Around;
+
         float radius;
         float speed;
     };

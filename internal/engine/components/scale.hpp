@@ -4,6 +4,8 @@ namespace lamp::components
 {
 	struct scale
 	{
-		float x, y, z;
+		float x = 1.0f;
+		float y = 1.0f;
+		float z = 1.0f;
 	};
 }

@@ -4,7 +4,7 @@
 
 namespace lamp::events
 {
-    struct Input
+    struct input
     {
         int32_t action;
         int32_t key;
