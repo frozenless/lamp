@@ -163,7 +163,7 @@ namespace lamp
 
     void Game::input(const int32_t action, const int32_t key)
     {
-        events::Input event { action, key };
+        events::input event { action, key };
 
         ecs.events.emit(event);
 

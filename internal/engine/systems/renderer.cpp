@@ -4,6 +4,7 @@
 
 #include "engine/components/renderer.hpp"
 #include "engine/components/transform.hpp"
+#include "engine/components/viewport.hpp"
 
 #include "engine/uniforms/material.hpp"
 
@@ -17,7 +18,8 @@ namespace lamp::systems
 {
     void Renderer::configure(entityx::EventManager& events)
 	{
-        events.subscribe<events::Input>(*this);
+        events.subscribe<events::input>(*this);
+        events.subscribe<events::camera_view>(*this);
 
         _model_buffer    = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 2);
         _material_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 3);
@@ -66,7 +68,7 @@ namespace lamp::systems
 		});
 	}
 
-    void Renderer::receive(const events::Input& event)
+    void Renderer::receive(const events::input& event)
     {
         if (event.action == GLFW_PRESS && event.key == GLFW_KEY_W)
         {
@@ -74,5 +76,10 @@ namespace lamp::systems
 
             _wire_mode = !_wire_mode;
         }
+    }
+
+    void Renderer::receive(const events::camera_view& event)
+    {
+        gl::Renderer::viewport({ 0, 0, event.width, event.height });
     }
 }

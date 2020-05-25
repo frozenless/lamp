@@ -6,7 +6,7 @@
 
 namespace lamp::events
 {
-    struct CameraAspect
+    struct camera_view
     {
         entityx::Entity entity;
 

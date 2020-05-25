@@ -11,7 +11,7 @@ namespace lamp::systems
 {
     void Editor::configure(entityx::EventManager& events)
     {
-        events.subscribe<events::Input>(*this);
+        events.subscribe<events::input>(*this);
     }
 
     void Editor::update(entityx::EntityManager& es, entityx::EventManager&, entityx::TimeDelta)
@@ -38,7 +38,7 @@ namespace lamp::systems
         });
     }
 
-    void Editor::receive(const events::Input& event)
+    void Editor::receive(const events::input& event)
     {
         if (event.action == GLFW_PRESS && event.key == GLFW_KEY_E)
         {

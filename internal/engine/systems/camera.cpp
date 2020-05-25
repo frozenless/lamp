@@ -12,7 +12,7 @@ namespace lamp::systems
 {
     void Camera::configure(entityx::EventManager& events)
     {
-        events.subscribe<events::CameraAspect>(*this);
+        events.subscribe<events::camera_view>(*this);
 
         _camera_buffer = Assets::create(GL_UNIFORM_BUFFER, GL_DYNAMIC_DRAW, 0);
     }
@@ -47,12 +47,16 @@ namespace lamp::systems
         });
     }
 
-    void Camera::receive(const events::CameraAspect& event)
+    void Camera::receive(const events::camera_view& event)
     {
         m4 projection;
 
-        auto entity = event.entity;
-        auto camera = entity.component<components::camera>();
+        auto entity   = event.entity;
+        auto camera   = entity.component<components::camera>();
+        auto viewport = entity.component<components::viewport>();
+
+        viewport->width  = event.width;
+        viewport->height = event.height;
 
         if (camera->type == components::camera::Type::Perspective)
         {
