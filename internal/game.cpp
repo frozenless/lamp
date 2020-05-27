@@ -117,6 +117,14 @@ namespace lamp
             static_cast<Game*>(glfwGetWindowUserPointer(ptr))->mouse({ x, y });
         });
 
+        glfwSetFramebufferSizeCallback(window, [](GLFWwindow* ptr, const int32_t width, const int32_t height) noexcept {
+
+            if (width != 0 && height != 0) {
+
+                static_cast<Game*>(glfwGetWindowUserPointer(ptr))->resize(static_cast<float>(width), static_cast<float>(height));
+            }
+        });
+
         glfwSetScrollCallback(window, [](GLFWwindow* ptr, const double, const double offset) noexcept {
 
             auto game = static_cast<Game*>(glfwGetWindowUserPointer(ptr));
@@ -134,7 +142,6 @@ namespace lamp
 
         glfwSetWindowUserPointer(window, this);
     }
-
 
     void Game::init_systems() noexcept
     {
@@ -161,11 +168,19 @@ namespace lamp
         ecs.systems.update<systems::Renderer>(0);
     }
 
+    void Game::resize(const float width, const float height)
+    {
+        auto entities = ecs.entities.entities_with_components<components::camera>();
+        auto entity   = std::find_if(entities.begin(), entities.end(), [](entityx::Entity e) {
+            return e.component<components::camera>()->main;
+        });
+
+        ecs.events.emit<events::camera_view>({ (*entity), width, height });
+    }
+
     void Game::input(const int32_t action, const int32_t key)
     {
-        events::input event { action, key };
-
-        ecs.events.emit(event);
+        ecs.events.emit<events::input>({ action, key });
 
         if (action == GLFW_PRESS) {
 

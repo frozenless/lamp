@@ -23,6 +23,7 @@ namespace lamp
         virtual ~Game() = default;
 
         virtual void input(int32_t action, int32_t key);
+        virtual void resize(float width, float height);
 
         void run(const Window::Config& config, const iv2& size);
         void mouse(const v2& position);
